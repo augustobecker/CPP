@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 23:05:16 by acesar-l          #+#    #+#             */
-/*   Updated: 2022/03/14 23:05:17 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/01/02 15:36:02 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void ft_print_upper(const char *str)
 {
-	size_t i;
-	std::string output;
+	std::string	output;
+	size_t		i;
 
 	i = 0;
 	output = str;
