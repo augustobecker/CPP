@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 02:29:38 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/03 02:29:38 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:33:06 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,7 @@
 #include <iostream>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+
+# define    MAX_CONTACTS    8
 
 #endif

@@ -6,7 +6,7 @@
 #    By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/02 15:48:17 by acesar-l          #+#    #+#              #
-#    Updated: 2023/01/03 02:30:39 by acesar-l         ###   ########.fr        #
+#    Updated: 2023/01/03 13:51:17 by acesar-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ COMPILER		= g++
 STANDARD_FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 FILES			= main.cpp		\
-				  PhoneBook.cpp \
-				  Contact.cpp \
+				  Contact.cpp	\
+				  PhoneBook.cpp
 
 GREEN			= \033[0;32m
 RED				= \033[0;31m

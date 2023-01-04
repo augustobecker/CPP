@@ -2,6 +2,7 @@
 # define PHONEBOOK_HPP
 
 #include "annuaire.hpp"
+#include "Contact.hpp"
 
 class PhoneBook
 {
@@ -11,9 +12,9 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 
-	Contact	Contacts[8];
+	Contact	contact[8];
 	int		length;
-	
+
 };
 
 #endif
