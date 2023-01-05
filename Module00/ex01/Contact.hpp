@@ -16,13 +16,16 @@ public:
 	void	set_nickname(std::string);
 	void	set_phone_number(std::string);
 	void	set_dark_secret(std::string);
-	void	display_info(void);
+	
+	int		print_abrev_first_name(void);
+	int		print_abrev_last_name(void);
+	int		print_abrev_nickname(void);
 
 private:
 
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
+	std::string	_first_name;
+	std::string	_last_name;
+	std::string	_nickname;
 	std::string	_phone_number;
 	std::string	_dark_secret;
 

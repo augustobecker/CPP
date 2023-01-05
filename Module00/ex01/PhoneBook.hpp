@@ -15,6 +15,8 @@ public:
 	Contact	contact[8];
 	int		length;
 
+	int	display_phonebook(void);
+
 };
 
 #endif
