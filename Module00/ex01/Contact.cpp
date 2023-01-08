@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 02:21:21 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/05 01:01:19 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/01/08 21:52:23 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 Contact::Contact(void)
 {
-	//std::cout << "Constructor Called Contact" <<std::endl;
+	//std::cout << "Contact Created" <<std::endl;
 	return ;
 }
 
 Contact::~Contact(void)
 {
-	//std::cout << "Destructor Called Contact" <<std::endl;
+	//std::cout << "Contact Destroyed" <<std::endl;
 	return ;
 }
 
@@ -49,32 +49,45 @@ void	Contact::set_dark_secret(std::string secret)
 	this->_dark_secret = secret;
 }
 
-int Contact::print_abrev_first_name(void)
+void	Contact::brief_description(int index)
 {
-	std::cout << this->_first_name;
-	return ((MAX_WIDE_ANNUAIRE_LIST - 1) - this->_first_name.length());
+	std::cout << " |         " << index + 1 << "|";
+	_print_abrev(this->_first_name, MAX_WIDE_ANNUAIRE_LIST);
+	_print_abrev(this->_last_name, MAX_WIDE_ANNUAIRE_LIST);
+	_print_abrev(this->_nickname, MAX_WIDE_ANNUAIRE_LIST);
+	std::cout << std::endl;
 }
 
-int Contact::print_abrev_last_name(void)
+void	Contact::print_data(void)
 {
-	if ((int) _last_name.length() >= MAX_WIDE_ANNUAIRE_LIST - 1)
-		return (0);
-	else
-	{
-		std::cout << _last_name;
-		return ((MAX_WIDE_ANNUAIRE_LIST - 1) - _last_name.length());
-	}
-	return 1;
+	std::cout << std::endl;
+	std::cout << "	First name     : " << this->_first_name << std::endl;
+	std::cout << "	Last name      : " << this->_last_name << std::endl;
+	std::cout << "	Nickame        : " << this->_nickname << std::endl;
+	std::cout << "	Phone Number   : " << this->_phone_number << std::endl;
+	std::cout << "	Darkest Secret : " << this->_dark_secret << std::endl;
+	std::cout << std::endl;
 }
 
-int Contact::print_abrev_nickname(void)
+void	Contact::_print_abrev(std::string str, long unsigned int max_length)
 {
-	if ((int) _nickname.length() >= MAX_WIDE_ANNUAIRE_LIST - 1)
-		return (0);
+	int spaces;
+	int	i;
+
+	i = 0;
+	if (str.length() == max_length)
+		std::cout << str;
+	else if (str.length() >= max_length)
+		std::cout << str.substr(0, 9) << ".";
 	else
 	{
-		std::cout << _nickname;
-		return ((MAX_WIDE_ANNUAIRE_LIST - 1) - _nickname.length());
+		spaces = max_length - str.length();
+		while (i < spaces)
+		{
+			std::cout << " ";
+			i++;
+		}
+		std::cout << str;
 	}
-	return 1;
+	std::cout << "|";
 }
