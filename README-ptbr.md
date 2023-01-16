@@ -17,7 +17,7 @@
 </p>
                                                                                                         
 <p align="center">
-  <a href="https://github.com/augustobecker/CPP/README.md">
+  <a href="https://github.com/augustobecker/CPP/blob/main/README.md">
     <img src="https://img.shields.io/badge/available%20in-EN-blue">
   </a>
 </p>
