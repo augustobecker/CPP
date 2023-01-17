@@ -6,7 +6,7 @@
 #    By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/08 22:09:25 by acesar-l          #+#    #+#              #
-#    Updated: 2023/01/08 22:15:21 by acesar-l         ###   ########.fr        #
+#    Updated: 2023/01/17 02:05:36 by acesar-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ COMPILER		= g++
 STANDARD_FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 FILES			= tests.cpp			\
-				  Account.cpp		\
-				  Account.hpp
+				  Account.cpp
 
 GREEN			= \033[0;32m
 RED				= \033[0;31m

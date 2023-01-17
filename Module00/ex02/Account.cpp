@@ -1,63 +1,61 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Account.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 22:09:10 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/09 02:42:43 by acesar-l         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+// ************************************************************************** //
+//                                                                            //
+//                Account.hpp for GlobalBanksters United                	  //
+//                Created on  : Mon Jan 16 22:52:15 2023                      //
+//                Last update : Mon Jan 16 22:54:06 2023                      //
+//                Made by : Augusto Becker <becker@gbu.com>                   //
+//                                                                            //
+// ************************************************************************** //
 
 #include <iostream>
+#include <time.h>
 #include "Account.hpp"
 
-static int	Account::getNbAccounts( void )
+int Account::_nbAccounts;
+int Account::_totalAmount;
+int Account::_totalNbDeposits;
+int Account::_totalNbWithdrawals;
+
+int Account::getNbAccounts( void )
 {
+	return(_nbAccounts);
 }
 
-static int	Account::getTotalAmount( void )
+int	Account::getTotalAmount( void )
 {
-	int	index;
-	int	total;
-
-	index = 0;
-	total = 0;
-	while ( index < _nbAccounts)
-	{
-		total += Account[index]._amount;
-		index++;
-	}
-	return (total);
+	return (_totalAmount);
 }    
 
-static int	Account::getNbDeposits( void )
+int	Account::getNbDeposits( void )
 {
-	
+	return(_totalNbDeposits);
 }
 
-static int	Account::getNbWithdrawals( void )
+int	Account::getNbWithdrawals( void )
 {
-
+	return(_totalNbWithdrawals);
 }
 
-static void	Account::displayAccountsInfos( void )
+void	Account::displayAccountsInfos( void )
 {
 	_displayTimestamp();
 	std::cout << "accounts:" << getNbAccounts() << ";";
 	std::cout << "total:" << getTotalAmount() << ";";
 	std::cout << "deposits:" << getNbDeposits() << ";";
 	std::cout << "withdrawals:" << getNbWithdrawals();
+	std::cout << std::endl;
 }
 
 Account::Account( int initial_deposit )
 {
+	this->_accountIndex = _nbAccounts;
 	this->_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
 	this->_amount = initial_deposit;
+	this->_totalAmount = initial_deposit;
 	std::cout << "amount:" << this->checkAmount() << ";";
-	std::cout << "created" << std::endl;
+	std::cout << "created";
+	std::cout << std::endl;
 }
 
 Account::~Account( void )
@@ -65,7 +63,8 @@ Account::~Account( void )
 	this->_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex << ";";
 	std::cout << "amount:" << this->_amount << ";";
-	std::cout << "closed" << std::endl;
+	std::cout << "closed";
+	std::cout << std::endl;
 }
 
 void	Account::makeDeposit( int deposit )
@@ -78,6 +77,7 @@ void	Account::makeDeposit( int deposit )
 	std::cout << "deposit:" << deposit << ";";
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "nb_deposits:" << this->getNbDeposits();
+	std::cout << std::endl;
 }
 
 bool	Account::makeWithdrawal( int withdrawal )
@@ -92,18 +92,20 @@ bool	Account::makeWithdrawal( int withdrawal )
 		std::cout << "withdrawal:" << withdrawal << ";";
 		std::cout << "amount:" << this->_amount << ";";
 		std::cout << "nb_withdrawals:" << this->getNbWithdrawals();
+		std::cout << std::endl;
 		return (true);
 	}
 	else
 	{
 		std::cout << "withdrawal:refused";
+		std::cout << std::endl;
 		return (false);
 	}
 }
 
 int		Account::checkAmount( void ) const
 {
-	
+	return(this->_amount);
 }
 
 void	Account::displayStatus( void ) const
@@ -113,9 +115,41 @@ void	Account::displayStatus( void ) const
 	std::cout << "amount:" << this->_amount << ";";
 	std::cout << "deposits:" << this->getNbDeposits() << ";";
 	std::cout << "withdrawals:" << this->getNbWithdrawals();
+	std::cout << std::endl;
 }
 
-static void	Account::_displayTimestamp( void )
+void	Account::_displayTimestamp( void )
 {
-	
+	time_t current;
+	struct tm * current_time;
+
+	time(&current);
+	current_time = localtime(&current);
+	std::cout << '[';
+	std::cout <<  1900 + current_time->tm_year;
+	if (current_time->tm_mon + 1 < 10)
+		std::cout << 0;
+	std::cout <<  current_time->tm_mon + 1;
+	if (current_time->tm_mday < 10)
+		std::cout << 0;
+	std::cout <<  current_time->tm_mday;
+	std::cout <<  '_';
+	if (current_time->tm_hour < 10)
+		std::cout << 0;
+	std::cout <<  current_time->tm_hour;
+	if (current_time->tm_min < 10)
+		std::cout << 0;
+	std::cout <<  current_time->tm_min;
+	if (current_time->tm_sec < 10)
+		std::cout << 0;
+	std::cout <<  current_time->tm_sec;
+	std::cout << ']';
+	std::cout << ' ';
 }
+
+// ************************************************************************** //
+// vim: set ts=4 sw=4 tw=80 noexpandtab:                                      //
+// -*- indent-tabs-mode:t;                                                   -*-
+// -*- mode: c++-mode;                                                       -*-
+// -*- fill-column: 75; comment-column: 75;                                  -*-
+// ************************************************************************** //
