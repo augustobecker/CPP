@@ -6,10 +6,9 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 17:31:21 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/17 19:09:24 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:07:52 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
@@ -32,6 +31,8 @@ public:
 	void	randomChump( std::string name );
 
 	void    announce( void );
+
+	Zombie( void );
 
 };
 
