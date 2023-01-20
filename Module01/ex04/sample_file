@@ -1,0 +1,18 @@
+Bounded buffer
+
+The bounded-buffer problems (aka the producer-consumer problem)
+is a classic example of concurrent access to a shared resource.
+A bounded buffer lets multiple producers and multiple consumers 
+share a single buffer. Producers write data to the buffer and consumers
+read data from the buffer.
+Producers must block if the buffer is full.
+Consumers must block if the buffer is empty.
+A bounded buffer with capacity N has can store N data items.
+The places used to store the data items inside the bounded buffer are called slots.
+Without proper synchronization the following errors may occur:
+*   The producers doesn’t block when the buffer is full.
+*   A Consumer consumes an empty slot in the buffer.
+*   A consumer attempts to consume a slot that is only half-filled by a producer.
+*    Two producers writes into the same slot.
+*   Two consumers reads the same slot.
+*   And possibly more …
