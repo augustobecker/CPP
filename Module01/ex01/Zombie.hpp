@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:18:48 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/17 21:13:54 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/01/18 01:00:41 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ public:
 
 	void    announce( void );
     void    define_name( std::string name );
+
 	Zombie( void );
 
 };
