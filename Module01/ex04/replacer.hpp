@@ -13,13 +13,9 @@
 #ifndef REPLACER_H
 # define REPLACER_H
 
-# include <iostream>
-# include <fstream>
-# include <string>
-# include <vector>
-# include <vector>
-# include <algorithm>
-# include <functional>
+# include <iostream> 
+# include <fstream> 
+# include <stdlib.h> 
 # include "defines.hpp"
 
 typedef enum e_error
