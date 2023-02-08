@@ -15,4 +15,22 @@
 
 # include <iostream>
 
+class Fixed
+{
+
+private:
+	int		value;
+	static int	fract_bits;
+
+public:
+	Fixed( void );
+	~Fixed( void );
+
+	Fixed(const Fixed &obj);
+    	Fixed& operator=(const Fixed &obj);
+
+	int	getRawBits( void ) const;
+	void	setRawBits( int const raw );
+};
+
 #endif
