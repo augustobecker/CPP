@@ -12,15 +12,19 @@
 
 #include <iostream>
 
-void ft_print_upper(const char *str)
+void print_in_upper(const char *str)
 {
-	std::string	output;
-	size_t		i;
+	std::string				output;
+	std::string::iterator	iter;
 
-	i = 0;
 	output = str;
-	while (i < output.length())
-		std::cout << (char)std::toupper(output[i++]);
+	iter = output.begin();
+	while (iter != output.end())
+	{
+		*iter = std::toupper(*iter);
+		++iter;
+	}
+	std::cout << output;
 }
 
 int main(int argc, char **argv)
@@ -33,7 +37,7 @@ int main(int argc, char **argv)
 	else
 	{
 		while (words < argc)
-			ft_print_upper(argv[words++]);
+			print_in_upper(argv[words++]);
 	}
 	std::cout << std::endl;
   	return 0;

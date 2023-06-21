@@ -24,13 +24,13 @@ RESET			= \033[0m
 
 all:			${NAME}
 		
-${NAME}:			
+${NAME}:
 				$(COMPILER) -o $(NAME) $(FILES) $(STANDARD_FLAGS)
-				@echo "$(NAME): $(GREEN)$(NAME) was created :)$(RESET)\n"
+				@echo "$(NAME): $(GREEN)$(NAME) was created :)$(RESET)"
 
 clean:
 				rm -f $(NAME)
-				@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)\n"
+				@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 
 fclean:			clean
 
