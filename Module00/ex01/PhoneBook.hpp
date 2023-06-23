@@ -37,6 +37,7 @@ public:
 private:
 
 	int		_numContacts;
+	int		_idNewestContact;
 
 	static std::string	staticGetUserParameter(Parameter parameter);
 	static std::string	staticGetUserInputNonEmptyString(

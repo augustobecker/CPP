@@ -16,23 +16,30 @@ COMPILER 		= g++
 
 STANDARD_FLAGS	= -Wall -Wextra -Werror -std=c++98
 
-FILES			= megaphone.cpp
+SRCS			= megaphone.cpp
+
+OBJS 			= ${SRCS:.cpp=.o}
 
 GREEN			= \033[0;32m
 RED				= \033[0;31m
 RESET			= \033[0m
 
+%.o:			%.cpp
+				${COMPILER} ${STANDARD_FLAGS} -c $< -o $@
+
 all:			${NAME}
 		
-${NAME}:
-				$(COMPILER) -o $(NAME) $(FILES) $(STANDARD_FLAGS)
+${NAME}:		${OBJS}
+				$(COMPILER) -o $(NAME) $(OBJS) $(STANDARD_FLAGS)
 				@echo "$(NAME): $(GREEN)$(NAME) was created :)$(RESET)"
 
 clean:
-				rm -f $(NAME)
-				@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+				rm -f ${OBJS}
+				@echo "${NAME}: ${RED} Objects were destroyed ${RESET}"
 
 fclean:			clean
+				rm -f ${NAME}
+				@echo "${NAME}: ${RED}${NAME} was destroyed ${RESET}"
 
 re :			clean all
 

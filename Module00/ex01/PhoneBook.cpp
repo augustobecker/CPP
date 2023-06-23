@@ -15,6 +15,7 @@
 PhoneBook::PhoneBook(void)
 {
     this->_numContacts = 0;
+	this->_idNewestContact = 0;
     return ;
 }
 
@@ -27,16 +28,18 @@ void    PhoneBook::addContact(void)
 {
     int i;
 
-	if (this->_numContacts < MAX_CONTACTS)
-		this->_numContacts++;
-    i = this->_numContacts - 1;
-	std::cout << this->_numContacts << std::endl;
+	this->_idNewestContact++;
+	if (this->_idNewestContact > MAX_CONTACTS)
+		this->_idNewestContact = 1;
+    i = this->_idNewestContact - 1;
 	this->contact[i].setFirstName(staticGetUserParameter(FIRST_NAME));
 	this->contact[i].setLastName(staticGetUserParameter(LAST_NAME));
 	this->contact[i].setNickname(staticGetUserParameter(NICKNAME));
 	this->contact[i].setPhoneNumber(staticGetUserParameter(PHONE_NBR));
 	this->contact[i].setDarkSecret(staticGetUserParameter(DARK_SECRET));
 	staticMessageContactCreated();
+	if (this->_numContacts < MAX_CONTACTS)
+		this->_numContacts++;
 }
 
 void	PhoneBook::searchContact(void)
