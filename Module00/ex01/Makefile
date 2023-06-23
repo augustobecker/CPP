@@ -18,10 +18,7 @@ STANDARD_FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 FILES			= main.cpp			\
 				  Contact.cpp		\
-				  PhoneBook.cpp 	\
-				  add_contact.cpp	\
-				  get_command.cpp	\
-				  search_contact.cpp
+				  PhoneBook.cpp
 
 GREEN			= \033[0;32m
 RED				= \033[0;31m
@@ -31,11 +28,11 @@ all:			${NAME}
 
 ${NAME}:
 				${COMPILER} -o ${NAME} ${FILES} ${STANDARD_FLAGS}
-				@echo "${NAME}: ${GREEN}${NAME} was created :)${RESET}\n"
+				@echo "${NAME}: ${GREEN}${NAME} was created :)${RESET}"
 
 clean:
 				rm -f ${NAME}
-				@echo "${NAME}: ${RED}${NAME} was burned ${RESET}\n"
+				@echo "${NAME}: ${RED}${NAME} was burned ${RESET}"
 
 fclean:			clean
 

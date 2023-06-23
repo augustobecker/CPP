@@ -10,34 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "annuaire.hpp"
+# include "annuaire.hpp"
+# include "PhoneBook.hpp"
+# include "Contact.hpp"
 
 int main(void)
 {
-	PhoneBook	annuaire;
+	PhoneBook	phoneBook;
 	int			command;
 
 	std::cout << L_ANNUAIRE_HEADER;
 	while (true)
 	{
-		command = user_input_command();
-		if (command == ADD)
+		command = phoneBook.getUserInputCommand();
+		switch (command)
 		{
-			if (annuaire.length != MAX_CONTACTS)
-				annuaire.length++;
-			if (add_contact(&annuaire))
+			case ADD:
+				phoneBook.addContact();
 				break;
-			message_contact_created();
+			case SEARCH:
+				phoneBook.searchContact();
+				break;
+			case EXIT:
+				return (0);
+			default:
+				break ;
 		}
-		else if (command == SEARCH)
-		{
-			if (annuaire.display_phonebook())
-				message_no_data_found();
-			if (search_contact(&annuaire))
-				message_no_data_found();
-		}
-		else if (command == EXIT)
-			break;
 	}
 	return (0);
 }

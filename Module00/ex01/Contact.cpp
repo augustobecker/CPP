@@ -10,66 +10,90 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "annuaire.hpp"
+# include "Contact.hpp"
 
 Contact::Contact(void)
 {
-	//std::cout << "Contact Created" <<std::endl;
 	return ;
 }
 
 Contact::~Contact(void)
 {
-	//std::cout << "Contact Destroyed" <<std::endl;
 	return ;
 }
 
-void    Contact::set_first_name(std::string name)
+std::string	Contact::getFirstName(void)
 {
-	this->_first_name = name;
+	return(_firstName);
 }
 
-void    Contact::set_last_name(std::string name)
+void    Contact::setFirstName(std::string name)
 {
-	this->_last_name = name;
+	this->_firstName = name;
 }
 
-void    Contact::set_nickname(std::string name)
+std::string	Contact::getLastName(void)
+{
+	return(_lastName);
+}
+
+void    Contact::setLastName(std::string name)
+{
+	this->_lastName = name;
+}
+
+std::string	Contact::getNickname(void)
+{
+	return(_nickname);
+}
+
+void    Contact::setNickname(std::string name)
 {
 	this->_nickname = name;
 }
 
-void    Contact::set_phone_number(std::string number)
+std::string	Contact::getPhoneNumber(void)
 {
-	this->_phone_number = number;
+	return(_phoneNumber);
 }
 
-void	Contact::set_dark_secret(std::string secret)
+void    Contact::setPhoneNumber(std::string number)
 {
-	this->_dark_secret = secret;
+	this->_phoneNumber = number;
 }
 
-void	Contact::brief_description(int index)
+std::string	Contact::getDarkSecret(void)
+{
+	return(_darkSecret);
+}
+
+void	Contact::setDarkSecret(std::string secret)
+{
+	this->_darkSecret = secret;
+}
+
+void	Contact::briefDescription(int index)
 {
 	std::cout << " |         " << index + 1 << "|";
-	_print_abrev(this->_first_name, MAX_WIDE_ANNUAIRE_LIST);
-	_print_abrev(this->_last_name, MAX_WIDE_ANNUAIRE_LIST);
-	_print_abrev(this->_nickname, MAX_WIDE_ANNUAIRE_LIST);
+	staticDisplayDataAbrev(_firstName, MAX_WIDE_ANNUAIRE_LIST);
+	staticDisplayDataAbrev(_lastName, MAX_WIDE_ANNUAIRE_LIST);
+	staticDisplayDataAbrev(_nickname, MAX_WIDE_ANNUAIRE_LIST);
 	std::cout << std::endl;
 }
 
-void	Contact::print_data(void)
+void	Contact::displayData(void)
 {
 	std::cout << std::endl;
-	std::cout << "	First name     : " << this->_first_name << std::endl;
-	std::cout << "	Last name      : " << this->_last_name << std::endl;
-	std::cout << "	Nickame        : " << this->_nickname << std::endl;
-	std::cout << "	Phone Number   : " << this->_phone_number << std::endl;
-	std::cout << "	Darkest Secret : " << this->_dark_secret << std::endl;
+	std::cout << "	First name     : " << _firstName << std::endl;
+	std::cout << "	Last name      : " << _lastName << std::endl;
+	std::cout << "	Nickame        : " << _nickname << std::endl;
+	std::cout << "	Phone Number   : " << _phoneNumber << std::endl;
+	std::cout << "	Darkest Secret : " << _darkSecret << std::endl;
 	std::cout << std::endl;
 }
 
-void	Contact::_print_abrev(std::string str, long unsigned int max_length)
+void	Contact::staticDisplayDataAbrev(
+	const std::string& str, long unsigned int max_length)
 {
 	int spaces;
 	int	i;

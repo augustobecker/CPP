@@ -13,22 +13,39 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-#include "annuaire.hpp"
-#include "Contact.hpp"
+# include "annuaire.hpp"
+# include "Contact.hpp"
 
 class PhoneBook
 {
-	
 public:
 
 	PhoneBook(void);
 	~PhoneBook(void);
 
-	Contact	contact[MAX_CONTACTS];
-	int		length;
-	
-	int		display_phonebook(void);
+	static const int MAX_CONTACTS = 8;
 
+	Contact	contact[MAX_CONTACTS];
+	
+	int		getUserInputCommand(void);
+
+	void	addContact(void);
+	void	searchContact(void);
+
+	int 	displayContactsBriefData(void);
+
+private:
+
+	int		_numContacts;
+
+	static std::string	staticGetUserParameter(Parameter parameter);
+	static std::string	staticGetUserInputNonEmptyString(
+		const std::string& promptMessage);
+
+	static void			staticMessageContactCreated(void);
+	static void			staticMessageNoDataFound(void);
+	
 };
+
 
 #endif
