@@ -24,6 +24,20 @@
   
 <h2 align="center" id="how-does-it-work"> How does it work? </h2>
 
+|MODULE	|TOPICS		|STATUS				|
+|:-:	|:--		|--:				|
+|CPP00	|`Namespaces` `Classes` `Member Functions` `stdio streams` `initialization lists` `static` `const`		|100% ✅			|
+|CPP01	|`Memory Allocation` `Pointers to members` `References` `Switch statement`		|0% 				|
+|CPP02	|		|0% 				|
+|CPP03	|		|0% 				|				
+|CPP04	|		|0%				|
+|CPP05	|		|0% 				|
+|CPP06	|		|0% 				|
+|CPP07	|		|0% 				|
+|CPP08	|		|0% 				|
+|CPP09	|		|0% 				|
+
+
 <h2 align="center" id="42-cursus"> 42 Cursus </h2>
 	
 42 is a global education initiative that proposes a new way of learning technology: no teachers, no classrooms,
