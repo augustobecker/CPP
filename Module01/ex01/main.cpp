@@ -16,27 +16,24 @@ Zombie* zombieHorde( int N, std::string name );
 
 int	main( void )
 {
-	Zombie	*horde;
-	int		zombies;
+	Zombie	*horde = zombieHorde(10, "Becker");
 	int		i;
 
 	i = 0;
-	zombies = 10;
-	horde = zombieHorde(zombies, "Becker");
 	std::cout << "Every Zombie must announce itself:" << std::endl;
-	while (i < zombies)
+	while (i < 10)
 	{
 		std::cout << "[Zombie - " << i + 1 << "]	: ";
 		horde[i++].announce();
 	}
 	std::cout << std::endl;
 	std::cout << "Redefining Zombie 5 and 6." << std::endl;
-	horde[4].define_name("Carlos");
-	horde[5].define_name("Andrés");
+	horde[4].setName("Carlos");
+	horde[5].setName("Andrés");
 	std::cout << std::endl;
 	i = 0;
 	std::cout << "Every Zombie must announce itself:" << std::endl;
-	while (i < zombies)
+	while (i < 10)
 	{
 		std::cout << "[Zombie - " << i + 1 << "]	: ";
 		horde[i++].announce();

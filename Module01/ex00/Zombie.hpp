@@ -25,11 +25,11 @@ private:
 public:
 
 	Zombie( std::string name );
+	Zombie( void );
 	~Zombie( void );
 
 	void    announce( void );
 
-	Zombie( void );
 
 };
 

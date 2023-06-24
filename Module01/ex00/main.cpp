@@ -18,8 +18,11 @@ void    randomChump( std::string name );
 int main(void)
 {
     Zombie *Jube;
+    Zombie Leo("Leo");
     
     Jube = newZombie("Gusto");
+    Jube->announce();
+    Leo.announce();
     randomChump("Julinho");
     delete(Jube);
     return (0);

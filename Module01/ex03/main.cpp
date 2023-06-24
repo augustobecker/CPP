@@ -14,8 +14,11 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
+void explanation( void );
+
 int main( void )
 {
+	explanation();
 	Weapon bow = Weapon("recurve bow");
 
 	HumanA augusto = HumanA("Augusto", bow);
@@ -23,7 +26,8 @@ int main( void )
 	augusto.attack();
 	bow.setType("longbow");
 	augusto.attack();
-	amanda.setWeapon(&bow);
+	amanda.attack();
+	amanda.setWeapon(bow);
 	amanda.attack();
 	bow.setType("recurve bow");
 	amanda.attack();

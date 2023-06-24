@@ -22,14 +22,14 @@ class HumanA
 private:
 
     std::string     _name;
-    Weapon          *_weapon;
+    Weapon          _weapon;
 
 public:
 
-    HumanA( std::string name, Weapon &weapon_type );
+    HumanA( std::string name, const Weapon& weapon_type );
     ~HumanA( void );
 
-    void setWeapon( Weapon &weapon_type );
+    void setWeapon( const Weapon& weapon_type );
 
     void attack( void );
 };

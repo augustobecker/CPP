@@ -15,7 +15,6 @@
 
 # include <iostream>
 
-
 class Zombie
 {
 
@@ -25,13 +24,13 @@ private:
 
 public:
 
+	Zombie( void );
 	Zombie( std::string name );
 	~Zombie( void );
 
 	void    announce( void );
-    void    define_name( std::string name );
+    void    setName( std::string name );
 
-	Zombie( void );
 
 };
 
