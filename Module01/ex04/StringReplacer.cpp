@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:14:51 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/06/28 15:51:30 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:29:38 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 StringReplacer::StringReplacer(int argc, char **argv)
 {
 	if (!validateCommandLineInput(argc, argv))
-		exit (0);
+		exit (1);
 	this->_fileToModify = argv[1];
 	this->_strToBeReplaced = argv[2];
 	this->_newStr = argv[3];
