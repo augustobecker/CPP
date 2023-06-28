@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: acesar-l <acesar-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:15:05 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/22 20:15:18 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:12:46 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 class Harl
 {
+	
 private:
 
 	void debug( void );
@@ -28,6 +29,7 @@ private:
 
 public:
 
+	typedef void (Harl::*ComplainFunction)( void );
 	void complain( std::string );
 
 };

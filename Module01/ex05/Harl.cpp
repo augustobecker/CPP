@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: acesar-l <acesar-l@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 20:14:05 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/22 20:24:08 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:14:39 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 void Harl::complain( std::string level )
 {
-	std::string options[OPTIONS_NUM] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	void		(Harl::*f[OPTIONS_NUM])( void );
-	int			i;
+	Harl::ComplainFunction	functions[OPTIONS_NUM] = {
+		&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string	options[OPTIONS_NUM] = {
+		"DEBUG", "INFO", "WARNING", "ERROR"};
+	int	i;
 
 	i = 0;
-	f[0] = &Harl::debug;
-	f[1] = &Harl::info;
-	f[2] = &Harl::warning;
-	f[3] = &Harl::error;
 	while (i < OPTIONS_NUM)
 	{
 		if (!level.compare(options[i]))
 		{
-			(this->*f[i])();
+			(this->*functions[i])();
 			return ;
 		}
 		i++;
 	}
-	std::cout << "Bad usage: Harl::complain : passed param is not an option";
+	std::cout << "Bad usage: (Harl::complain) : passed param (";
+	std::cout << level << ") is not an option";
 	std::cout << std::endl << std::endl;
 }
 
