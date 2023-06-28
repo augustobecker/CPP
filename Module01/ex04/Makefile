@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: acesar-l <acesar-l@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 20:20:14 by acesar-l          #+#    #+#              #
-#    Updated: 2023/01/20 00:41:17 by acesar-l         ###   ########.fr        #
+#    Updated: 2023/06/27 15:45:28 by acesar-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,7 @@ COMPILER		= g++
 STANDARD_FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 SRCS			= main.cpp						\
-				  error_messages.cpp			\
-				  validations.cpp
+				  StringReplacer.cpp
 
 OBJS			= ${SRCS:.cpp=.o}
 

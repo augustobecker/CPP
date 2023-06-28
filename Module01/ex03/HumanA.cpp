@@ -35,4 +35,3 @@ void HumanA::attack( void )
     std::cout << "with their " << this->_weapon.getType();
     std::cout << std::endl;
 }
-
