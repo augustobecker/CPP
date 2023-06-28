@@ -105,6 +105,7 @@ void Harl::complain( void )
 void Harl::insignificant( void )
 {
 	std::cout << "Not relevant";
+	std::cout << std::endl;
 }
 
 void Harl::debug( void )
