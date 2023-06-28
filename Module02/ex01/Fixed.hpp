@@ -28,7 +28,7 @@ public:
 
 	Fixed( void );
 	Fixed( int );
-	Fixed( float );
+	//Fixed( float );
 	~Fixed( void );
 
 	Fixed(const Fixed &obj);
@@ -38,8 +38,10 @@ public:
 	void	setRawBits( const int );
 
 	int		toInt( void ) const;
-	float	toFloat( void ) const;
+	//float	toFloat( void ) const;
 
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed &obj);
 
 #endif

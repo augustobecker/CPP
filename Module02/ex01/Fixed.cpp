@@ -22,19 +22,16 @@ Fixed::Fixed( int numValue )
 {
 	std::cout << "Int constructor called" << std::endl;
 	this->_rawBits = 0;
+	this->_rawBits = (numValue << fractBits);
 }
 
+/*
 Fixed::Fixed( float numValue )
 {
-	int	integer_part;
-	int	decimal_part;	
-
 	std::cout << "Float constructor called" << std::endl;
-	integer_part = static_cast<int>numValue;
-	decimal_part = ;
 	this->_rawBits = 0;
 }
-
+*/
 
 Fixed::~Fixed( void )
 {
@@ -59,12 +56,21 @@ Fixed &Fixed::operator=(const Fixed &obj)
 
 int		Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_rawBits);
 }
 
 void	Fixed::setRawBits( int const raw )
 {
-	std::cout << "settRawBits member function called" << std::endl;
 	this->_rawBits = raw;
+}
+
+int		Fixed::toInt( void ) const
+{
+	return (this->_rawBits >> this->fractBits);
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed &obj)
+{
+        os << (obj.getRawBits() >> obj.fractBits);
+        return os;
 }
