@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 04:26:39 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/23 04:27:19 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:43:59 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ int main( void )
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+	std::cout << "a is " << a.toFloat() << " as float" << std::endl;
+	std::cout << "b is " << b.toFloat() << " as float" << std::endl;
+	std::cout << "c is " << c.toFloat() << " as float" << std::endl;
+	std::cout << "d is " << d.toFloat() << " as float" << std::endl;
 
 	Fixed const e( 8388609 );
 	Fixed const f( -8388609 );

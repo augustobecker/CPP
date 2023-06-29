@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:21:36 by codespace         #+#    #+#             */
-/*   Updated: 2023/06/29 17:24:52 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/29 21:30:42 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ Fixed::Fixed( int numValue )
 		this->_rawBits = (numValue << fractBits);
 }
 
+Fixed::Fixed( int fixedPoint, int fractionalBits)
+{
+	if (fractionalBits == this->fractBits)
+		this->_rawBits = fixedPoint; 
+}
+
 Fixed::Fixed( float numValue )
 {
 	this->_rawBits = static_cast<int>(numValue * 256);
@@ -59,6 +65,92 @@ Fixed &Fixed::operator=(const Fixed &obj)
 	if (this != &obj)
 		this->_rawBits = obj.getRawBits();
 	return (*this);
+}
+
+Fixed Fixed::operator+( Fixed &obj ) const
+{
+	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
+}
+
+Fixed Fixed::operator-( Fixed &obj ) const
+{
+	return (Fixed(_rawBits - obj.getRawBits(), fractBits));
+}
+
+Fixed Fixed::operator*( Fixed &obj ) const
+{
+	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
+}
+
+Fixed Fixed::operator/( Fixed &obj ) const
+{
+	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
+}
+
+Fixed Fixed::operator++( void )
+{
+	int	increment;
+
+	increment = 1 << fractBits;
+	this->_rawBits += increment;
+	return (Fixed(this->_rawBits, this->fractBits));
+}
+
+Fixed Fixed::operator++( int )
+{
+	int	increment;
+
+	increment = 1 << fractBits;
+	this->_rawBits += increment;
+	return (Fixed(this->_rawBits - increment, this->fractBits));
+}
+
+Fixed Fixed::operator--( void )
+{
+	int	increment;
+
+	increment = 1 << fractBits;
+	this->_rawBits -= increment;
+	return (Fixed(this->_rawBits, this->fractBits));
+}
+
+Fixed Fixed::operator--( int )
+{
+	int	increment;
+
+	increment = 1 << fractBits;
+	this->_rawBits -= increment;
+	return (Fixed(this->_rawBits + increment, this->fractBits));
+}
+
+bool Fixed::operator==( const Fixed &compare )
+{
+	return (_rawBits == compare.getRawBits());
+}
+
+bool Fixed::operator!=( const Fixed &compare )
+{
+	return (_rawBits != compare.getRawBits());
+}
+
+bool Fixed::operator<( const Fixed &compare )
+{
+	return (_rawBits < compare.getRawBits());
+}
+
+bool Fixed::operator>( const Fixed &compare )
+{
+	return (_rawBits > compare.getRawBits());
+}
+
+bool Fixed::operator>=( const Fixed &compare )
+{
+	return (_rawBits >= compare.getRawBits());
+}
+
+bool Fixed::operator<=( const Fixed &compare )
+{
+	return (_rawBits <= compare.getRawBits());
 }
 
 int		Fixed::getRawBits( void ) const
