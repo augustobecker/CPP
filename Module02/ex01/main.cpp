@@ -29,4 +29,10 @@ int main( void )
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
+	Fixed const e( 8388609 );
+	Fixed const f( -8388609 );
+
+	std::cout << "e is " << e << std::endl;
+	std::cout << "f is " << f << std::endl;
 }

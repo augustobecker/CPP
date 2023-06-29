@@ -14,7 +14,6 @@
 # define FIXED_HPP
 
 # include <iostream>
-# include <iomanip>
 
 class Fixed
 {
@@ -25,8 +24,8 @@ private:
 
 public:
 
-	const static int	maxInt = 4194303;
-	const static int	minInt = -4194304;
+	const static int	maxInt = 8388607;
+	const static int	minInt = -8388608;
 	const static int	fractBits = 8;
 
 	Fixed( void );
