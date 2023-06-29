@@ -21,17 +21,19 @@ Fixed::Fixed( void )
 Fixed::Fixed( int numValue )
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->_rawBits = 0;
-	this->_rawBits = (numValue << fractBits);
+	if (numValue >= maxInt)
+		this->_rawBits = (maxInt << fractBits);
+	else if (numValue <= minInt)
+		this->_rawBits = (minInt << fractBits);
+	else
+		this->_rawBits = (numValue << fractBits);
 }
 
-/*
 Fixed::Fixed( float numValue )
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->_rawBits = 0;
+	this->_rawBits = static_cast<int>(numValue * 256);
 }
-*/
 
 Fixed::~Fixed( void )
 {
@@ -69,8 +71,21 @@ int		Fixed::toInt( void ) const
 	return (this->_rawBits >> this->fractBits);
 }
 
+float	Fixed::toFloat( void ) const
+{
+	int		intPart;
+    int		fractionalPart;
+	float	floatNum;
+
+	intPart = _rawBits >> fractBits;
+    fractionalPart = _rawBits & 0xFF;
+	floatNum = static_cast<float>(fractionalPart) / (0xFF - 1);
+	floatNum += intPart;
+	return (floatNum);
+}
+
 std::ostream& operator<<(std::ostream& os, const Fixed &obj)
 {
-        os << (obj.getRawBits() >> obj.fractBits);
-        return os;
+	os << obj.toFloat();
+	return os;
 }
