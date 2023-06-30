@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:22:03 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/06/30 15:58:20 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 20:22:30 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int main( void )
     Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
     std::cout << "|||| Subject Main Tests ||||||" << std::endl << std::endl;
-    
+
     std::cout << a << std::endl;
     std::cout << ++a << std::endl;
-    std::cout << a + a << std::endl;
-    std::cout << a-- << std::endl;
+    std::cout << a << std::endl;
+    std::cout << a++ << std::endl;
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     std::cout << Fixed::max( a, b ) << std::endl << std::endl;
@@ -82,12 +82,12 @@ int main( void )
 
     std::cout << "|||| Arithmetic Operators ||||||" << std::endl << std::endl;
 
-    Fixed g( 15.52f );
-    Fixed h( 16.39f );
-    Fixed i( 15353.1f );
+    Fixed g( 5.3f );
+    Fixed h( 1.5f );
+    Fixed i( 100 );
     Fixed j( h );
-    Fixed k( 5.5f );
-    Fixed l( 3.2f );
+    Fixed k( 2.4f );
+    Fixed l( 3.3f );
 
     std::cout << "\t[*] Multiplication Operator" << std::endl;
     std::cout << "\tg : " << g << std::endl;
@@ -133,5 +133,40 @@ int main( void )
     std::cout << "\tg / h : " << g / h << std::endl << std::endl;
 
     std::cout << "||||||||||||||||||||||||||||||||" << std::endl << std::endl;
+
+    std::cout << "|||||||| Min Max Methods |||||||" << std::endl << std::endl;
+
+    std::cout << "\tFixed::max(c , d) : (c :: " << c << ")" << std::endl;
+    std::cout << "\tReturn: " << Fixed::max( c, d ) << std::endl;
+    std::cout << "\tc : " << c << std::endl;
+    std::cout << "\td : " << d << std::endl << std::endl;
+
+    std::cout << "\tFixed::min(c , d) : (d :: " << d << ")" << std::endl;
+    std::cout << "\tReturn: " << Fixed::min( c, d ) << std::endl;
+    std::cout << "\tc : " << c << std::endl;
+    std::cout << "\td : " << d << std::endl << std::endl;
+
+    std::cout << "\tFixed::max(e , f) : They're equal" << std::endl;
+    std::cout << "\tReturn: " << Fixed::max( e, f ) << std::endl;
+    std::cout << "\tf : " << f << std::endl;
+    std::cout << "\te : " << e << std::endl << std::endl;
+
+    std::cout << "\tFixed::min(e , f) : They're equal" << std::endl;
+    std::cout << "\tReturn: " << Fixed::min( e, f ) << std::endl;
+    std::cout << "\tf : " << f << std::endl;
+    std::cout << "\te : " << e << std::endl << std::endl;
+
+    std::cout << "\tFixed::max(d , e) : (d :: " << d << ")" << std::endl;
+    std::cout << "\tReturn: " << Fixed::max( d, e ) << std::endl;
+    std::cout << "\td : " << d << std::endl;
+    std::cout << "\te : " << e << std::endl << std::endl;
+
+    std::cout << "\tFixed::min(d , e) : (e :: " << e << ")" << std::endl;
+    std::cout << "\tReturn: " << Fixed::min( d, e ) << std::endl;
+    std::cout << "\td : " << d << std::endl;
+    std::cout << "\te : " << e << std::endl << std::endl;
+    
+    std::cout << "||||||||||||||||||||||||||||||||" << std::endl << std::endl;
+
     return 0;
 }

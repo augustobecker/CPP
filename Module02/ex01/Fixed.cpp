@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 04:26:00 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/23 04:27:29 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 19:54:56 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ float	Fixed::toFloat( void ) const
 	float	floatNum;
 
 	intPart = _rawBits >> fractBits;
-    fractionalPart = _rawBits & 0xFF;
-	floatNum = static_cast<float>(fractionalPart) / (0xFF - 1);
+    fractionalPart = _rawBits & MaskFractBits;
+	floatNum = static_cast<float>(fractionalPart) / MaskFractBits;
 	floatNum += intPart;
 	return (floatNum);
 }

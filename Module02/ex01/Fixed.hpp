@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 04:26:03 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/23 04:26:34 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 19:48:55 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ public:
 	const static int	maxInt = 8388607;
 	const static int	minInt = -8388608;
 	const static int	fractBits = 8;
+	const static int	MaskFractBits = 0xFF;
 
 	Fixed( void );
 	Fixed( int );

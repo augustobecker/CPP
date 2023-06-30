@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 04:26:00 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/06/30 15:56:22 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 20:34:51 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ Fixed::Fixed( int fixedPoint, int fractionalBits)
 
 Fixed::Fixed( float numValue )
 {
-	this->_rawBits = static_cast<int>(numValue * 256);
+	int sunFloatOne = (1 << this->fractBits); 
+	int intPart = (int) numValue;
+	float fracPart = numValue - intPart;
+
+	this->_rawBits = intPart << this->fractBits;
+	this->_rawBits += (int)(sunFloatOne * fracPart);
 }
 
 Fixed::~Fixed( void )
@@ -86,45 +91,39 @@ Fixed Fixed::operator*( const Fixed &obj )
 Fixed Fixed::operator/( const Fixed &obj )
 {
 	int	rawBitsResult;
-	
+
 	rawBitsResult = (int)((long)(_rawBits << fractBits) / obj.getRawBits());
 	return (Fixed(rawBitsResult, fractBits));
 }
 
 Fixed Fixed::operator++( void )
 {
-	int	increment;
-
-	increment = 1 << fractBits;
-	this->_rawBits += increment;
+	this->_rawBits++;
 	return (Fixed(this->_rawBits, this->fractBits));
 }
 
 Fixed Fixed::operator++( int )
 {
-	int	increment;
+	int tempBits;
 
-	increment = 1 << fractBits;
-	this->_rawBits += increment;
-	return (Fixed(this->_rawBits - increment, this->fractBits));
+	tempBits = this->_rawBits;
+	this->_rawBits++;
+	return (Fixed(tempBits, this->fractBits));
 }
 
 Fixed Fixed::operator--( void )
 {
-	int	increment;
-
-	increment = 1 << fractBits;
-	this->_rawBits -= increment;
+	this->_rawBits--;
 	return (Fixed(this->_rawBits, this->fractBits));
 }
 
 Fixed Fixed::operator--( int )
 {
-	int	increment;
+	int tempBits;
 
-	increment = 1 << fractBits;
-	this->_rawBits -= increment;
-	return (Fixed(this->_rawBits + increment, this->fractBits));
+	tempBits = this->_rawBits;
+	this->_rawBits--;
+	return (Fixed(tempBits, this->fractBits));
 }
 
 bool Fixed::operator==( const Fixed &compare )
@@ -210,7 +209,7 @@ float	Fixed::toFloat( void ) const
 
 	intPart = _rawBits >> fractBits;
     fractionalPart = _rawBits & 0xFF;
-	floatNum = static_cast<float>(fractionalPart) / (0xFF - 1);
+	floatNum = static_cast<float>(fractionalPart) / MaskFractBits;
 	floatNum += intPart;
 	return (floatNum);
 }
