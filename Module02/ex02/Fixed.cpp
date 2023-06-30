@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 04:26:00 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/06/30 15:34:59 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:56:22 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,28 @@ Fixed Fixed::operator-( const Fixed &obj )
 
 Fixed Fixed::operator*( const Fixed &obj )
 {
-	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
+	int currentIntPart, currentFracPart;
+	int newIntPart, newFracPart;
+	int	rawBitsResult;
+
+	rawBitsResult = 0;
+	currentIntPart = _rawBits >> fractBits;
+    currentFracPart = _rawBits & MaskFractBits;
+    newIntPart = obj.getRawBits() >> fractBits;
+    newFracPart = obj.getRawBits() & MaskFractBits;
+    rawBitsResult += (currentIntPart * newIntPart) << fractBits;
+    rawBitsResult += (currentIntPart * newFracPart);
+    rawBitsResult += (currentFracPart * newIntPart);
+    rawBitsResult += ((currentFracPart * newFracPart) >> fractBits) & MaskFractBits;
+	return (Fixed(rawBitsResult, fractBits));
 }
 
 Fixed Fixed::operator/( const Fixed &obj )
 {
-	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
+	int	rawBitsResult;
+	
+	rawBitsResult = (int)((long)(_rawBits << fractBits) / obj.getRawBits());
+	return (Fixed(rawBitsResult, fractBits));
 }
 
 Fixed Fixed::operator++( void )

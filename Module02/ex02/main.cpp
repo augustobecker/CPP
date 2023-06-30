@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:22:03 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/06/30 15:24:41 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:58:20 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,17 @@ int main( void )
     Fixed h( 16.39f );
     Fixed i( 15353.1f );
     Fixed j( h );
-    
+    Fixed k( 5.5f );
+    Fixed l( 3.2f );
+
     std::cout << "\t[*] Multiplication Operator" << std::endl;
     std::cout << "\tg : " << g << std::endl;
     std::cout << "\th : " << h << std::endl;
     std::cout << "\ti : " << i << std::endl;
     std::cout << "\tj : " << j << std::endl;
+    std::cout << "\tk : " << k << std::endl;
+    std::cout << "\tl : " << l << std::endl;
+    std::cout << "\tk * l : " << k * l << std::endl;
     std::cout << "\tg * h : " << g * h << std::endl;
     std::cout << "\tg * j : " << g * j << std::endl;
     std::cout << "\tg * i : " << g * i << std::endl << std::endl;
@@ -101,6 +106,9 @@ int main( void )
     std::cout << "\th : " << h << std::endl;
     std::cout << "\ti : " << i << std::endl;
     std::cout << "\tj : " << j << std::endl;
+    std::cout << "\tk : " << k << std::endl;
+    std::cout << "\tl : " << l << std::endl;
+    std::cout << "\tk + l : " << k + l << std::endl;
     std::cout << "\tj + i: " << j + i << std::endl;
     std::cout << "\tg + h : " << g + h << std::endl << std::endl;
 
@@ -109,12 +117,18 @@ int main( void )
     std::cout << "\th : " << h << std::endl;
     std::cout << "\ti : " << i << std::endl;
     std::cout << "\tj : " << j << std::endl;
+    std::cout << "\tk : " << k << std::endl;
+    std::cout << "\tl : " << l << std::endl;
+    std::cout << "\tk - l : " << k - l << std::endl;
     std::cout << "\tj - i: " << j - i << std::endl;
     std::cout << "\tg - h : " << g - h << std::endl << std::endl;
 
     std::cout << "\t[/] Division Operator" << std::endl;
     std::cout << "\tg : " << g << std::endl;
     std::cout << "\th : " << h << std::endl;
+    std::cout << "\tk : " << k << std::endl;
+    std::cout << "\tl : " << l << std::endl;
+    std::cout << "\tk / l : " << k / l << std::endl;
     std::cout << "\th / j: " << h / j << std::endl;
     std::cout << "\tg / h : " << g / h << std::endl << std::endl;
 
