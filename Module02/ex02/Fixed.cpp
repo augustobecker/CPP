@@ -5,20 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/29 17:21:36 by codespace         #+#    #+#             */
-/*   Updated: 2023/06/29 21:30:42 by acesar-l         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Fixed.cpp                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 04:26:00 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/01/23 04:27:29 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:34:59 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +55,22 @@ Fixed &Fixed::operator=(const Fixed &obj)
 	return (*this);
 }
 
-Fixed Fixed::operator+( Fixed &obj ) const
+Fixed Fixed::operator+( const Fixed &obj )
 {
 	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
 }
 
-Fixed Fixed::operator-( Fixed &obj ) const
+Fixed Fixed::operator-( const Fixed &obj )
 {
 	return (Fixed(_rawBits - obj.getRawBits(), fractBits));
 }
 
-Fixed Fixed::operator*( Fixed &obj ) const
+Fixed Fixed::operator*( const Fixed &obj )
 {
 	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
 }
 
-Fixed Fixed::operator/( Fixed &obj ) const
+Fixed Fixed::operator/( const Fixed &obj )
 {
 	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
 }
@@ -151,6 +139,36 @@ bool Fixed::operator>=( const Fixed &compare )
 bool Fixed::operator<=( const Fixed &compare )
 {
 	return (_rawBits <= compare.getRawBits());
+}
+
+Fixed& Fixed::min( Fixed &obj1 , Fixed &obj2 )
+{
+	if (obj1 < obj2)
+		return (obj1);
+	return (obj2);
+}
+
+const Fixed& Fixed::min( const Fixed&obj1 , const Fixed &obj2 )
+{
+	if (obj1.getRawBits() < obj2.getRawBits())
+		return (obj1);
+	return (obj2);
+}
+
+Fixed& Fixed::max( Fixed &obj1, Fixed &obj2 )
+{
+	if (obj1 > obj2)
+		return (obj1);
+	return (obj2);
+}
+
+const Fixed& Fixed::max( const Fixed &obj1 , const Fixed& obj2 )
+{
+	Fixed max;
+
+	if (obj1.getRawBits() > obj2.getRawBits())
+		return (obj1);
+	return (obj2);
 }
 
 int		Fixed::getRawBits( void ) const

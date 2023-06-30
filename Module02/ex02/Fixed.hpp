@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 04:26:03 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/06/29 21:29:44 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:34:36 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ public:
 	Fixed(const Fixed &obj);
 	Fixed& operator=(const Fixed &obj);
 	
-	Fixed operator+( Fixed &obj ) const;
-	Fixed operator-( Fixed &obj ) const;
-	Fixed operator*( Fixed &obj ) const;
-	Fixed operator/( Fixed &obj ) const;
+	Fixed operator+( const Fixed &obj );
+	Fixed operator-( const Fixed &obj );
+	Fixed operator*( const Fixed &obj );
+	Fixed operator/( const Fixed &obj );
 
 	Fixed operator++( void );
 	Fixed operator++( int );
@@ -54,6 +54,11 @@ public:
 	bool operator>( const Fixed& );
 	bool operator>=( const Fixed& );
 	bool operator<=( const Fixed& );
+
+	static Fixed& min( Fixed&, Fixed& );
+	const static Fixed& min( const Fixed&, const Fixed& );
+	static Fixed& max( Fixed&, Fixed& );
+	const static Fixed& max( const Fixed&, const Fixed& );
 
 	int		getRawBits( void ) const;
 	void	setRawBits( const int );

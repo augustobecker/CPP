@@ -6,7 +6,7 @@
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 17:22:03 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/06/29 21:35:04 by acesar-l         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:24:41 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int main( void )
 {
     Fixed a;
-    //Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+    Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
     std::cout << "|||| Subject Main Tests ||||||" << std::endl << std::endl;
     
@@ -25,8 +25,8 @@ int main( void )
     std::cout << a + a << std::endl;
     std::cout << a-- << std::endl;
     std::cout << a << std::endl;
-    //std::cout << b << std::endl;
-    //std::cout << Fixed::max( a, b ) << std::endl << std::endl;
+    std::cout << b << std::endl;
+    std::cout << Fixed::max( a, b ) << std::endl << std::endl;
 
     std::cout << "||||||||||||||||||||||||||||||||" << std::endl << std::endl;
     std::cout << "|||| Comparison Operators ||||||" << std::endl << std::endl;
@@ -99,14 +99,18 @@ int main( void )
     std::cout << "\t[+] Addition Operator" << std::endl;
     std::cout << "\tg : " << g << std::endl;
     std::cout << "\th : " << h << std::endl;
+    std::cout << "\ti : " << i << std::endl;
+    std::cout << "\tj : " << j << std::endl;
     std::cout << "\tj + i: " << j + i << std::endl;
     std::cout << "\tg + h : " << g + h << std::endl << std::endl;
 
     std::cout << "\t[-] Subtraction Operator" << std::endl;
     std::cout << "\tg : " << g << std::endl;
     std::cout << "\th : " << h << std::endl;
-    std::cout << "\tj + i: " << j - i << std::endl;
-    std::cout << "\tg + h : " << g - h << std::endl << std::endl;
+    std::cout << "\ti : " << i << std::endl;
+    std::cout << "\tj : " << j << std::endl;
+    std::cout << "\tj - i: " << j - i << std::endl;
+    std::cout << "\tg - h : " << g - h << std::endl << std::endl;
 
     std::cout << "\t[/] Division Operator" << std::endl;
     std::cout << "\tg : " << g << std::endl;
