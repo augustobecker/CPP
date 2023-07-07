@@ -12,31 +12,33 @@
 
 # include <iostream>
 # include "ClapTrap.hpp"
+# include "ScavTrap.hpp"
 
 int main (void)
 {
     ClapTrap Duda("Duda");
-    ClapTrap Eduarda("Eduarda");
+    ScavTrap Lala("Lala");
+    ScavTrap Laiza(Lala);
+    ScavTrap Andrea("Andrea");
 
-    Duda.attack("Rafe");
-    Duda.setAttackDamage(12);
-    Duda.attack("Rafe");
-    Duda.setAttackDamage(2);
-    Duda.attack("Rafe");
-    Duda.setAttackDamage(0);
-    Duda.attack("Marco");
-    Duda.attack("herself");
-    Duda.takeDamage(0);
-    Duda.takeDamage(8);
-    Duda.attack("Marco");
-    Duda.takeDamage(3);
-    Duda.setAttackDamage(11);
-    Duda.attack("Marco");
-    Duda.beRepaired(5);
-    Duda.attack("Marco");
-    Duda.beRepaired(9);
-    Duda.takeDamage(19);
-    Eduarda.attack("Ronnie");
-    Eduarda = Duda;
-    Eduarda.attack("Ronnie");
+    Laiza.attack("Rafe");
+    Lala.attack("Augusto");
+    Lala.setAttackDamage(5);
+    Laiza.attack("Rafe");
+    Lala.attack("Augusto");
+    Lala.guardGate();
+    //Duda.guardGate();
+    Lala.attack(Duda.getName());
+    Duda.takeDamage(Lala.getAttackDamage());
+    Duda.attack(Lala.getName());
+    Lala.takeDamage(Duda.getAttackDamage());
+    Duda.attack(Lala.getName());
+    Lala.takeDamage(Duda.getAttackDamage());
+    Lala.attack(Duda.getName());
+    Duda.takeDamage(Lala.getAttackDamage());
+    Duda.attack(Lala.getName());
+    Laiza = Andrea;
+    Laiza.attack("Rafe");
+    Lala.attack("Augusto");
+    Laiza.setName("Laiza");
 }

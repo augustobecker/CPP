@@ -161,6 +161,13 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	int heal;
 
+	if (this->_energyPoints <= 0)
+	{
+		std::cout << "ClapTrap " << this->_name;
+		std::cout << " can't attack because it doesn't have Energy Points!";
+		std::cout << std::endl;
+		return ;
+	}
 	if (!amount)
 		return ;
 	if (this->_hitPoints <= 0)
