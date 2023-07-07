@@ -1,5 +1,5 @@
-#ifndef ScavTrap_HPP
-# define ScavTrap_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
 # include <iostream>
 # include "ClapTrap.hpp"

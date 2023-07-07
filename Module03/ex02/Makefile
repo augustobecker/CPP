@@ -7,7 +7,7 @@ STANDARD_FLAGS	= -Wall -Werror -std=c++98
 SRCS			= main.cpp	\
 				  ClapTrap.cpp \
 				  ScavTrap.cpp	\
-				  FlagTrap.cpp
+				  FragTrap.cpp
 
 OBJS			= ${SRCS:.cpp=.o}
 
