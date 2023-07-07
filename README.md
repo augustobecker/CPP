@@ -27,7 +27,7 @@
 |MODULE	|TOPICS		|STATUS				|
 |:-:	|:--		|--:				|
 |CPP00	|`Namespaces` `Classes` `Member Functions` `stdio streams` `initialization lists` `static` `const`		|100% ✅			|
-|CPP01	|`Memory Allocation` `Pointers to members` `References` `Switch statement`		|0% 				|
+|CPP01	|`Memory Allocation` `Pointers to members` `References` `Switch statement`		|100% ✅				|
 |CPP02	|		|0% 				|
 |CPP03	|		|0% 				|				
 |CPP04	|		|0%				|
