@@ -187,3 +187,11 @@ void ClapTrap::beRepaired(unsigned int amount)
 	std::cout << "Hit Points are now " << this->_hitPoints << "." ;
 	std::cout << std::endl;
 }
+
+void ClapTrap::displayData( void )
+{
+	std::cout << "\tName: " << _name << std::endl;
+	std::cout << "\tHit Points: " << _hitPoints << std::endl;
+	std::cout << "\tEnergy Points: " << _energyPoints << std::endl;
+	std::cout << "\tAttack Damage: " << _attackDamage << std::endl;
+}
