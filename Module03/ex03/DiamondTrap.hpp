@@ -3,7 +3,7 @@
 
 # include <iostream>
 
-class DiamondTrap
+class DiamondTrap : public ScavTrap : public FragTrap
 {
 
 protected:
@@ -21,6 +21,7 @@ public:
 	DiamondTrap(DiamondTrap &);
 	DiamondTrap& operator=(DiamondTrap &);
 
+    void whoAmI( void );
 };
 
 #endif

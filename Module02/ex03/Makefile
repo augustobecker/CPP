@@ -4,9 +4,9 @@ COMPILER		= g++
 
 STANDARD_FLAGS	= -Wall -Wextra -Werror -std=c++98
 
-SRCS			= Fixed.cpp \
-				  Point.cpp \
-				  main.cpp	\
+SRCS			= Fixed.cpp 	\
+				  Point.cpp 	\
+				  main.cpp		\
 				  bsp.cpp
 
 OBJS			= ${SRCS:.cpp=.o}

@@ -1,6 +1,6 @@
 # include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap( std::string name )
+DiamondTrap::DiamondTrap( std::string name ) : public ScavTrap( name ) : public FragTrap ( name )
 {
 	this->_name = name;
 	this->_hitPoints = 10;
@@ -34,4 +34,9 @@ DiamondTrap& DiamondTrap::operator=(DiamondTrap &obj)
 		//this->_attackDamage = obj.getAttackDamage();
 	}
 	return (*this);
+}
+
+void DiamondTrap::whoAmI( void )
+{
+    std::cout << "DiamondTrap " << this->_name << " who am I?" << std::endl;
 }
