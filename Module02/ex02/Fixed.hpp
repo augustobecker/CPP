@@ -23,7 +23,7 @@ private:
 
 	int					_rawBits;
 	const static int	_fractBits = 8;
-	const static int	_MaskFractBits = 0xFF;
+	const static int	_maskFractBits = 0xFF;
 
 public:
 
@@ -55,10 +55,10 @@ public:
 	bool operator>=( const Fixed& ) const;
 	bool operator<=( const Fixed& ) const;
 
-	static Fixed& min( Fixed&, Fixed& ) const;
-	const static Fixed& min( const Fixed&, const Fixed& ) const;
-	static Fixed& max( Fixed&, Fixed& ) const;
-	const static Fixed& max( const Fixed&, const Fixed& ) const;
+	static Fixed& min( Fixed&, Fixed& );
+	const static Fixed& min( const Fixed&, const Fixed& );
+	static Fixed& max( Fixed&, Fixed& );
+	const static Fixed& max( const Fixed&, const Fixed& );
 
 	int		getRawBits( void ) const;
 	void	setRawBits( const int );

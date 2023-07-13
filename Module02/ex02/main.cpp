@@ -13,12 +13,30 @@
 # include "Fixed.hpp"
 # include <iostream>
 
+void subjectTests( void );
+void showSubjectExpectedOutput( void );
+
+void testComparisonOperators( void );
+void testArithmeticOperators( void );
+void testMinMaxMethods( void );
+
 int main( void )
 {
-    Fixed a;
-    Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+    subjectTests();
+    showSubjectExpectedOutput();
+    testComparisonOperators();
+    testArithmeticOperators();
+    testMinMaxMethods();
 
-    std::cout << "|||| Subject Main Tests ||||||" << std::endl << std::endl;
+    return 0;
+}
+
+
+void subjectTests( void )
+{
+	std::cout << "_________| Subject Tests |__________" << std::endl;
+	Fixed a;
+    Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
     std::cout << a << std::endl;
     std::cout << ++a << std::endl;
@@ -26,15 +44,33 @@ int main( void )
     std::cout << a++ << std::endl;
     std::cout << a << std::endl;
     std::cout << b << std::endl;
-    std::cout << Fixed::max( a, b ) << std::endl << std::endl;
+    std::cout << Fixed::max( a, b ) << std::endl;
+
+    return ;
+}
+
+void showSubjectExpectedOutput( void )
+{
+	std::cout << std::endl << "_________| Subject Expected Output |__________" << std::endl;
+	std::cout << "\t" << "0" << std::endl;
+	std::cout << "\t" << "0.00390625" << std::endl;
+	std::cout << "\t" << "0.00390625" << std::endl;
+	std::cout << "\t" << "0.00390625" << std::endl;
+	std::cout << "\t" << "0.0078125" << std::endl;
+	std::cout << "\t" << "10.1016" << std::endl;
+	std::cout << "\t" << "10.1016" << std::endl << std::endl;
+}
+
+void testComparisonOperators( void )
+{
+
+    Fixed c( 5.5f );
+    const Fixed d( 4.34f );
+    Fixed e( 1.5f );
+    Fixed f( e );
 
     std::cout << "||||||||||||||||||||||||||||||||" << std::endl << std::endl;
     std::cout << "|||| Comparison Operators ||||||" << std::endl << std::endl;
-
-    Fixed c( 5.5f );
-    Const Fixed d( 4.34f );
-    Fixed e( 1.5f );
-    Fixed f( e );
 
     if ( c > d )
         std::cout << "\t > : (c > d) : true" << std::endl;
@@ -79,15 +115,19 @@ int main( void )
     std::cout << "\td : " << d << std::endl << std::endl;
 
     std::cout << "||||||||||||||||||||||||||||||||" << std::endl << std::endl;
+}
 
-    std::cout << "|||| Arithmetic Operators ||||||" << std::endl << std::endl;
+void testArithmeticOperators( void )
+{
 
-    Fixed g( 5.3f );
+    const Fixed g( 5 );
     Fixed h( 1.5f );
-    Fixed i( 100 );
+    const Fixed i( 100 );
     Fixed j( h );
     Fixed k( 2.4f );
     Fixed l( 3.3f );
+
+    std::cout << "|||| Arithmetic Operators ||||||" << std::endl << std::endl;
 
     std::cout << "\t[*] Multiplication Operator" << std::endl;
     std::cout << "\tg : " << g << std::endl;
@@ -126,6 +166,7 @@ int main( void )
     std::cout << "\t[/] Division Operator" << std::endl;
     std::cout << "\tg : " << g << std::endl;
     std::cout << "\th : " << h << std::endl;
+    std::cout << "\tj : " << j << std::endl;
     std::cout << "\tk : " << k << std::endl;
     std::cout << "\tl : " << l << std::endl;
     std::cout << "\tk / l : " << k / l << std::endl;
@@ -133,6 +174,20 @@ int main( void )
     std::cout << "\tg / h : " << g / h << std::endl << std::endl;
 
     std::cout << "||||||||||||||||||||||||||||||||" << std::endl << std::endl;
+}
+
+void testMinMaxMethods( void )
+{
+    Fixed c( 5.5f );
+    const Fixed d( 4.34f );
+    Fixed e( 1.5f );
+    Fixed f( e );
+    const Fixed g( 5 );
+    Fixed h( 1.5f );
+    const Fixed i( 100 );
+    Fixed j( h );
+    Fixed k( 2.4f );
+    Fixed l( 3.3f );
 
     std::cout << "|||||||| Min Max Methods |||||||" << std::endl << std::endl;
 
@@ -167,6 +222,4 @@ int main( void )
     std::cout << "\te : " << e << std::endl << std::endl;
     
     std::cout << "||||||||||||||||||||||||||||||||" << std::endl << std::endl;
-
-    return 0;
 }

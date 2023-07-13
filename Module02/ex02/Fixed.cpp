@@ -14,33 +14,23 @@
 
 Fixed::Fixed( void )
 {
-	this->_rawBits = 0;
+	_rawBits = 0;
 }
 
 Fixed::Fixed( int numValue )
 {
-	if (numValue >= maxInt)
-		this->_rawBits = (maxInt << fractBits);
-	else if (numValue <= minInt)
-		this->_rawBits = (minInt << fractBits);
-	else
-		this->_rawBits = (numValue << fractBits);
+	_rawBits = (numValue << _fractBits);
 }
 
 Fixed::Fixed( int fixedPoint, int fractionalBits)
 {
-	if (fractionalBits == this->fractBits)
-		this->_rawBits = fixedPoint; 
+	if (fractionalBits == _fractBits)
+		_rawBits = fixedPoint; 
 }
 
 Fixed::Fixed( float numValue )
 {
-	int sunFloatOne = (1 << this->fractBits); 
-	int intPart = (int) numValue;
-	float fracPart = numValue - intPart;
-
-	this->_rawBits = intPart << this->fractBits;
-	this->_rawBits += (int)(sunFloatOne * fracPart);
+	_rawBits = (int) roundf((numValue * (1 << _fractBits)));
 }
 
 Fixed::~Fixed( void )
@@ -50,13 +40,13 @@ Fixed::~Fixed( void )
 
 Fixed::Fixed(const Fixed &obj)
 {
-	this->_rawBits = obj.getRawBits();
+	*this = obj;
 }
 
-Fixed &Fixed::operator=(const Fixed &obj) const
+Fixed &Fixed::operator=(const Fixed &obj)
 {
 	if (this != &obj)
-		this->_rawBits = obj.getRawBits();
+		_rawBits = obj.getRawBits();
 	return (*this);
 }
 
@@ -77,53 +67,53 @@ Fixed Fixed::operator*( const Fixed &obj ) const
 	int	rawBitsResult;
 
 	rawBitsResult = 0;
-	currentIntPart = _rawBits >> fractBits;
-    currentFracPart = _rawBits & MaskFractBits;
-    newIntPart = obj.getRawBits() >> fractBits;
-    newFracPart = obj.getRawBits() & MaskFractBits;
-    rawBitsResult += (currentIntPart * newIntPart) << fractBits;
+	currentIntPart = _rawBits >> _fractBits;
+    currentFracPart = _rawBits & _maskFractBits;
+    newIntPart = obj.getRawBits() >> _fractBits;
+    newFracPart = obj.getRawBits() & _maskFractBits;
+    rawBitsResult += (currentIntPart * newIntPart) << _fractBits;
     rawBitsResult += (currentIntPart * newFracPart);
     rawBitsResult += (currentFracPart * newIntPart);
-    rawBitsResult += ((currentFracPart * newFracPart) >> fractBits) & MaskFractBits;
-	return (Fixed(rawBitsResult, fractBits));
+    rawBitsResult += ((currentFracPart * newFracPart) >> _fractBits) & _maskFractBits;
+	return (Fixed(rawBitsResult, _fractBits));
 }
 
 Fixed Fixed::operator/( const Fixed &obj ) const
 {
 	int	rawBitsResult;
 
-	rawBitsResult = (int)((long)(_rawBits << fractBits) / obj.getRawBits());
-	return (Fixed(rawBitsResult, fractBits));
+	rawBitsResult = (int)((long)(_rawBits << _fractBits) / obj.getRawBits());
+	return (Fixed(rawBitsResult, _fractBits));
 }
 
 Fixed Fixed::operator++( void )
 {
-	this->_rawBits++;
-	return (Fixed(this->_rawBits, this->fractBits));
+	_rawBits++;
+	return (Fixed(_rawBits, _fractBits));
 }
 
 Fixed Fixed::operator++( int )
 {
 	int tempBits;
 
-	tempBits = this->_rawBits;
-	this->_rawBits++;
-	return (Fixed(tempBits, this->fractBits));
+	tempBits = _rawBits;
+	_rawBits++;
+	return (Fixed(tempBits, _fractBits));
 }
 
 Fixed Fixed::operator--( void )
 {
-	this->_rawBits--;
-	return (Fixed(this->_rawBits, this->fractBits));
+	_rawBits--;
+	return (Fixed(_rawBits, _fractBits));
 }
 
 Fixed Fixed::operator--( int )
 {
 	int tempBits;
 
-	tempBits = this->_rawBits;
-	this->_rawBits--;
-	return (Fixed(tempBits, this->fractBits));
+	tempBits = _rawBits;
+	_rawBits--;
+	return (Fixed(tempBits, _fractBits));
 }
 
 bool Fixed::operator==( const Fixed &compare ) const
@@ -156,28 +146,28 @@ bool Fixed::operator<=( const Fixed &compare ) const
 	return (_rawBits <= compare.getRawBits());
 }
 
-Fixed& Fixed::min( Fixed &obj1 , Fixed &obj2 ) const
+Fixed& Fixed::min( Fixed &obj1 , Fixed &obj2 )
 {
 	if (obj1 < obj2)
 		return (obj1);
 	return (obj2);
 }
 
-const Fixed& Fixed::min( const Fixed&obj1 , const Fixed &obj2 ) const
+const Fixed& Fixed::min( const Fixed&obj1 , const Fixed &obj2 )
 {
 	if (obj1.getRawBits() < obj2.getRawBits())
 		return (obj1);
 	return (obj2);
 }
 
-Fixed& Fixed::max( Fixed &obj1, Fixed &obj2 ) const
+Fixed& Fixed::max( Fixed &obj1, Fixed &obj2 )
 {
 	if (obj1 > obj2)
 		return (obj1);
 	return (obj2);
 }
 
-const Fixed& Fixed::max( const Fixed &obj1 , const Fixed& obj2 ) const
+const Fixed& Fixed::max( const Fixed &obj1 , const Fixed& obj2 )
 {
 	Fixed max;
 
@@ -188,30 +178,22 @@ const Fixed& Fixed::max( const Fixed &obj1 , const Fixed& obj2 ) const
 
 int		Fixed::getRawBits( void ) const
 {
-	return (this->_rawBits);
+	return (_rawBits);
 }
 
 void	Fixed::setRawBits( int const raw )
 {
-	this->_rawBits = raw;
+	_rawBits = raw;
 }
 
 int		Fixed::toInt( void ) const
 {
-	return (this->_rawBits >> this->fractBits);
+	return (_rawBits >> _fractBits);
 }
 
 float	Fixed::toFloat( void ) const
 {
-	int		intPart;
-    int		fractionalPart;
-	float	floatNum;
-
-	intPart = _rawBits >> fractBits;
-    fractionalPart = _rawBits & 0xFF;
-	floatNum = static_cast<float>(fractionalPart) / MaskFractBits;
-	floatNum += intPart;
-	return (floatNum);
+	return ((float)_rawBits / (float)(1 << _fractBits));
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed &obj)
