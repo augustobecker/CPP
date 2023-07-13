@@ -14,6 +14,7 @@
 # define FIXED_HPP
 
 # include <iostream>
+# include <cmath>
 
 class Fixed
 {
@@ -22,7 +23,6 @@ private:
 
 	int					_rawBits;
 	const static int	_fractBits = 8;
-	const static int	_maskFractBits = 0xFF;
 
 public:
 

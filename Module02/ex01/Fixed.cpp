@@ -21,13 +21,13 @@ Fixed::Fixed( void )
 Fixed::Fixed( int numValue )
 {
 	std::cout << "Int constructor called" << std::endl;
-	_rawBits = (numValue << fractBits);
+	_rawBits = (numValue << _fractBits);
 }
 
 Fixed::Fixed( float numValue )
 {
 	std::cout << "Float constructor called" << std::endl;
-	_rawBits = static_cast<int>(numValue * _maskFractBits);
+	_rawBits = (int) roundf((numValue * (1 << _fractBits)));
 }
 
 Fixed::~Fixed( void )
@@ -68,15 +68,7 @@ int		Fixed::toInt( void ) const
 
 float	Fixed::toFloat( void ) const
 {
-	int		intPart;
-    int		fractionalPart;
-	float	floatNum;
-
-	intPart = _rawBits >> fractBits;
-    fractionalPart = _rawBits & _maskFractBits;
-	floatNum = static_cast<float>(fractionalPart) / MaskFractBits;
-	floatNum += intPart;
-	return (floatNum);
+	return ((float)_rawBits / (float)(1 << _fractBits));
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed &obj)
