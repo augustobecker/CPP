@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: acesar-l <acesar-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/30 20:42:07 by acesar-l          #+#    #+#             */
-/*   Updated: 2023/06/30 21:02:38 by acesar-l         ###   ########.fr       */
+/*   Created: 2023/01/23 04:26:03 by acesar-l          #+#    #+#             */
+/*   Updated: 2023/07/13 17:39:29 by acesar-l         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,12 @@ class Fixed
 
 private:
 
-	int	_rawBits;
+	int					_rawBits;
+	const static int	_fractBits = 8;
+	const static int	_maskFractBits = 0xFF;
 
 public:
 
-	const static int	maxInt = 8388607;
-	const static int	minInt = -8388608;
-	const static int	fractBits = 8;
-	const static int	MaskFractBits = 0xFF;
 
 	Fixed( void );
 	Fixed( int );
@@ -39,10 +37,10 @@ public:
 	Fixed(const Fixed &obj);
 	Fixed& operator=(const Fixed &obj);
 	
-	Fixed operator+( const Fixed &obj );
-	Fixed operator-( const Fixed &obj );
-	Fixed operator*( const Fixed &obj );
-	Fixed operator/( const Fixed &obj );
+	Fixed operator+( const Fixed &obj ) const;
+	Fixed operator-( const Fixed &obj ) const;
+	Fixed operator*( const Fixed &obj ) const;
+	Fixed operator/( const Fixed &obj ) const;
 
 	Fixed operator++( void );
 	Fixed operator++( int );
@@ -50,12 +48,12 @@ public:
 	Fixed operator--( void );
 	Fixed operator--( int );
 
-	bool operator==( const Fixed& );
-	bool operator!=( const Fixed& );
-	bool operator<( const Fixed&);
-	bool operator>( const Fixed& );
-	bool operator>=( const Fixed& );
-	bool operator<=( const Fixed& );
+	bool operator==( const Fixed& ) const;
+	bool operator!=( const Fixed& ) const;
+	bool operator<( const Fixed&) const;
+	bool operator>( const Fixed& ) const;
+	bool operator>=( const Fixed& ) const;
+	bool operator<=( const Fixed& ) const;
 
 	static Fixed& min( Fixed&, Fixed& );
 	const static Fixed& min( const Fixed&, const Fixed& );
