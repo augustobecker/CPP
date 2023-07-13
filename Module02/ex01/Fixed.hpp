@@ -20,14 +20,11 @@ class Fixed
 
 private:
 
-	int			_rawBits;
+	int					_rawBits;
+	const static int	_fractBits = 8;
+	const static int	_maskFractBits = 0xFF;
 
 public:
-
-	const static int	maxInt = 8388607;
-	const static int	minInt = -8388608;
-	const static int	fractBits = 8;
-	const static int	MaskFractBits = 0xFF;
 
 	Fixed( void );
 	Fixed( int );

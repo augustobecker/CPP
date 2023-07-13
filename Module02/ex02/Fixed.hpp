@@ -21,14 +21,12 @@ class Fixed
 
 private:
 
-	int			_rawBits;
+	int					_rawBits;
+	const static int	_fractBits = 8;
+	const static int	_MaskFractBits = 0xFF;
 
 public:
 
-	const static int	maxInt = 8388607;
-	const static int	minInt = -8388608;
-	const static int	fractBits = 8;
-	const static int	MaskFractBits = 0xFF;
 
 	Fixed( void );
 	Fixed( int );
@@ -39,10 +37,10 @@ public:
 	Fixed(const Fixed &obj);
 	Fixed& operator=(const Fixed &obj);
 	
-	Fixed operator+( const Fixed &obj );
-	Fixed operator-( const Fixed &obj );
-	Fixed operator*( const Fixed &obj );
-	Fixed operator/( const Fixed &obj );
+	Fixed operator+( const Fixed &obj ) const;
+	Fixed operator-( const Fixed &obj ) const;
+	Fixed operator*( const Fixed &obj ) const;
+	Fixed operator/( const Fixed &obj ) const;
 
 	Fixed operator++( void );
 	Fixed operator++( int );
@@ -50,17 +48,17 @@ public:
 	Fixed operator--( void );
 	Fixed operator--( int );
 
-	bool operator==( const Fixed& );
-	bool operator!=( const Fixed& );
-	bool operator<( const Fixed&);
-	bool operator>( const Fixed& );
-	bool operator>=( const Fixed& );
-	bool operator<=( const Fixed& );
+	bool operator==( const Fixed& ) const;
+	bool operator!=( const Fixed& ) const;
+	bool operator<( const Fixed&) const;
+	bool operator>( const Fixed& ) const;
+	bool operator>=( const Fixed& ) const;
+	bool operator<=( const Fixed& ) const;
 
-	static Fixed& min( Fixed&, Fixed& );
-	const static Fixed& min( const Fixed&, const Fixed& );
-	static Fixed& max( Fixed&, Fixed& );
-	const static Fixed& max( const Fixed&, const Fixed& );
+	static Fixed& min( Fixed&, Fixed& ) const;
+	const static Fixed& min( const Fixed&, const Fixed& ) const;
+	static Fixed& max( Fixed&, Fixed& ) const;
+	const static Fixed& max( const Fixed&, const Fixed& ) const;
 
 	int		getRawBits( void ) const;
 	void	setRawBits( const int );

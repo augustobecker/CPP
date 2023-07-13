@@ -32,7 +32,7 @@ int main( void )
     std::cout << "|||| Comparison Operators ||||||" << std::endl << std::endl;
 
     Fixed c( 5.5f );
-    Fixed d( 4.34f );
+    Const Fixed d( 4.34f );
     Fixed e( 1.5f );
     Fixed f( e );
 

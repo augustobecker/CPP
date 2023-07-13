@@ -53,24 +53,24 @@ Fixed::Fixed(const Fixed &obj)
 	this->_rawBits = obj.getRawBits();
 }
 
-Fixed &Fixed::operator=(const Fixed &obj)
+Fixed &Fixed::operator=(const Fixed &obj) const
 {
 	if (this != &obj)
 		this->_rawBits = obj.getRawBits();
 	return (*this);
 }
 
-Fixed Fixed::operator+( const Fixed &obj )
+Fixed Fixed::operator+( const Fixed &obj ) const
 {
-	return (Fixed(_rawBits + obj.getRawBits(), fractBits));
+	return (Fixed(_rawBits + obj.getRawBits(), _fractBits));
 }
 
-Fixed Fixed::operator-( const Fixed &obj )
+Fixed Fixed::operator-( const Fixed &obj ) const
 {
-	return (Fixed(_rawBits - obj.getRawBits(), fractBits));
+	return (Fixed(_rawBits - obj.getRawBits(), _fractBits));
 }
 
-Fixed Fixed::operator*( const Fixed &obj )
+Fixed Fixed::operator*( const Fixed &obj ) const
 {
 	int currentIntPart, currentFracPart;
 	int newIntPart, newFracPart;
@@ -88,7 +88,7 @@ Fixed Fixed::operator*( const Fixed &obj )
 	return (Fixed(rawBitsResult, fractBits));
 }
 
-Fixed Fixed::operator/( const Fixed &obj )
+Fixed Fixed::operator/( const Fixed &obj ) const
 {
 	int	rawBitsResult;
 
@@ -126,58 +126,58 @@ Fixed Fixed::operator--( int )
 	return (Fixed(tempBits, this->fractBits));
 }
 
-bool Fixed::operator==( const Fixed &compare )
+bool Fixed::operator==( const Fixed &compare ) const
 {
 	return (_rawBits == compare.getRawBits());
 }
 
-bool Fixed::operator!=( const Fixed &compare )
+bool Fixed::operator!=( const Fixed &compare ) const
 {
 	return (_rawBits != compare.getRawBits());
 }
 
-bool Fixed::operator<( const Fixed &compare )
+bool Fixed::operator<( const Fixed &compare ) const
 {
 	return (_rawBits < compare.getRawBits());
 }
 
-bool Fixed::operator>( const Fixed &compare )
+bool Fixed::operator>( const Fixed &compare ) const
 {
 	return (_rawBits > compare.getRawBits());
 }
 
-bool Fixed::operator>=( const Fixed &compare )
+bool Fixed::operator>=( const Fixed &compare ) const
 {
 	return (_rawBits >= compare.getRawBits());
 }
 
-bool Fixed::operator<=( const Fixed &compare )
+bool Fixed::operator<=( const Fixed &compare ) const
 {
 	return (_rawBits <= compare.getRawBits());
 }
 
-Fixed& Fixed::min( Fixed &obj1 , Fixed &obj2 )
+Fixed& Fixed::min( Fixed &obj1 , Fixed &obj2 ) const
 {
 	if (obj1 < obj2)
 		return (obj1);
 	return (obj2);
 }
 
-const Fixed& Fixed::min( const Fixed&obj1 , const Fixed &obj2 )
+const Fixed& Fixed::min( const Fixed&obj1 , const Fixed &obj2 ) const
 {
 	if (obj1.getRawBits() < obj2.getRawBits())
 		return (obj1);
 	return (obj2);
 }
 
-Fixed& Fixed::max( Fixed &obj1, Fixed &obj2 )
+Fixed& Fixed::max( Fixed &obj1, Fixed &obj2 ) const
 {
 	if (obj1 > obj2)
 		return (obj1);
 	return (obj2);
 }
 
-const Fixed& Fixed::max( const Fixed &obj1 , const Fixed& obj2 )
+const Fixed& Fixed::max( const Fixed &obj1 , const Fixed& obj2 ) const
 {
 	Fixed max;
 

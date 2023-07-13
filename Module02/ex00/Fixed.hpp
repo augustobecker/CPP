@@ -20,11 +20,10 @@ class Fixed
 
 private:
 
-	int			_rawBits;
+	int					_rawBits;
+	const static int	_fractBits = 8;
 
 public:
-
-	const static int	fractBits = 8;
 
 	Fixed( void );
 	~Fixed( void );
@@ -32,7 +31,7 @@ public:
 	Fixed(const Fixed &obj);
     Fixed& operator=(const Fixed &obj);
 
-	int	getRawBits( void ) const;
+	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
 
 };
