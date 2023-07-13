@@ -15,7 +15,7 @@ public:
 	FragTrap(FragTrap &);
 	FragTrap& operator=(FragTrap &);
 
-	void highFivesGuys( void );
+	void highFivesGuys( void ) const;
 
 };
 
