@@ -4,31 +4,51 @@
 # include "FragTrap.hpp"
 # include "DiamondTrap.hpp"
 
+void print( std::string message );
+
+void testDiamondTrapConstructor( std::string name );
+void testDiamondTrapCopy( void );
+void testDiamondTrapWhoAmI( std::string name );
+
 int main (void)
 {
-    ClapTrap Duda("Duda");
-    ScavTrap Lala("Lala");
-    ScavTrap Laiza(Lala);
-    ScavTrap Andrea("Andrea");
+    testDiamondTrapConstructor("Cicero");
+    print("_______________________________________________");
+    testDiamondTrapCopy();
+    print("_______________________________________________");
+    testDiamondTrapWhoAmI("Thorin");
+    print("_______________________________________________");
+}
 
-    Laiza.attack("Rafe");
-    Lala.attack("Augusto");
-    Lala.setAttackDamage(5);
-    Laiza.attack("Rafe");
-    Lala.attack("Augusto");
-    Lala.guardGate();
-    //Duda.guardGate();
-    Lala.attack(Duda.getName());
-    Duda.takeDamage(Lala.getAttackDamage());
-    Duda.attack(Lala.getName());
-    Lala.takeDamage(Duda.getAttackDamage());
-    Duda.attack(Lala.getName());
-    Lala.takeDamage(Duda.getAttackDamage());
-    Lala.attack(Duda.getName());
-    Duda.takeDamage(Lala.getAttackDamage());
-    Duda.attack(Lala.getName());
-    Laiza = Andrea;
-    Laiza.attack("Rafe");
-    Lala.attack("Augusto");
-    Laiza.setName("Laiza");
+void testDiamondTrapCopy( void )
+{
+    print("___________| DiamondTrap Test Copy Constructor and Assign Operator |__________");
+    DiamondTrap randomGuy("Zuckerberg");
+    DiamondTrap strangeGuy("Musk");
+    DiamondTrap copyRandomByConstructor(randomGuy);
+    DiamondTrap copyRandomByAssign("Default");
+
+    copyRandomByAssign = strangeGuy;
+    randomGuy.whoAmI();
+    copyRandomByConstructor.whoAmI();
+    strangeGuy.whoAmI();
+    copyRandomByAssign.whoAmI();
+}
+
+void testDiamondTrapWhoAmI( std::string name )
+{
+    print("___________| DiamondTrap Test Who Am I Method |__________");
+    DiamondTrap random(name);
+    random.whoAmI();
+}
+
+void testDiamondTrapConstructor( std::string name )
+{
+    print("___________| DiamondTrap Test Constructor |__________");
+    DiamondTrap random(name);
+}
+
+void print( std::string message )
+{
+    std::cout << message << std::endl;
 }

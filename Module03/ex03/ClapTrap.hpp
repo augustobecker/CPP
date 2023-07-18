@@ -16,28 +16,29 @@ protected:
 public:
 
 	ClapTrap( std::string );
-	~ClapTrap( void );
+	virtual ~ClapTrap( void );
 
 	ClapTrap(ClapTrap &);
 	ClapTrap& operator=(ClapTrap &);
 
-	std::string getName( void );
-	void        setName( std::string );
+	std::string getName( void ) const ;
+	void        setName( const std::string );
 
-	int		getHitPoints( void );
-	void	setHitPoints( int );
+	int		getHitPoints( void ) const;
+	void	setHitPoints( const int );
 
-	int		getEnergyPoints( void );
-	void	setEnergyPoints( int );
+	int		getEnergyPoints( void ) const;
+	void	setEnergyPoints( const int );
 
-	int		getAttackDamage( void );
-	void	setAttackDamage( int );
+	int		getAttackDamage( void ) const;
+	void	setAttackDamage( const int );
 
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+	void attack( const std::string& );
+	void takeDamage( const unsigned int );
+	void beRepaired( const unsigned int );
 
-	void displayData( void );
+	void displayData( void ) const;
+
 };
 
 #endif

@@ -2,10 +2,11 @@ NAME			= DiamondTrap
 
 COMPILER		= g++
 
-STANDARD_FLAGS	= -Wall -Werror -std=c++98
+STANDARD_FLAGS	= -Wall -Werror -Wextra -std=c++98
 
 SRCS			= main.cpp			\
 				  ClapTrap.cpp 		\
+				  FragTrap.cpp		\
 				  ScavTrap.cpp 		\
 				  DiamondTrap.cpp
 
