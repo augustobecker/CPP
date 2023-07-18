@@ -32,5 +32,5 @@ std::string Animal::getType( void ) const
 
 void Animal::makeSound( void ) const
 {
-    std::cout << "Animal make sound: * unreconized noise *" << std::endl;
+    std::cout << "Animal make sound: ¨¨¨¨¨¨¨¨¨ (unrecognizable noise)" << std::endl;
 }
