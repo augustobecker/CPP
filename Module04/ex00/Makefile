@@ -4,11 +4,10 @@ COMPILER		= g++
 
 STANDARD_FLAGS	= -Wall -Werror -Wextra -std=c++98
 
-SRCS			= main.cpp			\
-				  Animal.cpp 		\
+SRCS			= Animal.cpp 		\
+				  main.cpp			\
 				  Cat.cpp			\
-				  Dog.cpp 			\
-				  WrongAnimal.cpp
+				  Dog.cpp 			
 
 OBJS			= ${SRCS:.cpp=.o}
 
