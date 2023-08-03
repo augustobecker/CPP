@@ -2,54 +2,42 @@
 # include "Animal.hpp"
 # include "Cat.hpp"
 # include "Dog.hpp"
-# include "WrongAnimal.hpp"
-# include "WrongCat.hpp"
+# include "Brain.hpp"
 
 void subjectTests( void );
-void wrongAnimalTests( void );
+void brainTests( void );
 
 int main( void )
 {
     subjectTests();
     std::cout << "__________________________________________" << std::endl;
-    wrongAnimalTests();
+    brainTests();
     std::cout << "__________________________________________" << std::endl;
 }
 
 void subjectTests( void )
 {
 	std::cout << "_________| Subject Tests |__________" << std::endl;
-	const Animal* meta = new Animal();
+
     const Animal* j = new Dog();
     const Animal* i = new Cat();
-
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-    i->makeSound(); //will output the cat sound!
-    j->makeSound();
-    meta->makeSound();
-
-    delete meta;
-    delete j;
+    delete j;//should not create a leak
     delete i;
 
     return ;
 }
 
-void wrongAnimalTests( void )
+void brainTests( void )
 {
-	std::cout << "_________| Wrong Animal Tests |__________" << std::endl;
-	const WrongAnimal* meta = new WrongAnimal();
-    const WrongAnimal* i = new WrongCat();
+	std::cout << "_________| Brain Tests |__________" << std::endl;
 
-    std::cout << meta->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
-
-    i->makeSound();
-    meta->makeSound();
-
-    delete meta;
-    delete i;
+    const Animal* dog = new Dog();
+    const Animal* cat = new Cat();
+    Dog michael;
+    std::cout << "Dog has an idea: " << michael.getIdea(21) << std::endl;
+    std::cout << "Dog has an idea: " << michael.getIdea(77) << std::endl;
+    delete dog;
+    delete cat;
 
     return ;
 }

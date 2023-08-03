@@ -2,12 +2,14 @@
 
 Cat::Cat( void ) : Animal()
 {
-    type = "Cat";
+    this->type = "Cat";
     std::cout << "Cat " << type << " Constructor called" << std::endl;
+    this->brain = new Brain();
 }
 
 Cat::~Cat( void )
 {
+    delete this->brain;
     std::cout << "Cat " << type << " Destructor called" << std::endl;
 }
 

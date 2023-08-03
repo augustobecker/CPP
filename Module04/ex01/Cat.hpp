@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Cat: public Animal
 {
@@ -10,6 +11,7 @@ class Cat: public Animal
 private:
 
     std::string type;
+	Brain		*brain;
 
 public:
 

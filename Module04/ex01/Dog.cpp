@@ -2,24 +2,26 @@
 
 Dog::Dog( void ) : Animal()
 {
-    type = "Dog";
-    std::cout << "Dog " << type << " Constructor called" << std::endl;
+    this->type = "Dog";
+    std::cout << "Dog " << this->type << " Constructor called" << std::endl;
+    this->brain = new Brain();
 }
 
 Dog::~Dog( void )
 {
-    std::cout << "Dog " << type << " Destructor called" << std::endl;
+    delete this->brain;
+    std::cout << "Dog " << this->type << " Destructor called" << std::endl;
 }
 
 Dog::Dog(Dog &obj) : Animal()
 {
-    std::cout << "Dog " << type << " Copy Constructor called" << std::endl;
+    std::cout << "Dog " << this->type << " Copy Constructor called" << std::endl;
     *this = obj;
 }
 
 Dog& Dog::operator=(Dog &toCopyFrom)
 {
-    std::cout << "Dog " << type << " Copy Assign Operator called" << std::endl;
+    std::cout << "Dog " << this->type << " Copy Assign Operator called" << std::endl;
     if (this != &toCopyFrom)
         type = toCopyFrom.getType();
     return (*this);
@@ -27,10 +29,15 @@ Dog& Dog::operator=(Dog &toCopyFrom)
 
 std::string Dog::getType( void ) const
 {
-    return (type);
+    return (this->type);
 }
 
 void Dog::makeSound( void ) const
 {
     std::cout << "Dog make sound: ruFF RUFF" << std::endl;
+}
+
+std::string Dog::getIdea( const int numIdea ) const
+{
+    return(this->brain->getIdea(numIdea));
 }
