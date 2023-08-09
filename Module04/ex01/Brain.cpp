@@ -3,7 +3,6 @@
 Brain::Brain( void )
 {
     int i;
-
     this->ideas[0] = "Don't explain your Philosophy. Embody it";
     this->ideas[1] = "Be as you wish to seen";
     this->ideas[2] = "Caution, Rebooting will erase everything in memory";

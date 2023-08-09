@@ -26,18 +26,13 @@ void subjectTests( void )
 
     return ;
 }
-
 void brainTests( void )
 {
 	std::cout << "_________| Brain Tests |__________" << std::endl;
 
-    const Animal* dog = new Dog();
-    const Animal* cat = new Cat();
     Dog michael;
     std::cout << "Dog has an idea: " << michael.getIdea(21) << std::endl;
     std::cout << "Dog has an idea: " << michael.getIdea(77) << std::endl;
-    delete dog;
-    delete cat;
 
     return ;
 }
