@@ -25,7 +25,7 @@ Fixed::Fixed( int numValue )
 Fixed::Fixed( int fixedPoint, int fractionalBits)
 {
 	if (fractionalBits == _fractBits)
-		_rawBits = fixedPoint; 
+		_rawBits = fixedPoint;
 }
 
 Fixed::Fixed( float numValue )
