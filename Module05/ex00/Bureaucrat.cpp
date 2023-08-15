@@ -1,25 +1,45 @@
 # include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat( void )
+Bureaucrat::Bureaucrat( std::string name ) : _name(name)
 {
-    std::cout << "Bureaucrat Constructor called" << std::endl;
+    this->_range = 150;
 }
+
+Bureaucrat::Bureaucrat( const std::string name, const int grade ) : _name(name)
+{
+    this->_range = grade;
+}
+
 
 Bureaucrat::~Bureaucrat( void )
 {
-    std::cout << "Bureaucrat Destructor called" << std::endl;
+
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat &obj)
+Bureaucrat::Bureaucrat(Bureaucrat &obj) : _name(obj.getName())
 {
-    std::cout << "Bureaucrat Copy Constructor called" << std::endl;
     *this = obj;
 }
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat &toCopyFrom)
 {
-    std::cout << "Bureaucrat Copy Assign Operator called" << std::endl;
     if (this != &toCopyFrom)
-        return (*this);
+        this->_range = toCopyFrom.getRange();
     return (*this);
+}
+
+std::string Bureaucrat::getName( void ) const
+{
+    return (this->_name);
+}
+
+int Bureaucrat::getRange( void ) const
+{
+    return (this->_range);
+}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat &obj)
+{
+	os << obj.getName() << ", bureaucrat grade " << obj.getRange();
+	return os;
 }
