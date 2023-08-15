@@ -2,32 +2,32 @@
 
 Cat::Cat( void ) : Animal()
 {
-    type = "Cat";
-    std::cout << "Cat " << type << " Constructor called" << std::endl;
+    this->type = "Cat";
+    std::cout << "Cat " << this->type << " Constructor called" << std::endl;
 }
 
 Cat::~Cat( void )
 {
-    std::cout << "Cat " << type << " Destructor called" << std::endl;
+    std::cout << "Cat " << this->type << " Destructor called" << std::endl;
 }
 
 Cat::Cat(Cat &obj) : Animal()
 {
-    std::cout << "Cat " << type << " Copy Constructor called" << std::endl;
-    *this= obj;
+    std::cout << "Cat " << this->type << " Copy Constructor called" << std::endl;
+    *this = obj;
 }
 
 Cat& Cat::operator=(Cat &toCopyFrom)
 {
-    std::cout << "Cat " << type << " Copy Assign Operator called" << std::endl;
+    std::cout << "Cat " << this->type << " Copy Assign Operator called" << std::endl;
     if (this != &toCopyFrom)
-        type = toCopyFrom.getType();
+        this->type = toCopyFrom.getType();
     return (*this);
 }
 
 std::string Cat::getType( void ) const
 {
-    return (type);
+    return (this->type);
 }
 
 void Cat::makeSound( void ) const

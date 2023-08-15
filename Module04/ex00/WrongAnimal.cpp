@@ -2,32 +2,32 @@
 
 WrongAnimal::WrongAnimal( void )
 {
-    type = "Default";
-    std::cout << "WrongAnimal " << type << " Constructor called" << std::endl;
+    this->type = "Default";
+    std::cout << "WrongAnimal " << this->type << " Constructor called" << std::endl;
 }
 
 WrongAnimal::~WrongAnimal( void )
 {
-    std::cout << "WrongAnimal " << type << " Destructor called" << std::endl;
+    std::cout << "WrongAnimal " << this->type << " Destructor called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(WrongAnimal &obj)
 {
-    type = obj.getType();
-    std::cout << "WrongAnimal " << type << " Copy Constructor called" << std::endl;
+    this->type = obj.getType();
+    std::cout << "WrongAnimal " << this->type << " Copy Constructor called" << std::endl;
 }
 
 WrongAnimal& WrongAnimal::operator=(WrongAnimal &toCopyFrom)
 {
-    std::cout << "WrongAnimal " << type << " Copy Assign Operator called" << std::endl;
+    std::cout << "WrongAnimal " << this->type << " Copy Assign Operator called" << std::endl;
     if (this != &toCopyFrom)
-        type = toCopyFrom.getType();
+        this->type = toCopyFrom.getType();
     return (*this);
 }
 
 std::string WrongAnimal::getType( void ) const
 {
-    return (type);
+    return (this->type);
 }
 
 void WrongAnimal::makeSound( void ) const

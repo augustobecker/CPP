@@ -2,32 +2,32 @@
 
 WrongCat::WrongCat( void ) : WrongAnimal()
 {
-    type = "WrongCat";
-    std::cout << "WrongCat " << type << " Constructor called" << std::endl;
+    this->type = "WrongCat";
+    std::cout << "WrongCat " << this->type << " Constructor called" << std::endl;
 }
 
 WrongCat::~WrongCat( void )
 {
-    std::cout << "WrongCat " << type << " Destructor called" << std::endl;
+    std::cout << "WrongCat " << this->type << " Destructor called" << std::endl;
 }
 
 WrongCat::WrongCat(WrongCat &obj) : WrongAnimal()
 {
-    std::cout << "WrongCat " << type << " Copy Constructor called" << std::endl;
+    std::cout << "WrongCat " << this->type << " Copy Constructor called" << std::endl;
     *this= obj;
 }
 
 WrongCat& WrongCat::operator=(WrongCat &toCopyFrom)
 {
-    std::cout << "WrongCat " << type << " Copy Assign Operator called" << std::endl;
+    std::cout << "WrongCat " << this->type << " Copy Assign Operator called" << std::endl;
     if (this != &toCopyFrom)
-        type = toCopyFrom.getType();
+        this->type = toCopyFrom.getType();
     return (*this);
 }
 
 std::string WrongCat::getType( void ) const
 {
-    return (type);
+    return (this->type);
 }
 
 void WrongCat::makeSound( void ) const
