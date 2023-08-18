@@ -51,8 +51,8 @@ Bureaucrat Bureaucrat::operator++( void )
         _grade--;
         if (_grade < _higestGrade)
         {
-            throw (Bureaucrat::GradeTooHighException());
             _grade++;
+            throw (Bureaucrat::GradeTooHighException());
         }
     }
     catch (const std::exception &e)
@@ -71,8 +71,8 @@ Bureaucrat Bureaucrat::operator++( int )
         _grade--;
         if (_grade < _higestGrade)
         {
-            throw (Bureaucrat::GradeTooHighException());
             _grade++;
+            throw (Bureaucrat::GradeTooHighException());
         }
     }
     catch (const std::exception &e)
@@ -88,8 +88,8 @@ Bureaucrat Bureaucrat::operator--( void )
         _grade++;
         if (_grade > _lowestGrade)
         {
-            throw (Bureaucrat::GradeTooLowException());
             _grade--;
+            throw (Bureaucrat::GradeTooLowException());
         }
     }
     catch (const std::exception &e)
@@ -108,8 +108,8 @@ Bureaucrat Bureaucrat::operator--( int )
         _grade++;
         if (_grade > _lowestGrade)
         {
-            throw (Bureaucrat::GradeTooLowException());
             _grade--;
+            throw (Bureaucrat::GradeTooLowException());
         }
     }
     catch (const std::exception &e)
