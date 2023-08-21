@@ -28,7 +28,7 @@
 |:-:	|:--		|--:				|
 |CPP00	|`Namespaces` `Classes` `Member Functions` `stdio streams` `initialization lists` `static` `const`		|100% ✅			|
 |CPP01	|`Memory Allocation` `Pointers to members` `References` `Switch statement`		|100% ✅				|
-|CPP02	|`Ad-hocpolymorphism` `Orthodox Canonical class form` `Operator Overloading`		|100% ✅				|
+|CPP02	|`Ad-hoc Polymorphism` `Orthodox Canonical class form` `Operator Overloading`		|100% ✅				|
 |CPP03	|		|0% 				|				
 |CPP04	|		|0%				|
 |CPP05	|		|0% 				|
