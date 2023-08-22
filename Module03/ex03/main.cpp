@@ -11,7 +11,7 @@ void testDiamondTrapCopy( void );
 void testDiamondTrapWhoAmI( std::string name );
 
 int main (void)
-{A
+{
     testDiamondTrapConstructor("Cicero");
     print("_______________________________________________");
     testDiamondTrapCopy();
