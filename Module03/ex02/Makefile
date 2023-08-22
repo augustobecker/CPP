@@ -2,7 +2,7 @@ NAME			= FragTrap
 
 COMPILER		= c++
 
-STANDARD_FLAGS	= -Wall -Werror -std=c++98
+STANDARD_FLAGS	= -Wall -Wextra -Werror -std=c++98
 
 SRCS			= main.cpp	\
 				  ClapTrap.cpp \
