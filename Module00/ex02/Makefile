@@ -12,7 +12,7 @@
 
 NAME			= accounts_log
 
-COMPILER		= g++
+COMPILER		= c++
 
 STANDARD_FLAGS	= -Wall -Wextra -Werror -std=c++98
 

@@ -1,6 +1,6 @@
 NAME			= AnimalPolymorphism
 
-COMPILER		= g++
+COMPILER		= c++
 
 STANDARD_FLAGS	= -Wall -Werror -Wextra -std=c++98
 

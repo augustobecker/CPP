@@ -1,6 +1,6 @@
 NAME			= AbstractAnimal
 
-COMPILER		= g++
+COMPILER		= c++
 STANDARD_FLAGS	= -Wall -Werror -Wextra -std=c++98
 
 SRCS			= main.cpp			\

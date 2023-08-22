@@ -1,6 +1,6 @@
 NAME			= ClapTrap
 
-COMPILER		= g++
+COMPILER		= c++
 
 STANDARD_FLAGS	= -Wall -Werror -std=c++98
 
