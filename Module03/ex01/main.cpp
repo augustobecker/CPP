@@ -24,6 +24,8 @@ int main (void)
     Laiza.attack("Rafe");
     Lala.attack("Augusto");
     Lala.setAttackDamage(5);
+    Lala.beRepaired(1);
+    Duda.beRepaired(1);
     Laiza.attack("Rafe");
     Lala.attack("Augusto");
     Lala.guardGate();
