@@ -33,33 +33,20 @@ public:
 	int			getRequiredGradeToSign( void ) const;
 	int			getRequiredGradeToExecute( void ) const;
 
-	bool		beSigned( const Bureaucrat& );
-
-	int			validateGrade( int );
+	void		beSigned( const Bureaucrat& );
 
 	class GradeTooHighException : public std::exception
 	{
 
 	public:
-
-		virtual ~GradeTooHighException() throw () {}
-
-		virtual const char* what() const throw () {
-			return "Form's grade is too High (the highest possible grade is 1)";
-		}
+		virtual const char* what() const throw();
 	};
 
 	class GradeTooLowException : public std::exception
 	{
 
 	public:
-
-		virtual ~GradeTooLowException() throw () {}
-
-		const char* what() const throw() 
-		{
-			return "Form's grade is too Low (the lowest possible grade is 150)";
-		}
+        virtual const char* what() const throw ();
 	};
 
 };

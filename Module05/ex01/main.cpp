@@ -9,7 +9,7 @@ int main( void )
     Form entry("entry", 100, 6);
     Bureaucrat Augusto("Augusto", 40);
 
-    admission.beSigned(Augusto);
+    //admission.beSigned(Augusto);
     Augusto.signForm(admission);
     Augusto.signForm(entry);
     std::cout << admission << std::endl;

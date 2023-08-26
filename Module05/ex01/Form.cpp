@@ -2,9 +2,13 @@
 # include <exception>
 # include "Form.hpp"
 
-Form::Form( const std::string name, int requiredGradeToSign, int requiredGradeToExecute ) : _name(name), _requiredGradeToSign(validateGrade(requiredGradeToSign)), _requiredGradeToExecute(validateGrade(requiredGradeToExecute))
+Form::Form( const std::string name, int requiredGradeToSign, int requiredGradeToExecute ) : _name(name), _requiredGradeToSign(requiredGradeToSign), _requiredGradeToExecute(requiredGradeToExecute)
 {
     this->_isSigned = false;
+    if (requiredGradeToSign < this->_higestGrade || requiredGradeToExecute < this->_higestGrade )
+        throw (Bureaucrat::GradeTooHighException());
+    else if (requiredGradeToSign > this->_lowestGrade || requiredGradeToExecute > this->_lowestGrade)
+        throw (Bureaucrat::GradeTooLowException());
 }
 
 Form::~Form( void )
@@ -39,46 +43,26 @@ int Form::getRequiredGradeToSign( void ) const
     return (this->_requiredGradeToSign);
 }
 
-
 int Form::getRequiredGradeToExecute( void ) const
 {
     return (this->_requiredGradeToExecute);
 }
 
-bool    Form::beSigned( const Bureaucrat& officeWorker )
+void    Form::beSigned( const Bureaucrat& officeWorker )
 {
-    try {
-        if (officeWorker.getGrade() > this->_requiredGradeToSign)
-            throw (Form::GradeTooLowException());
-        this->_isSigned = true;
-    }
-    catch (const std::exception &e)
-    {
-        std::cout << "Exception caught: Bureaucrat's grade isn't enough to sign this Form" << std::endl;
-        return (false);
-    }
-    return (true);
+    if (officeWorker.getGrade() > this->_requiredGradeToSign)
+        throw (Form::GradeTooLowException());
+    this->_isSigned = true;
 }
 
-int   Form::validateGrade( int grade )
+const char* Form::GradeTooHighException::what() const throw () 
 {
-    try {
-        if (grade < this->_higestGrade)
-        {
-            grade = this->_higestGrade;
-            throw (Bureaucrat::GradeTooHighException());
-        }
-        else if (grade > this->_lowestGrade)
-        {
-            grade = this->_lowestGrade;
-            throw (Bureaucrat::GradeTooLowException());
-        }
-    }
-    catch (const std::exception &e)
-    {
-        std::cout << "Exception caught: " << "Invalid Grade passed as Parameter :" << e.what() << std::endl;
-    }
-    return (grade);
+	return ("Form's grade is too High (the highest possible grade is 1)");
+}
+
+const char* Form::GradeTooLowException::what() const throw() 
+{
+	return ("Form's grade is too Low (the lowest possible grade is 150)");
 }
 
 std::ostream& operator<<(std::ostream& os, const Form &obj)
