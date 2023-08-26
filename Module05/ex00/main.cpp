@@ -14,8 +14,8 @@ int main( void )
 {
     testCreateValidBureaucrat("Amanda");
     testCreateInvalidBureaucrat("Naty");
-    //testIncrementOperators();
-    //testDecrementOperators();
+    testIncrementGrade("Rony Rustico");
+    testDecrementGrade("Raphael Veiga");
     return 0;
 }
 
@@ -67,70 +67,45 @@ void testIncrementGrade( std::string name )
     std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
     std::cout << "____| Test Increment Bureaucrat's Grade |__" << std::endl;
     std::cout << "\t Increment 1 to Bureaucrat Grade 2 (No output means its working properly)" << std::endl;
-	
-    std::cout << "\t (should throw an exception)" << std::endl;
-
-    std::cout << "_______| TEST INCREMENT |_______" << std::endl;
-    std::cout << "__| yes, it's counterintuitive, but the increment here is the subtraction |__" << std::endl;
-
-    //std::cout << "\t" << Rafael << std::endl;
-    //std::cout << "\t" << Marco << std::endl;
-    //std::cout << "\t" << Amanda << std::endl;
-
-    std::cout << "_______| + 1 |_______" << std::endl;
-
-    Rafael.incrementGrade(1);
-    Marco.incrementGrade(1);
-    Amanda.incrementGrade(1);
-
-    //std::cout << "\t" << Rafael << std::endl;
-    //std::cout << "\t" << Marco << std::endl;
-    //std::cout << "\t" << Amanda << std::endl;
-
-    std::cout << "_______| TEST PRE INCREMENT IN EXCEPTION CASES |_______" << std::endl;
-    Amanda.incrementGrade(1);
-    //std::cout << "\t" << Amanda << std::endl;
-
-    std::cout << "_______| TEST POST INCREMENT IN EXCEPTION CASES |_______" << std::endl;
-   // std::cout << "\t" << Amanda++ << std::endl;
-   std::cout << "____| End of test |__" << std::endl;
-   std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "*****(yes, it's counterintuitive, but the increment here is the subtraction)*****" << std::endl;
+    Bureaucrat random(name, 2);
+	try {
+        random.incrementGrade(1);
+    }
+    catch (std::exception &e){
+        std::cout << e.what() << std::endl;
+    }
+    std::cout << "\t Increment 1 to Bureaucrat Grade 1 (Now it should throw an exception)" << std::endl;
+    try {
+        random.incrementGrade(1);
+    }
+    catch (std::exception &e){
+        std::cout << e.what() << std::endl;
+    }
+    std::cout << "____|           End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
 
 void testDecrementGrade( std::string name )
 {
     std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
-	Bureaucrat Augusto("Augusto", 1);
-    Bureaucrat Nicolas("Nicolas", 22);
-    Bureaucrat Natalia("Natalia", 147);
-
-    std::cout << "_______| TEST INCREMENT OPERATORS |_______" << std::endl;
-
-    //std::cout << "\t" << Augusto << std::endl;
-    //std::cout << "\t" << Nicolas << std::endl;
-    //std::cout << "\t" << Natalia << std::endl;
-
-    std::cout << "_______| TEST PRE DECREMENT |_______" << std::endl;
-
-    //std::cout << "\t" << --Augusto << std::endl;
-    //std::cout << "\t" << --Nicolas << std::endl;
-    //std::cout << "\t" << --Natalia << std::endl;
-
-    std::cout << "_______| TEST POST DECREMENT |_______" << std::endl;
-
-    //std::cout << "\t" << Augusto-- << std::endl;
-    //std::cout << "\t" << Nicolas-- << std::endl;
-    //std::cout << "\t" << Natalia-- << std::endl;
-    std::cout << "     | post decrement |" << std::endl;
-    //std::cout << "\t" << Augusto << std::endl;
-    //std::cout << "\t" << Nicolas << std::endl;
-    //std::cout << "\t" << Natalia << std::endl;
-
-    std::cout << "_______| TEST PRE DECREMENT IN EXCEPTION CASES |_______" << std::endl;
-    //std::cout << "\t" << --Natalia << std::endl;
-
-    std::cout << "_______| TEST POST DECREMENT IN EXCEPTION CASES |_______" << std::endl;
-    //std::cout << "\t" << Natalia-- << std::endl;
-    std::cout << "____| End of test |__" << std::endl;
-    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test Increment Bureaucrat's Grade |__" << std::endl;
+    std::cout << "\t Decrement 1 to Bureaucrat Grade 149 (No output means its working properly)" << std::endl;
+    std::cout << "****(yes, it's counterintuitive, but the decrement here is the addition)****" << std::endl;
+    Bureaucrat random(name, 149);
+	try {
+        random.decrementGrade(1);
+    }
+    catch (std::exception &e){
+        std::cout << e.what() << std::endl;
+    }
+    std::cout << "\t Decrement 1 to Bureaucrat Grade 150 (Now it should throw an exception)" << std::endl;
+    try {
+        random.decrementGrade(1);
+    }
+    catch (std::exception &e){
+        std::cout << "EXCEPTION: " << e.what() << std::endl;
+    }
+    std::cout << "____|           End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
