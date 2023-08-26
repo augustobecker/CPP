@@ -3,8 +3,8 @@ NAME			= Bureaucrat
 COMPILER		= c++
 STANDARD_FLAGS	= -Wall -Werror -Wextra -std=c++98
 
-SRCS			= main.cpp			\
-				  Bureaucrat.cpp	
+SRCS			= Bureaucrat.cpp \
+				main.cpp
 
 OBJS			= ${SRCS:.cpp=.o}
 
