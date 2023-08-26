@@ -33,7 +33,7 @@ public:
 	int		getAttackDamage( void ) const;
 	void	setAttackDamage( const int );
 
-	void attack( const std::string& );
+	virtual void attack( const std::string& );
 	void takeDamage( const unsigned int );
 	void beRepaired( const unsigned int );
 

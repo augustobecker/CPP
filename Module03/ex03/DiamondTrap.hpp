@@ -41,7 +41,6 @@ public:
 	void		setAttackDamage( int );
 
     void whoAmI( void ) const;
-	void attack( const std::string& target );
 
 };
 

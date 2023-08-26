@@ -73,6 +73,8 @@ void testDiamondOtherMethods( std::string name )
     
     print("___________| DiamondTrap Test ScavTrap's guardGate Method |__________");
     random.guardGate();
+
+    random.attack("Case");
 }
 
 void print( std::string message )

@@ -3,9 +3,6 @@
 DiamondTrap::DiamondTrap( std::string name ) : ClapTrap( name + "_clap_name" ), ScavTrap( name ), FragTrap ( name )
 {
 	_name = name;
-	_hitPoints = FragTrap::getHitPoints();
-	_energyPoints = ScavTrap::getEnergyPoints();
-	_attackDamage = FragTrap::getAttackDamage();
 	ClapTrap::_name = name + "_clap_name";
 	std::cout << "DiamondTrap " << _name << " Constructor called" << std::endl;
 }
@@ -87,11 +84,6 @@ void DiamondTrap::setAttackDamage( int attackDamage )
 int	DiamondTrap::getAttackDamage( void ) const
 {
 	return FragTrap::getAttackDamage();
-}
-
-void DiamondTrap::attack( const std::string& target )
-{
-	ScavTrap::attack(target);
 }
 
 void DiamondTrap::whoAmI( void ) const
