@@ -6,9 +6,9 @@ Form::Form( const std::string name, int requiredGradeToSign, int requiredGradeTo
 {
     this->_isSigned = false;
     if (requiredGradeToSign < this->_higestGrade || requiredGradeToExecute < this->_higestGrade )
-        throw (Bureaucrat::GradeTooHighException());
+        throw (Form::GradeTooHighException());
     else if (requiredGradeToSign > this->_lowestGrade || requiredGradeToExecute > this->_lowestGrade)
-        throw (Bureaucrat::GradeTooLowException());
+        throw (Form::GradeTooLowException());
 }
 
 Form::~Form( void )
@@ -67,6 +67,6 @@ const char* Form::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& os, const Form &obj)
 {
-	os << "Form " << obj.getName();
+	os << "Form " << obj.getName() << ", form grade " << obj.getRequiredGradeToSign() << " to sign and grade " << obj.getRequiredGradeToExecute() << " to execute.";
 	return os;
 }
