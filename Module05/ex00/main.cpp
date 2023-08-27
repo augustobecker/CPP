@@ -7,6 +7,9 @@
 
 void testCreateValidBureaucrat( std::string name );
 void testCreateInvalidBureaucrat( std::string name );
+
+void testOverloadInsertionBureaucrat( std::string name );
+
 void testIncrementGrade( std::string name );
 void testDecrementGrade( std::string name );
 
@@ -14,6 +17,7 @@ int main( void )
 {
     testCreateValidBureaucrat("Amanda");
     testCreateInvalidBureaucrat("Naty");
+    testOverloadInsertionBureaucrat("Abel Ferreira");
     testIncrementGrade("Rony Rustico");
     testDecrementGrade("Raphael Veiga");
     return 0;
@@ -28,13 +32,13 @@ void testCreateValidBureaucrat( std::string name )
         Bureaucrat random(name, HIGEST_GRADE);
     }
     catch (std::exception &e){
-        std::cout << e.what() << std::endl;
+        std::cout << "EXCEPTION: " << e.what() << std::endl;
     }
     try {
         Bureaucrat random(name, LOWEST_GRADE);
     }
     catch (std::exception &e){
-        std::cout << e.what() << std::endl;
+        std::cout << "EXCEPTION: " << e.what() << std::endl;
     }
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
@@ -62,6 +66,21 @@ void testCreateInvalidBureaucrat( std::string name )
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
 
+void testOverloadInsertionBureaucrat( std::string name )
+{
+    {
+    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test  Bureaucrat Overload << |__" << std::endl;
+    std::cout << "\t (Should output '<name>, bureaucrat grade <grade>.')" << std::endl;
+
+    Bureaucrat random(name, HIGEST_GRADE);
+
+    std::cout << random << std::endl;
+    
+    std::cout << "____|         End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
+}
+
 void testIncrementGrade( std::string name )
 {
     std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
@@ -73,14 +92,14 @@ void testIncrementGrade( std::string name )
         random.incrementGrade(1);
     }
     catch (std::exception &e){
-        std::cout << e.what() << std::endl;
+        std::cout << "EXCEPTION: " << e.what() << std::endl;
     }
     std::cout << "\t Increment 1 to Bureaucrat Grade 1 (Now it should throw an exception)" << std::endl;
     try {
         random.incrementGrade(1);
     }
     catch (std::exception &e){
-        std::cout << e.what() << std::endl;
+        std::cout << "EXCEPTION: " << e.what() << std::endl;
     }
     std::cout << "____|           End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
@@ -97,7 +116,7 @@ void testDecrementGrade( std::string name )
         random.decrementGrade(1);
     }
     catch (std::exception &e){
-        std::cout << e.what() << std::endl;
+        std::cout << "EXCEPTION: " << e.what() << std::endl;
     }
     std::cout << "\t Decrement 1 to Bureaucrat Grade 150 (Now it should throw an exception)" << std::endl;
     try {
