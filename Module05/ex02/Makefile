@@ -3,9 +3,12 @@ NAME			= Bureaucrat
 COMPILER		= c++
 STANDARD_FLAGS	= -Wall -Werror -Wextra -std=c++98
 
-SRCS			= Form.cpp			\
-				  Bureaucrat.cpp	\
-				  main.cpp
+SRCS			= main.cpp						\
+					AForm.cpp					\
+				  	Bureaucrat.cpp				\
+				  	ShrubberyCreationForm.cpp	\
+					RobotomyRequestForm.cpp		\
+					PresidentialPardonForm.cpp
 
 OBJS			= ${SRCS:.cpp=.o}
 

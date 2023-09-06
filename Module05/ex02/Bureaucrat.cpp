@@ -69,17 +69,17 @@ int Bureaucrat::getGrade( void ) const
     return (this->_grade);
 }
 
-void    Bureaucrat::signForm( Form& document ) const
+void    Bureaucrat::signForm( Form* document ) const
 {
     try {
-        document.beSigned(*this);
+        document->beSigned(*this);
     }
     catch (const std::exception &e)
     {
-        std::cout << this->_name << " couldn’t sign " << document.getName() << " because Bureaucrat's grade isn't enough to sign this Form" << std::endl;
+        std::cout << this->_name << " couldn’t sign " << document->getName() << " because Bureaucrat's grade isn't enough to sign this Form" << std::endl;
         return;
     }
-    std::cout << this->_name << " signed " << document.getName() << std::endl;
+    std::cout << this->_name << " signed " << document->getName() << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
@@ -95,6 +95,6 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat &obj)
 {
-	os << obj.getName() << ", bureaucrat grade " << obj.getGrade();
+	os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << ".";
 	return os;
 }

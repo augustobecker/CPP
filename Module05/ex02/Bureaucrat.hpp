@@ -3,7 +3,7 @@
 
 # include <iostream>
 # include <exception>
-# include "Form.hpp"
+# include "AForm.hpp"
 
 class Form;
 
@@ -32,7 +32,7 @@ public:
 	std::string getName( void ) const;
 	int			getGrade( void ) const;
 
-	void		signForm( Form & ) const;
+	void		signForm( Form* ) const;
 
 	class GradeTooHighException : public std::exception
 	{
