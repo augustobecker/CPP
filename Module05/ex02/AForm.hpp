@@ -4,6 +4,7 @@
 # include <iostream>
 # include <exception>
 # include "Bureaucrat.hpp"
+# include <stdlib.h> 
 
 class Bureaucrat;
 

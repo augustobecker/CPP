@@ -46,18 +46,18 @@ int main( void )
     testCreateRobotomyRequestForm("Richard Ríos");
     testCreatePresidentialPardonForm("Endrick");
 
-
     testExecuteShrubberyCreationFormWithUnqualifiedBureaucrat("Luan");
     testExecuteRobotomyRequestFormWithUnqualifiedBureaucrat("Marcos Rocha");
     testExecutePresidentialPardonFormWithUnqualifiedBureaucrat("Murilo");
 
-    testExecuteShrubberyCreationFormWithQualifiedBureaucrat("Flaco López");
-    testExecuteRobotomyRequestFormWithQualifiedBureaucrat("Gustavo Gómez");
-    testExecutePresidentialPardonFormWithQualifiedBureaucrat("Weverton");
-    
-    testExecuteShrubberyCreationFormBeeingUnsigned("Zé Rafael");
+    testExecuteShrubberyCreationFormBeeingUnsigned("Flaco Lópezl");
     testExecuteRobotomyRequestFormBeeingUnsigned("Piquerez");
     testExecutePresidentialPardonFormBeeingUnsigned("John John");
+
+    testExecuteShrubberyCreationFormWithQualifiedBureaucrat("Piquerez");
+    testExecuteRobotomyRequestFormWithQualifiedBureaucrat("Gustavo Gómez");
+    testExecutePresidentialPardonFormWithQualifiedBureaucrat("Weverton");
+
 }
 
 void testCreateValidBureaucrat( std::string name )

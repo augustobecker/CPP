@@ -46,8 +46,12 @@ std::ostream& operator<<(std::ostream& os, const RobotomyRequestForm &obj)
 
 void RobotomyRequestForm::randomRobotomy( void ) const
 {
+    int random_num;
+
+    srand(time(NULL));
+    random_num = (std::rand() % 100);
     std::cout << "Bzzzz bzzzzzz" << std::endl;
-    if (1)
+    if (random_num % 2)
         std::cout << _target << " has been robotomized" << std::endl;
     else
         std::cout << _target << " robotomy failed." << std::endl;

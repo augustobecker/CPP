@@ -4,6 +4,7 @@
 # include <iostream>
 # include <exception>
 # include "AForm.hpp"
+# include <time.h>
 
 class RobotomyRequestForm : public Form
 {

@@ -141,4 +141,5 @@ void ShrubberyCreationForm::createShrubberyTree( void ) const
         shrubberyFile << "                                                                                                                                                                                                       " << std::endl;
 		shrubberyFile.close();
 	}
+    std::cout << targetFilename << " has been generated" << std::endl;
 }
