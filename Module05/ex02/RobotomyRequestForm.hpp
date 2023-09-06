@@ -27,6 +27,8 @@ public:
 
     void	execute( Bureaucrat const& ) const;
 
+	void 	randomRobotomy( void ) const;
+
 };
 
 std::ostream& operator<<(std::ostream &, const RobotomyRequestForm &);

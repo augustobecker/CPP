@@ -27,6 +27,7 @@ public:
 
     void	execute( Bureaucrat const& ) const;
 
+	void	pardon( void ) const
 };
 
 std::ostream& operator<<(std::ostream &, const PresidentialPardonForm &);
