@@ -46,14 +46,15 @@ int main( void )
     testCreateRobotomyRequestForm("Richard Ríos");
     testCreatePresidentialPardonForm("Endrick");
 
-    testExecuteShrubberyCreationFormWithQualifiedBureaucrat("Flaco López");
-    testExecuteRobotomyRequestFormWithQualifiedBureaucrat("Gustavo Gómez");
-    testExecutePresidentialPardonFormWithQualifiedBureaucrat("Weverton");
 
     testExecuteShrubberyCreationFormWithUnqualifiedBureaucrat("Luan");
     testExecuteRobotomyRequestFormWithUnqualifiedBureaucrat("Marcos Rocha");
     testExecutePresidentialPardonFormWithUnqualifiedBureaucrat("Murilo");
 
+    testExecuteShrubberyCreationFormWithQualifiedBureaucrat("Flaco López");
+    testExecuteRobotomyRequestFormWithQualifiedBureaucrat("Gustavo Gómez");
+    testExecutePresidentialPardonFormWithQualifiedBureaucrat("Weverton");
+    
     testExecuteShrubberyCreationFormBeeingUnsigned("Zé Rafael");
     testExecuteRobotomyRequestFormBeeingUnsigned("Piquerez");
     testExecutePresidentialPardonFormBeeingUnsigned("John John");

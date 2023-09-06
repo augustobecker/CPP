@@ -4,6 +4,8 @@
 # include <iostream>
 # include <exception>
 # include "AForm.hpp"
+# include <fstream> 
+# include <stdlib.h> 
 
 class ShrubberyCreationForm : public Form
 {
@@ -26,6 +28,8 @@ public:
 	std::string getTarget( void ) const;
 
 	void	execute( Bureaucrat const& ) const;
+
+	void 	createShrubberyTree( void ) const;
 
 };
 
