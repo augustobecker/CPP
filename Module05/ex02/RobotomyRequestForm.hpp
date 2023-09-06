@@ -25,6 +25,8 @@ public:
 
 	std::string getTarget( void ) const;
 
+    void	execute( Bureaucrat const& ) const;
+
 };
 
 std::ostream& operator<<(std::ostream &, const RobotomyRequestForm &);

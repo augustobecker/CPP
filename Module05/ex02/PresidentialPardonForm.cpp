@@ -32,6 +32,12 @@ std::string PresidentialPardonForm::getTarget( void ) const
     return (this->_target);
 }
 
+void	PresidentialPardonForm::execute( Bureaucrat const& officeWorker ) const
+{
+    Form::execute(officeWorker);
+    std::cout << _target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+}
+
 std::ostream& operator<<(std::ostream& os, const PresidentialPardonForm &obj)
 {
 	os << "Form " << obj.getName() << ", form grade " << obj.getRequiredGradeToSign() << " to sign and grade " << obj.getRequiredGradeToExecute() << " to execute.";

@@ -13,7 +13,7 @@ Form::Form( const std::string name, int requiredGradeToSign, int requiredGradeTo
 
 Form::~Form( void )
 {
-    return;
+
 }
 
 Form::Form(const Form &obj) : _name(obj.getName()),  _requiredGradeToSign(obj.getRequiredGradeToSign()), _requiredGradeToExecute(obj.getRequiredGradeToExecute())
@@ -53,11 +53,19 @@ void Form::setIsSigned( bool isSigned )
     this->_isSigned = isSigned;
 }
 
-void Form::beSigned( const Bureaucrat& officeWorker )
+void Form::beSigned( Bureaucrat const& officeWorker )
 {
     if (officeWorker.getGrade() > this->_requiredGradeToSign)
         throw (Form::GradeTooLowException());
     this->setIsSigned(true);
+}
+
+void Form::execute( Bureaucrat const& executor ) const
+{
+    if (!_isSigned)
+        throw (Form::NotSignedException());
+    if (executor.getGrade() > this->_requiredGradeToExecute)
+        throw (Form::GradeTooLowException());
 }
 
 const char* Form::GradeTooHighException::what() const throw () 
@@ -68,4 +76,9 @@ const char* Form::GradeTooHighException::what() const throw ()
 const char* Form::GradeTooLowException::what() const throw() 
 {
 	return ("Form's grade is too Low (the lowest possible grade is 150)");
+}
+
+const char* Form::NotSignedException::what() const throw() 
+{
+	return ("Form could not be executed yet because it is not signed.");
 }

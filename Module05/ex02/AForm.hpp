@@ -28,16 +28,17 @@ public:
 	Form( const Form& );
 	Form& operator=( const Form& );
 
-	std::string getName( void ) const;
-	bool		getIsSigned( void ) const;
-	int			getRequiredGradeToSign( void ) const;
-	int			getRequiredGradeToExecute( void ) const;
-
-    void        setIsSigned( bool ) ;
-
-	void beSigned( const Bureaucrat& );
+	std::string 		getName( void ) const;
+	bool				getIsSigned( void ) const;
+	int					getRequiredGradeToSign( void ) const;
+	int					getRequiredGradeToExecute( void ) const;
 
 	virtual std::string getTarget( void ) const = 0;
+
+    void	setIsSigned( bool ) ;
+
+	void			beSigned( Bureaucrat const& );
+	virtual void	execute( Bureaucrat const& ) const;
 
 	class GradeTooHighException : public std::exception
 	{
@@ -47,6 +48,13 @@ public:
 	};
 
 	class GradeTooLowException : public std::exception
+	{
+
+	public:
+        const char* what() const throw ();
+	};
+
+	class NotSignedException : public std::exception
 	{
 
 	public:
