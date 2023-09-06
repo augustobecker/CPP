@@ -70,12 +70,12 @@ void Form::execute( Bureaucrat const& executor ) const
 
 const char* Form::GradeTooHighException::what() const throw () 
 {
-	return ("Form's grade is too High (the highest possible grade is 1)");
+	return ("Grade is too High for Form");
 }
 
 const char* Form::GradeTooLowException::what() const throw() 
 {
-	return ("Form's grade is too Low (the lowest possible grade is 150)");
+	return ("Grade is too Low for Form");
 }
 
 const char* Form::NotSignedException::what() const throw() 

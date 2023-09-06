@@ -76,7 +76,7 @@ void	Bureaucrat::signForm( Form &document ) const
     }
     catch (const std::exception &e)
     {
-        std::cout << this->_name << " couldn’t sign " << document.getName() << " because Bureaucrat's grade isn't enough to sign this Form" << std::endl;
+        std::cout << "EXCEPTION: " << this->_name << " couldn’t sign " << document.getName() << " because Bureaucrat's grade isn't enough to sign this Form" << std::endl;
         return;
     }
     std::cout << this->_name << " signed " << document.getName() << std::endl;
@@ -87,9 +87,14 @@ void Bureaucrat::executeForm( Form const & document ) const
     try {
         document.execute(*this);
     }
-    catch (const std::exception &e)
+    catch (const Form::GradeTooLowException &e)
     {
-        std::cout << this->_name << " couldn’t sign " << document.getName() << " because " << e.what() << std::endl;
+        std::cout << "EXCEPTION: " << this->_name << " couldn’t execute " << document.getName() << " because Bureaucrat's grade is not high enough" << std::endl;
+        return;
+    }
+    catch (const Form::NotSignedException &e)
+    {
+        std::cout << "EXCEPTION: " << this->_name << " couldn’t execute " << document.getName() << " because the Form is not signed" << std::endl;
         return;
     }
     std::cout << this->_name << " executed " << document.getName() << std::endl;

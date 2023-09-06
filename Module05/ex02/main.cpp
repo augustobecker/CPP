@@ -24,6 +24,14 @@ void testExecuteShrubberyCreationFormWithQualifiedBureaucrat( std::string name )
 void testExecuteRobotomyRequestFormWithQualifiedBureaucrat( std::string name );
 void testExecutePresidentialPardonFormWithQualifiedBureaucrat( std::string name );
 
+void testExecuteShrubberyCreationFormWithUnqualifiedBureaucrat( std::string name );
+void testExecuteRobotomyRequestFormWithUnqualifiedBureaucrat( std::string name );
+void testExecutePresidentialPardonFormWithUnqualifiedBureaucrat( std::string name );
+
+void testExecuteShrubberyCreationFormBeeingUnsigned( std::string name );
+void testExecuteRobotomyRequestFormBeeingUnsigned( std::string name );
+void testExecutePresidentialPardonFormBeeingUnsigned( std::string name );
+
 int main( void )
 {
     testCreateValidBureaucrat("Amanda");
@@ -41,6 +49,14 @@ int main( void )
     testExecuteShrubberyCreationFormWithQualifiedBureaucrat("Flaco López");
     testExecuteRobotomyRequestFormWithQualifiedBureaucrat("Gustavo Gómez");
     testExecutePresidentialPardonFormWithQualifiedBureaucrat("Weverton");
+
+    testExecuteShrubberyCreationFormWithUnqualifiedBureaucrat("Luan");
+    testExecuteRobotomyRequestFormWithUnqualifiedBureaucrat("Marcos Rocha");
+    testExecutePresidentialPardonFormWithUnqualifiedBureaucrat("Murilo");
+
+    testExecuteShrubberyCreationFormBeeingUnsigned("Zé Rafael");
+    testExecuteRobotomyRequestFormBeeingUnsigned("Piquerez");
+    testExecutePresidentialPardonFormBeeingUnsigned("John John");
 }
 
 void testCreateValidBureaucrat( std::string name )
@@ -264,6 +280,99 @@ void testExecuteRobotomyRequestFormWithQualifiedBureaucrat( std::string name )
     Form *document = new RobotomyRequestForm(name);
     
     random.signForm(*document);
+    random.executeForm(*document);
+
+    std::cout << "____|         End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
+}
+
+void testExecuteShrubberyCreationFormWithUnqualifiedBureaucrat( std::string name )
+{
+    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test Execute ShrubberyCreationForm with Unqualified Bureaucrat   |__" << std::endl;
+    std::cout << "\t (it should print that form has been signed, and throw an exception when trying to execute )" << std::endl;
+
+    Bureaucrat random("Daniel", 138);
+    Form *document = new ShrubberyCreationForm(name);
+    
+    random.signForm(*document);
+    random.executeForm(*document);
+    
+    std::cout << "____|         End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
+}
+
+void testExecutePresidentialPardonFormWithUnqualifiedBureaucrat( std::string name )
+{
+    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test Execute PresidentialPardonForm with Unqualified Bureaucrat   |__" << std::endl;
+    std::cout << "\t (it should print that form has been signed, and throw an exception when trying to execute )" << std::endl;
+
+    Bureaucrat  random("Daniel", 6);
+    Form *document = new PresidentialPardonForm(name);
+    
+    random.signForm(*document);
+    random.executeForm(*document);
+
+    std::cout << "____|         End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
+}
+
+void testExecuteRobotomyRequestFormWithUnqualifiedBureaucrat( std::string name )
+{
+    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test Execute RobotomyRequestForm with Unqualified Bureaucrat  |__" << std::endl;
+    std::cout << "\t (it should print that form has been signed, and throw an exception when trying to execute )" << std::endl;
+
+    Bureaucrat random("Daniel", 46);
+    Form *document = new RobotomyRequestForm(name);
+    
+    random.signForm(*document);
+    random.executeForm(*document);
+
+    std::cout << "____|         End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
+}
+
+void testExecuteShrubberyCreationFormBeeingUnsigned( std::string name )
+{
+    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test Execute ShrubberyCreationForm Beeing Unsigned   |__" << std::endl;
+    std::cout << "\t (it should throw an exeception)" << std::endl;
+
+    Bureaucrat random("Daniel", 138);
+    Form *document = new ShrubberyCreationForm(name);
+
+    random.executeForm(*document);
+    
+    std::cout << "____|         End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
+}
+
+void testExecutePresidentialPardonFormBeeingUnsigned( std::string name )
+{
+    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test Execute PresidentialPardonForm Beeing Unsigned   |__" << std::endl;
+    std::cout << "\t (it should throw should an exeception)" << std::endl;
+
+    Bureaucrat  random("Daniel", 6);
+    Form *document = new PresidentialPardonForm(name);
+    
+    random.executeForm(*document);
+
+    std::cout << "____|         End of test          |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
+}
+
+void testExecuteRobotomyRequestFormBeeingUnsigned( std::string name )
+{
+    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test Execute RobotomyRequestForm Beeing Unsigned  |__" << std::endl;
+    std::cout << "\t (it should throw should an exeception)" << std::endl;
+
+    Bureaucrat random("Daniel", 46);
+    Form *document = new RobotomyRequestForm(name);
+    
     random.executeForm(*document);
 
     std::cout << "____|         End of test          |__" << std::endl;
