@@ -5,7 +5,7 @@
 # include "Animal.hpp"
 # include "Brain.hpp"
 
-class Cat: public AAnimal
+class Cat: public Animal
 {
 private:
 
@@ -22,7 +22,11 @@ public:
 
     std::string getType( void ) const;
 
-    void makeSound( void ) const;
+    void 		makeSound( void ) const;
+
+	std::string getIdea( void ) const;
+	void		displayIdeas( void ) const;
+	void		invertIdeas( void );
 
 };
 

@@ -1,9 +1,10 @@
-NAME			= AbstractAnimal
+NAME			= Abstract
 
 COMPILER		= c++
 STANDARD_FLAGS	= -Wall -Werror -Wextra -std=c++98
 
-SRCS			= main.cpp			\
+SRCS			= Animal.cpp 		\
+				  main.cpp			\
 				  Cat.cpp			\
 				  Dog.cpp 			\
 				  Brain.cpp

@@ -4,23 +4,30 @@
 # include "Dog.hpp"
 # include "Brain.hpp"
 
-void brainTests( void );
+void subjectTests( void );
 
 int main( void )
 {
-    std::cout << "__________________________________________" << std::endl;
-    brainTests();
+    subjectTests();
     std::cout << "__________________________________________" << std::endl;
 }
 
-void brainTests( void )
+void subjectTests( void )
 {
-	std::cout << "_________| Brain Tests |__________" << std::endl;
-    AAnimal* jackson = new Dog;
-    Dog michael;
-    std::cout << "Dog has an idea: " << michael.getIdea(21) << std::endl;
-    std::cout << "Dog has an idea: " << michael.getIdea(77) << std::endl;
-    jackson->makeSound();
-    delete &michael;
+	std::cout << "_________| Subject Tests |__________" << std::endl;
+	//const Animal* meta = new Animal();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
+    i->makeSound();
+    j->makeSound();
+    //meta->makeSound();
+
+    //delete meta;
+    delete j;
+    delete i;
+
     return ;
 }

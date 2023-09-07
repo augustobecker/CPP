@@ -1,6 +1,6 @@
 # include "Dog.hpp"
 
-Dog::Dog( void ) : AAnimal()
+Dog::Dog( void ) : Animal()
 {
     this->type = "Dog";
     std::cout << "Dog " << this->type << " Constructor called" << std::endl;
@@ -13,17 +13,22 @@ Dog::~Dog( void )
     std::cout << "Dog " << this->type << " Destructor called" << std::endl;
 }
 
-Dog::Dog(Dog &obj) : AAnimal()
+Dog::Dog(Dog &obj) : Animal()
 {
     std::cout << "Dog " << this->type << " Copy Constructor called" << std::endl;
-    *this = obj;
+    type = obj.getType();
+    brain = new Brain(*obj.brain);
 }
 
 Dog& Dog::operator=(Dog &toCopyFrom)
 {
     std::cout << "Dog " << this->type << " Copy Assign Operator called" << std::endl;
     if (this != &toCopyFrom)
+    {
         type = toCopyFrom.getType();
+        delete brain;
+        brain = new Brain(*toCopyFrom.brain);
+    }
     return (*this);
 }
 
@@ -37,7 +42,18 @@ void Dog::makeSound( void ) const
     std::cout << "Dog make sound: ruFF RUFF" << std::endl;
 }
 
-std::string Dog::getIdea( const int numIdea ) const
+std::string Dog::getIdea( void ) const
 {
-    return(this->brain->getIdea(numIdea));
+    return(this->brain->getRandomIdea());
 }
+
+void Dog::displayIdeas( void ) const
+{
+    return(this->brain->displayIdeas());
+}
+
+void Dog::invertIdeas( void )
+{
+    return(this->brain->invertIdeas());
+}
+
