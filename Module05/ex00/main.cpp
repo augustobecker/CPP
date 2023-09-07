@@ -68,7 +68,6 @@ void testCreateInvalidBureaucrat( std::string name )
 
 void testOverloadInsertionBureaucrat( std::string name )
 {
-    {
     std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
     std::cout << "____| Test  Bureaucrat Overload << |__" << std::endl;
     std::cout << "\t (Should output '<name>, bureaucrat grade <grade>.')" << std::endl;
