@@ -2,6 +2,8 @@
 # define BRAIN_HPP
 
 # include <iostream>
+# include <stdlib.h> 
+# include <time.h>
 
 class Brain
 {
@@ -18,8 +20,13 @@ public:
 	Brain(Brain &);
 	Brain& operator=(Brain &);
 
-	std::string getIdea( const int ) const;
-	bool setIdea( const int, const std::string );
+	std::string	getRandomIdea( void ) const;
+
+	std::string	getIdea( const int numIdea ) const;
+	bool		setIdea( const int, const std::string );
+
+	void invertIdeas( void );
+	void displayIdeas( void ) const;
 
 };
 
