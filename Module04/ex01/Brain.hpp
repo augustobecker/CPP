@@ -2,7 +2,7 @@
 # define BRAIN_HPP
 
 # include <iostream>
-# include <stdlib.h> 
+# include <cstdlib> 
 # include <time.h>
 
 class Brain

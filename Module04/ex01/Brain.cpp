@@ -141,14 +141,14 @@ std::string Brain::getRandomIdea( void ) const
 
 std::string Brain::getIdea( const int numIdea ) const
 {
-    if (numIdea < 0 && numIdea >= 100)
+    if (numIdea < 0 || numIdea >= 100)
         return "";
     return (this->ideas[numIdea]);
 }
 
 bool Brain::setIdea( const int numIdea, const std::string newIdea )
 {
-    if (numIdea < 0 && numIdea >= 100)
+    if (numIdea < 0 || numIdea >= 100)
         return (false);
     this->ideas[numIdea] = newIdea;
     return (true);
