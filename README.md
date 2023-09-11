@@ -30,12 +30,12 @@
 |CPP01	|`Memory Allocation` `Pointers to members` `References` `Switch statement`		|100% ✅				|
 |CPP02	|`Ad-hoc Polymorphism` `Orthodox Canonical class form` `Operator Overloading`		|100% ✅				|
 |CPP03	|`Inheritance` `Multiple inheritance` `Diamond Problem`		| 100% ✅ 				|				
-|CPP04	|		|0%				|
-|CPP05	|		|0% 				|
-|CPP06	|		|0% 				|
-|CPP07	|		|0% 				|
-|CPP08	|		|0% 				|
-|CPP09	|		|0% 				|
+|CPP04	|	`Subtype polymorphism` `Abstract Classes` `Interfaces`	| 80% ✅ 				|
+|CPP05	|		`Exceptions` |0% 				|
+|CPP06	|		`Casting` |0% 				|
+|CPP07	|		`Templates` |0% 				|
+|CPP08	|		`Templated Containers` `Iterators` `Algorithms` |0% 				|
+|CPP09	|		`STL` `Ford-Johnson Algorithm` |0% 				|
 
 
 <h2 align="center" id="42-cursus"> 42 Cursus </h2>
