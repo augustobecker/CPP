@@ -7,23 +7,13 @@
 
 int main ( int argc, char **argv )
 {
-    std::string input;
-
     if (argc != 2)
     {
         std::cout << "ScalarConverter : Invalid Number of Parameters" << std::endl;
 		std::cout << "\tusage : ./converter <str_literal> "<< std::endl;
         std::cout << "\t\t<str_literal> : string literal to be converted in char, int, float and double "<< std::endl;
     }
-    input = argv[0];
-    try{
-        ScalarConverter convert(input);
-        conv.displayConversion();
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Error : " << e.what() << std::endl;
-        return (1);
-    }
-
+    else
+        ScalarConverter::convert(argv[1]);
+    return (0);
 }
