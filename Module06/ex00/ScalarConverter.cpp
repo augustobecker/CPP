@@ -114,7 +114,7 @@ ConversionData	ScalarConverter::convertToDouble( std::string literalString )
         values.isConversionPossible[INT_ARG] = true;
     else
         values.isConversionPossible[INT_ARG] = false;
-    if ( values.convertedDouble >= FLT_MIN && values.convertedDouble <= FLT_MAX)
+    if ( values.convertedDouble >= -FLT_MAX && values.convertedDouble <= FLT_MAX)
         values.isConversionPossible[FLOAT_ARG] = true;
     else
         values.isConversionPossible[FLOAT_ARG] = false;
@@ -188,7 +188,7 @@ bool    ScalarConverter::isTypeInt( const std::string &literalString )
         i++;
     if (i != literalString.length())
         return (false);
-    value = std::atol(literalString .c_str());
+    value = std::atol(literalString.c_str());
     if (value > INT_MAX || value < INT_MIN)
         return (false);
     return (true); 
@@ -198,14 +198,14 @@ bool    ScalarConverter::isTypeFloat( std::string literalString )
 {
     double value;
     size_t sizeUntilF;
-    
+
     sizeUntilF = literalString.length() - 1;
-    if (!isTypeDouble(literalString.substr(0, sizeUntilF)))
+    if (literalString[sizeUntilF] != 'f')
         return (false);
-    else if (literalString[sizeUntilF] != 'f')
+    else if (!ScalarConverter::isTypeDouble(literalString.substr(0, sizeUntilF)))
         return (false);
     value = std::atof(literalString.c_str());
-    if (value > FLT_MAX || value < FLT_MIN)
+    if (value > FLT_MAX || value < -FLT_MAX)
         return (false);
     return (true);
 }
@@ -216,9 +216,7 @@ bool    ScalarConverter::isTypeDouble( std::string literalString )
     bool        isDecimal = false;
     size_t      i = 0;
 
-    while ((literalString[i] == '+') || (literalString[i] == '-'))
-        i++;
-    while ((i < literalString.length()) && (std::isdigit(literalString[i])))
+    while ((literalString[i] == '-') || (literalString[i] == '+'))
         i++;
     while (i < literalString.length())
     {
@@ -232,7 +230,7 @@ bool    ScalarConverter::isTypeDouble( std::string literalString )
         i++;
     }
     value = std::strtod(literalString.c_str(), NULL);
-    if (value > DBL_MAX || value < DBL_MIN)
+    if (value > DBL_MAX || value < -DBL_MAX)
         return (false);
     return (true);
 }
