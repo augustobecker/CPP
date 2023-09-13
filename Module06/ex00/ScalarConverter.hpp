@@ -51,6 +51,9 @@ private:
 	static bool				floatHasDecimal( float );
 	static bool				doubleHasDecimal( double );
 
+	static bool				isPseudoLiteralFloat( std::string );
+	static bool				isPseudoLiteralDouble( std::string );
+
 public:
 
 	~ScalarConverter( void );

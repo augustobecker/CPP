@@ -140,13 +140,13 @@ void    ScalarConverter::displayConversion( ConversionData values )
         std::cout << "float: impossible" << std::endl;
     else
     {
-        std::cout << "float: " << values.convertedFloat << (ScalarConverter::floatHasDecimal(values.convertedFloat) ? "f": ".0f") << std::endl;
+        std::cout << "float: " << values.convertedFloat << (ScalarConverter::floatHasDecimal(values.convertedFloat) ? ".0f": "f") << std::endl;
     }
 
     if (!values.isConversionPossible[DOUBLE_ARG])
         std::cout << "double: impossible" << std::endl;
     else
-        std::cout << "double: " << values.convertedDouble << (ScalarConverter::doubleHasDecimal(values.convertedDouble) ? "": ".0") << std::endl;
+        std::cout << "double: " << values.convertedDouble << (ScalarConverter::doubleHasDecimal(values.convertedDouble) ? ".0": "") << std::endl;
 }
 
 bool    ScalarConverter::isType( std::string literalString, int type  )
@@ -199,6 +199,8 @@ bool    ScalarConverter::isTypeFloat( std::string literalString )
     double value;
     size_t sizeUntilF;
 
+    if (ScalarConverter::isPseudoLiteralFloat(literalString))
+        return (true);
     sizeUntilF = literalString.length() - 1;
     if (literalString[sizeUntilF] != 'f')
         return (false);
@@ -216,6 +218,8 @@ bool    ScalarConverter::isTypeDouble( std::string literalString )
     bool        isDecimal = false;
     size_t      i = 0;
 
+    if (ScalarConverter::isPseudoLiteralDouble(literalString))
+        return (true);
     while (literalString[i] == '-' || literalString[i] == '+')
         i++;
     while (i < literalString.length())
@@ -240,10 +244,12 @@ bool	ScalarConverter::floatHasDecimal( float value )
     float  fracPart;
     float  intPart;
 
+    if (value > 1000000 || value < -1000000)
+        return (false);
     fracPart = std::modf(value, &intPart);
     if (fracPart == 0.0f)
-        return (false);
-    return (true);
+        return (true);
+    return (false);
 }
 
 bool	ScalarConverter::doubleHasDecimal( double value )
@@ -251,8 +257,36 @@ bool	ScalarConverter::doubleHasDecimal( double value )
     double  fracPart;
     double  intPart;
 
+    if (value > 1000000 || value < -1000000)
+        return (false);
     fracPart = std::modf(value, &intPart);
     if (fracPart == 0.0f)
-        return (false);
-    return (true);
+        return (true);
+    return (false);
+}
+
+bool ScalarConverter::isPseudoLiteralFloat( std::string literalString )
+{
+    if (!literalString.compare("inff"))
+        return (true);
+    else if (!literalString.compare("-inff"))
+        return (true);
+    else if (!literalString.compare("+inff"))
+        return (true);
+    else if (!literalString.compare("nanf"))
+        return (true);
+    return (false);
+}
+
+bool ScalarConverter::isPseudoLiteralDouble( std::string literalString )
+{
+    if (!literalString.compare("inf"))
+        return (true);
+    else if (!literalString.compare("-inf"))
+        return (true);
+    else if (!literalString.compare("+inf"))
+        return (true);
+    else if (!literalString.compare("nan"))
+        return (true);
+    return (false);
 }
