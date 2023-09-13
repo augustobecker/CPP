@@ -68,10 +68,7 @@ ConversionData    ScalarConverter::convertToInt( std::string literalString )
     values.convertedFloat = static_cast<float>(values.convertedInt);
     values.convertedDouble = static_cast<double>(values.convertedInt);
     if ( values.convertedInt >= MIN_CHAR && values.convertedInt <= MAX_CHAR)
-    {
         values.isConversionPossible[CHAR_ARG] = true;
-        values.convertedChar = static_cast<char>(values.convertedInt);
-    }
     else
         values.isConversionPossible[CHAR_ARG] = false;
     values.isConversionPossible[INT_ARG] = true;
@@ -84,18 +81,18 @@ ConversionData 	ScalarConverter::convertToFloat( std::string literalString )
 {
     ConversionData values;
 
-    values.convertedInt = static_cast<int>(std::atol(literalString.c_str()));
-    values.convertedChar = static_cast<char>(values.convertedInt);
-    values.convertedFloat = static_cast<float>(values.convertedInt);
-    values.convertedDouble = static_cast<double>(values.convertedInt);
-    if ( values.convertedInt >= MIN_CHAR && values.convertedInt <= MAX_CHAR)
-    {
+    values.convertedFloat = static_cast<float>(std::atof(literalString.c_str()));
+    values.convertedChar = static_cast<char>(values.convertedFloat);
+    values.convertedInt = static_cast<int>(values.convertedFloat);
+    values.convertedDouble = static_cast<double>(values.convertedFloat);
+    if ( values.convertedFloat >= MIN_CHAR && values.convertedFloat <= MAX_CHAR)
         values.isConversionPossible[CHAR_ARG] = true;
-        values.convertedChar = static_cast<char>(values.convertedInt);
-    }
     else
         values.isConversionPossible[CHAR_ARG] = false;
-    values.isConversionPossible[INT_ARG] = true;
+    if ( values.convertedDouble >= INT_MIN && values.convertedDouble <= INT_MAX)
+        values.isConversionPossible[INT_ARG] = true;
+    else
+        values.isConversionPossible[INT_ARG] = false;
     values.isConversionPossible[FLOAT_ARG] = true;
     values.isConversionPossible[DOUBLE_ARG] = true;
     return (values);
@@ -105,19 +102,22 @@ ConversionData	ScalarConverter::convertToDouble( std::string literalString )
 {
     ConversionData values;
 
-    values.convertedInt = static_cast<int>(std::atol(literalString.c_str()));
-    values.convertedChar = static_cast<char>(values.convertedInt);
-    values.convertedFloat = static_cast<float>(values.convertedInt);
-    values.convertedDouble = static_cast<double>(values.convertedInt);
-    if ( values.convertedInt >= MIN_CHAR && values.convertedInt <= MAX_CHAR)
-    {
+    values.convertedDouble = static_cast<double>(std::strtod(literalString.c_str(), NULL));
+    values.convertedChar = static_cast<char>(values.convertedDouble);
+    values.convertedInt = static_cast<int>(values.convertedDouble);
+    values.convertedFloat = static_cast<float>(values.convertedDouble);
+    if ( values.convertedDouble >= MIN_CHAR && values.convertedDouble <= MAX_CHAR)
         values.isConversionPossible[CHAR_ARG] = true;
-        values.convertedChar = static_cast<char>(values.convertedInt);
-    }
     else
         values.isConversionPossible[CHAR_ARG] = false;
-    values.isConversionPossible[INT_ARG] = true;
-    values.isConversionPossible[FLOAT_ARG] = true;
+    if ( values.convertedDouble >= INT_MIN && values.convertedDouble <= INT_MAX)
+        values.isConversionPossible[INT_ARG] = true;
+    else
+        values.isConversionPossible[INT_ARG] = false;
+    if ( values.convertedDouble >= FLT_MIN && values.convertedDouble <= FLT_MAX)
+        values.isConversionPossible[FLOAT_ARG] = true;
+    else
+        values.isConversionPossible[FLOAT_ARG] = false;
     values.isConversionPossible[DOUBLE_ARG] = true;
     return (values);
 }
@@ -139,12 +139,14 @@ void    ScalarConverter::displayConversion( ConversionData values )
     if (!values.isConversionPossible[FLOAT_ARG])
         std::cout << "float: impossible" << std::endl;
     else
-        std::cout << "float: " << values.convertedFloat << std::endl;
+    {
+        std::cout << "float: " << values.convertedFloat << (ScalarConverter::floatHasDecimal(values.convertedFloat) ? ".0f": "f") << std::endl;
+    }
 
     if (!values.isConversionPossible[DOUBLE_ARG])
         std::cout << "double: impossible" << std::endl;
     else
-        std::cout << "double: " << values.convertedDouble << std::endl;
+        std::cout << "double: " << values.convertedDouble << (ScalarConverter::doubleHasDecimal(values.convertedDouble) ? ".0": "") << std::endl;
 }
 
 bool    ScalarConverter::isType( std::string literalString, int type  )
@@ -177,7 +179,8 @@ bool    ScalarConverter::isTypeChar( const std::string &literalString)
 
 bool    ScalarConverter::isTypeInt( const std::string &literalString )
 {
-    size_t i = 0;
+    long int    value;
+    size_t      i = 0;
 
     while ((literalString[i] == '+') || (literalString[i] == '-'))
         i++;
@@ -185,11 +188,15 @@ bool    ScalarConverter::isTypeInt( const std::string &literalString )
         i++;
     if (i != literalString.length())
         return (false);
+    value = std::atol(literalString .c_str());
+    if (value > INT_MAX || value < INT_MIN)
+        return (false);
     return (true); 
 }
 
 bool    ScalarConverter::isTypeFloat( std::string literalString )
 {
+    double value;
     size_t sizeUntilF;
     
     sizeUntilF = literalString.length() - 1;
@@ -197,13 +204,17 @@ bool    ScalarConverter::isTypeFloat( std::string literalString )
         return (false);
     else if (literalString[sizeUntilF] != 'f')
         return (false);
+    value = std::atof(literalString.c_str());
+    if (value > FLT_MAX || value < FLT_MIN)
+        return (false);
     return (true);
 }
 
 bool    ScalarConverter::isTypeDouble( std::string literalString )
 {
-    bool    isDecimal = false;
-    size_t  i = 0;
+    long double value;
+    bool        isDecimal = false;
+    size_t      i = 0;
 
     while ((literalString[i] == '+') || (literalString[i] == '-'))
         i++;
@@ -220,7 +231,32 @@ bool    ScalarConverter::isTypeDouble( std::string literalString )
             return (false);
         i++;
     }
-    if (!isDecimal)
+    value = std::strtod(literalString.c_str(), NULL);
+    if (value > DBL_MAX || value < DBL_MIN)
+        return (false);
+    return (true);
+}
+
+bool	ScalarConverter::floatHasDecimal( float value )
+{
+    float  diff;
+    int     intPart;
+
+    intPart = static_cast<int>(value);
+    diff = std::abs(value - static_cast<float>(intPart));
+    if (diff > 0.0f)
+        return (false);
+    return (true);
+}
+
+bool	ScalarConverter::doubleHasDecimal( double value )
+{
+    double  diff;
+    int     intPart;
+
+    intPart = static_cast<int>(value);
+    diff = std::abs(value - static_cast<double>(intPart));
+    if (diff > 0.0)
         return (false);
     return (true);
 }

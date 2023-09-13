@@ -32,28 +32,33 @@ struct ConversionData
 class ScalarConverter
 {
 
-public:
+private:
 
 	ScalarConverter( void );
-	~ScalarConverter( void );
-
 	ScalarConverter(const ScalarConverter &);
-	ScalarConverter& operator=(const ScalarConverter &);
-
-	static void 			convert( std::string );
 
 	static ConversionData	convertToChar( std::string );
 	static ConversionData	convertToInt( std::string );
 	static ConversionData 	convertToFloat( std::string );
 	static ConversionData	convertToDouble( std::string );
 
-	static void   			displayConversion( ConversionData );
-
 	static bool    			isType( std::string, int );
 	static bool    			isTypeChar( const std::string &);
 	static bool    			isTypeInt( const std::string &);
 	static bool    			isTypeFloat( std::string );
 	static bool    			isTypeDouble( std::string );
+
+	static bool				floatHasDecimal( float );
+	static bool				doubleHasDecimal( double );
+
+public:
+
+	~ScalarConverter( void );
+
+	ScalarConverter& operator=(const ScalarConverter &);
+
+	static void 			convert( std::string );
+	static void   			displayConversion( ConversionData );
 
 };
 
