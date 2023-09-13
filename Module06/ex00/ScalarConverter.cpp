@@ -140,13 +140,13 @@ void    ScalarConverter::displayConversion( ConversionData values )
         std::cout << "float: impossible" << std::endl;
     else
     {
-        std::cout << "float: " << values.convertedFloat << (ScalarConverter::floatHasDecimal(values.convertedFloat) ? ".0f": "f") << std::endl;
+        std::cout << "float: " << values.convertedFloat << (ScalarConverter::floatHasDecimal(values.convertedFloat) ? "f": ".0f") << std::endl;
     }
 
     if (!values.isConversionPossible[DOUBLE_ARG])
         std::cout << "double: impossible" << std::endl;
     else
-        std::cout << "double: " << values.convertedDouble << (ScalarConverter::doubleHasDecimal(values.convertedDouble) ? ".0": "") << std::endl;
+        std::cout << "double: " << values.convertedDouble << (ScalarConverter::doubleHasDecimal(values.convertedDouble) ? "": ".0") << std::endl;
 }
 
 bool    ScalarConverter::isType( std::string literalString, int type  )
@@ -182,9 +182,9 @@ bool    ScalarConverter::isTypeInt( const std::string &literalString )
     long int    value;
     size_t      i = 0;
 
-    while ((literalString[i] == '+') || (literalString[i] == '-'))
+    while (literalString[i] == '+' || literalString[i] == '-')
         i++;
-    while ((i < literalString.length()) && (std::isdigit(literalString[i])))
+    while (i < literalString.length() && std::isdigit(literalString[i]))
         i++;
     if (i != literalString.length())
         return (false);
@@ -216,7 +216,7 @@ bool    ScalarConverter::isTypeDouble( std::string literalString )
     bool        isDecimal = false;
     size_t      i = 0;
 
-    while ((literalString[i] == '-') || (literalString[i] == '+'))
+    while (literalString[i] == '-' || literalString[i] == '+')
         i++;
     while (i < literalString.length())
     {
@@ -237,24 +237,22 @@ bool    ScalarConverter::isTypeDouble( std::string literalString )
 
 bool	ScalarConverter::floatHasDecimal( float value )
 {
-    float  diff;
-    int     intPart;
+    float  fracPart;
+    float  intPart;
 
-    intPart = static_cast<int>(value);
-    diff = std::abs(value - static_cast<float>(intPart));
-    if (diff > 0.0f)
+    fracPart = std::modf(value, &intPart);
+    if (fracPart == 0.0f)
         return (false);
     return (true);
 }
 
 bool	ScalarConverter::doubleHasDecimal( double value )
 {
-    double  diff;
-    int     intPart;
+    double  fracPart;
+    double  intPart;
 
-    intPart = static_cast<int>(value);
-    diff = std::abs(value - static_cast<double>(intPart));
-    if (diff > 0.0)
+    fracPart = std::modf(value, &intPart);
+    if (fracPart == 0.0f)
         return (false);
     return (true);
 }
