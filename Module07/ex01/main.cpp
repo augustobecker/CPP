@@ -11,19 +11,19 @@ int main(void)
     std::string stringArray[3] = {"Vivre", "sa", "vie"};
  
     std::cout << "________________________________________________" << std::endl;
-    ::iter<int>(intArray, 10, ::display);
+    ::iter(intArray, 10, ::display);
     std::cout << std::endl;
     std::cout << "________________________________________________" << std::endl;
-    ::iter<char>(charArray, 7, ::display);
+    ::iter(charArray, 7, ::display);
     std::cout << std::endl;
     std::cout << "________________________________________________" << std::endl;
-    ::iter<float>(floatArray, 5, ::display);
+    ::iter(floatArray, 5, ::display);
     std::cout << std::endl;
     std::cout << "________________________________________________" << std::endl;
-    ::iter<double>(doubleArray, 5, ::display);
+    ::iter(doubleArray, 5, ::display);
     std::cout << std::endl;
     std::cout << "________________________________________________" << std::endl;
-    ::iter<std::string>(stringArray, 3, ::display);
+    ::iter(stringArray, 3, ::display);
     std::cout << std::endl;
     return 0;
 }
