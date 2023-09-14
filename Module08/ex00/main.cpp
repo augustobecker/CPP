@@ -1,13 +1,11 @@
 #include "easyfind.hpp"
-#include <exception>
-#include <iomanip>
 #include <vector>
 #include <list>
 #include <deque>
 
 int main( void )
 {
-    std::cout << std::setw(40) << std::setfill('_') << "" << std::endl;
+    std::cout << "________________________________________" << std::endl;
     std::vector<int>            vect;
     std::vector<int>::iterator  vectIter;
     int                         i;
@@ -38,7 +36,7 @@ int main( void )
  		std::cout << "\tException: " << e.what() <<std::endl;
  	}
 
-    std::cout << std::setw(40) << std::setfill('_') << "" << std::endl;
+    std::cout << "________________________________________" << std::endl;
     std::list<int>            list;
     std::list<int>::iterator  listIter;
 
@@ -69,7 +67,7 @@ int main( void )
  		std::cout << "\tException: " << e.what() <<std::endl;
  	}
 
-    std::cout << std::setw(40) << std::setfill('_') << "" << std::endl;
+    std::cout << "________________________________________" << std::endl;
 
     std::deque<int>                     doubleEndedQueue;
     std::deque<int>::iterator           doubleEndedQueueIter;
@@ -116,7 +114,7 @@ int main( void )
  		std::cout << "\tException: " << e.what() <<std::endl;
  	}
 
-    std::cout << std::setw(40) << std::setfill('_') << "" << std::endl;
+    std::cout << "________________________________________" << std::endl;
     const std::vector<int>            constVect(10, 2);
     std::vector<int>::const_iterator  constVectIter;
 
@@ -141,7 +139,7 @@ int main( void )
  		std::cout << "\tException: " << e.what() <<std::endl;
  	}
 
-    std::cout << std::setw(40) << std::setfill('_') << "" << std::endl;
+    std::cout << "________________________________________" << std::endl;
     
     return 0;
 }
