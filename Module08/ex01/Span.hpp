@@ -4,27 +4,30 @@
 # include <iostream>
 # include <exception>
 # include <algorithm>
+# include <vector>
 
 class Span
 {
 
 private:
 
-    const unsigned int     _maxNumOfElements;
+	const unsigned int	_maxSize;
+	std::vector<int>	_elements;
 
 public:
 
-    Span( unsigned int );
-    ~Span( void );
+	Span( unsigned int );
+	~Span( void );
 
-    Span( const Span& );
-    Span& operator=(const Span &);
+	Span( const Span& );
+	Span& operator=(const Span &);
 
-    void addNumber( const int );
+	void addNumber( const int& );
 
-    unsigned int    shortestSpan( void ) const;
-    unsigned int    longestSpan( void ) const;
-}
+	unsigned int    shortestSpan( void ) const;
+	unsigned int    longestSpan( void ) const;
 
+	void displayElem( void ) const;
+};
 
 #endif

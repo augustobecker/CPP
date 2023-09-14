@@ -2,7 +2,7 @@
 # include <iostream>
 # include <exception>
 
-Span::Span( unsigned int spanMaxSize ) : _maxNumOfElements(spanMaxSize)
+Span::Span( unsigned int spanMaxSize ) : _maxSize(spanMaxSize)
 {
 
 }
@@ -12,7 +12,7 @@ Span::~Span( void )
 
 }
 
-Span::Span(const Span &obj) : _maxNumOfElements(obj._maxNumOfElements)
+Span::Span(const Span &obj) : _maxSize(obj._maxSize)
 {
     *this = obj;
 }
@@ -24,36 +24,27 @@ Span& Span::operator=(const Span &toCopyFrom)
     return (*this);
 }
 
-
-void Span::addNumber( const int newNbr )
+void Span::addNumber( const int &newNbr )
 {
-
+    if (_elements.size() >= _maxSize)
+        throw std::overflow_error("Reached Max capacity of Vector");
+    _elements.push_back(newNbr);
 }
 
-
-void Span::decrementGrade( int decrement )
+unsigned int    Span::shortestSpan( void ) const
 {
-    if ((this->_grade + decrement) > this->_lowestGrade)
-        throw (Span::GradeTooLowException());
-    this->_grade += decrement;
+    return (1);
 }
 
-std::string Span::getName( void ) const
+unsigned int    Span::longestSpan( void ) const
 {
-    return (this->_name);
+    return (1);
 }
 
-int Span::getGrade( void ) const
+void Span::displayElem( void ) const
 {
-    return (this->_grade);
-}
-
-const char* Span::GradeTooHighException::what() const throw()
-{
-    return ("Span's grade is too High (the highest possible grade is 1)");
-}
-
-const char* Span::GradeTooLowException::what() const throw()
-{
-    return ("Span's grade is too Low (the lowest possible grade is 150)");
+    std::cout << "Span: ";
+    for (int i = 0; i < (int) _elements.size(); i++)
+        std::cout << "[" << _elements.at(i) << "] ";
+    std::cout << std::endl;
 }
