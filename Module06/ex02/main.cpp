@@ -28,11 +28,11 @@ Base* generate( void )
 
 void identify(Base* ptr) {
     if (dynamic_cast<A*>(ptr))
-        std::cout << "Pointer to A" << std::endl;
+        std::cout << "| Pointer to A \t\t\t      |" << std::endl;
     else if (dynamic_cast<B*>(ptr))
-        std::cout << "Pointer to B" << std::endl;
+        std::cout << "| Pointer to B \t\t\t      |" << std::endl;
     else if (dynamic_cast<C*>(ptr))
-        std::cout << "Pointer to C" << std::endl;
+        std::cout << "| Pointer to C \t\t\t      |" << std::endl;
     else
         std::cout << "Unknown Instance Class" << std::endl;
 }
@@ -41,28 +41,28 @@ void identify(Base& ref) {
     try {
         A& a = dynamic_cast<A& >(ref);
         if (&a == &ref)
-            std::cout << "Reference to A" << std::endl;
+            std::cout << "| Reference to A \t\t      |" << std::endl;
     }
     catch(std::exception& e){
-        std::cout << e.what() << " to A" << std::endl;
+        std::cout << "| " << e.what() << " to A\t\t      |" << std::endl;
     }
 
     try {
         B& b = dynamic_cast<B& >(ref);
         if (&b == &ref)
-            std::cout << "Reference to B" << std::endl;
+            std::cout << "| Reference to B\t\t      |" << std::endl;
     }
     catch(std::exception& e){
-        std::cout << e.what() << " to B" << std::endl;
+        std::cout << "| " << e.what() << " to B\t\t      |" << std::endl;
     }
 
     try {
         C& c = dynamic_cast<C& >(ref);
         if (&c == &ref)
-            std::cout << "Reference to C" << std::endl;
+            std::cout << "| Reference to C\t\t      |" << std::endl;
     }
     catch(std::exception& e){
-        std::cout << e.what() << " to C" << std::endl;
+        std::cout << "| " << e.what() << " to C\t\t      |" << std::endl;
     }
 }
 
