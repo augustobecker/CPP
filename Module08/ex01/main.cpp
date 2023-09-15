@@ -1,17 +1,20 @@
 #include "Span.hpp"
 #include <cstdlib>
 #include <ctime>
-#include <list>
 
 void SubjectTests( void );
 void SpanCopyOperationsTests( void );
 void SpanShortestAndLongestTests( void );
+void SpanAddNumberRangeTests( int size );
 
 int main( void )
 {
+    srand(time(NULL));
     SubjectTests();
     SpanCopyOperationsTests();
     SpanShortestAndLongestTests();
+    SpanAddNumberRangeTests( 10000 );
+    SpanAddNumberRangeTests( 5 );
     return 0;
 }
 
@@ -101,6 +104,30 @@ void SpanShortestAndLongestTests( void )
     std::cout << "| ";
     sp.displayElem();
 
+    try {
+        std::cout << "| shortest span: \t" << sp.shortestSpan() << std::endl;
+    } catch(std::exception &e){
+ 		std::cout << "| Exception: " << e.what() <<std::endl;
+ 	}
+    try {
+        std::cout << "| longest span: \t" << sp.longestSpan() << std::endl;
+    } catch(std::exception &e){
+ 		std::cout << "| Exception: " << e.what() <<std::endl;
+ 	}
+}
+
+void SpanAddNumberRangeTests( int size )
+{
+    std::cout << "_______________________________________" << std::endl;
+    std::cout << "|__|| SPAN ADD NUMBER RANGE TESTS ||__| " << std::endl;
+    std::vector<int>	numbers;
+    Span                sp(size);
+
+    for (int i = 1; i <= size; ++i)
+        numbers.push_back(i * (std::rand() % size));
+    sp.addNumbersRange(numbers.begin(), numbers.end());
+    std::cout << "| ";
+    sp.displayElem();
     try {
         std::cout << "| shortest span: \t" << sp.shortestSpan() << std::endl;
     } catch(std::exception &e){

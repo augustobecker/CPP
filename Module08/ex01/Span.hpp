@@ -25,10 +25,20 @@ public:
 
 	void addNumber( const int& );
 
+	template<typename T>
+    void addNumbersRange(const T& begin, const T& end);
+
 	unsigned int    shortestSpan( void ) const;
 	unsigned int    longestSpan( void ) const;
 
 	void displayElem( void ) const;
 };
+
+template<typename T>
+void Span::addNumbersRange(const T& begin, const T& end) {
+    for (T it = begin; it != end; ++it) {
+        addNumber(*it);
+    }
+}
 
 #endif
