@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <exception>
+# include <numeric>
 # include <algorithm>
 # include <vector>
 

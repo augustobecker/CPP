@@ -37,20 +37,37 @@ void SpanCopyOperationsTests( void )
 {
     std::cout << "_______________________________________" << std::endl;
     std::cout << "|________|| SPAN COPY TESTS ||________| " << std::endl;
-    Span sp = Span(3);
+    Span sp = Span(5);
 
     sp.addNumber(6);
     sp.addNumber(3);
     sp.addNumber(17);
+    sp.addNumber(22);
 
-    Span spCopyConstructor = Span(5);
-    Span spCopyAssign = Span(8);
+    Span spCopyConstructor = Span(sp);
+    Span spCopyAssign = Span(2);
 
     spCopyAssign.addNumber(18);
     spCopyAssign.addNumber(9);
-    spCopyAssign.addNumber(7);
 
     spCopyAssign = sp;
+
+    Span spCopyAssignGreater = Span(8);
+
+    spCopyAssignGreater.addNumber(8);
+    spCopyAssignGreater.addNumber(7);
+    spCopyAssignGreater.addNumber(1);
+    spCopyAssignGreater.addNumber(66);
+    spCopyAssignGreater.addNumber(4);
+    spCopyAssignGreater.addNumber(91);
+    spCopyAssignGreater.addNumber(88);
+    spCopyAssignGreater.addNumber(100);
+
+    spCopyAssignGreater = sp;
+
+    Span spCopyAssignEmpty = Span(0);
+
+    spCopyAssignEmpty = sp;
 
     std::cout << "| ";
     sp.displayElem();
@@ -58,11 +75,40 @@ void SpanCopyOperationsTests( void )
     spCopyConstructor.displayElem();
     std::cout << "| ";
     spCopyAssign.displayElem();
+    std::cout << "| ";
+    spCopyAssignGreater.displayElem();
+    std::cout << "| ";
+    spCopyAssignEmpty.displayElem();
 }
 
 void SpanShortestAndLongestTests( void )
 {
     std::cout << "_______________________________________" << std::endl;
     std::cout << "|________|| SPAN SPAN TESTS ||________| " << std::endl;
-    Span sp = Span(3);
+    Span sp = Span(10);
+
+    sp.addNumber(16);
+    sp.addNumber(1);
+    sp.addNumber(39);
+    sp.addNumber(9);
+    sp.addNumber(101);
+    sp.addNumber(97);
+    sp.addNumber(63);
+    sp.addNumber(33);
+    sp.addNumber(21);
+    sp.addNumber(34);
+
+    std::cout << "| ";
+    sp.displayElem();
+
+    try {
+        std::cout << "| shortest span: \t" << sp.shortestSpan() << std::endl;
+    } catch(std::exception &e){
+ 		std::cout << "| Exception: " << e.what() <<std::endl;
+ 	}
+    try {
+        std::cout << "| longest span: \t" << sp.longestSpan() << std::endl;
+    } catch(std::exception &e){
+ 		std::cout << "| Exception: " << e.what() <<std::endl;
+ 	}
 }

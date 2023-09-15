@@ -19,8 +19,18 @@ Span::Span(const Span &obj) : _maxSize(obj._maxSize)
 
 Span& Span::operator=(const Span &toCopyFrom)
 {
+    unsigned int copySize = std::min(
+        static_cast<unsigned int>(toCopyFrom._elements.size()),
+        this->_maxSize);
+
     if (this != &toCopyFrom)
-        return (*this);
+    {
+        this->_elements.clear();
+        this->_elements.insert(
+            this->_elements.end(), 
+            toCopyFrom._elements.begin(), 
+            toCopyFrom._elements.begin() + copySize);
+    }
     return (*this);
 }
 
@@ -31,14 +41,32 @@ void Span::addNumber( const int &newNbr )
     _elements.push_back(newNbr);
 }
 
+unsigned int absoluteValue (int value)
+{
+    return (std::abs(value));
+}
+
 unsigned int    Span::shortestSpan( void ) const
 {
-    return (1);
+    if (_elements.size() <= 1)
+        throw std::out_of_range("Insufficient values to calculate Span");
+
+    std::vector<int> differences(_elements.size());
+
+    std::adjacent_difference(_elements.begin(), _elements.end(), differences.begin());
+    std::transform(differences.begin(), differences.end(), differences.begin(), absoluteValue);
+
+    return (*std::min_element(differences.begin(), differences.end()));
+
 }
 
 unsigned int    Span::longestSpan( void ) const
 {
-    return (1);
+    if (_elements.size() <= 1)
+        throw std::out_of_range("Insufficient values to calculate Span");
+    return (
+        *std::max_element(_elements.begin(), _elements.end()) -
+        *std::min_element(_elements.begin(), _elements.end()));
 }
 
 void Span::displayElem( void ) const
