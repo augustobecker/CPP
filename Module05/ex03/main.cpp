@@ -31,9 +31,12 @@ void testCreateFormViaIntern( const std::string formType, const std::string targ
 
         someRandomBureucrat.signForm(*randomForm);
         someRandomBureucrat.executeForm(*randomForm);
+
+        delete randomForm;
     } catch (std::exception &e){
         std::cout << "EXCEPTION: " << e.what() << std::endl;
     }
+
 
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
