@@ -53,6 +53,8 @@ void testCreateShrubberyCreationForm( std::string name )
         AForm *document = new ShrubberyCreationForm(name);
 
         document->getTarget();
+
+        delete document;
     }
     catch (std::exception &e){
         std::cout << "EXCEPTION: " << e.what() << std::endl;
@@ -72,6 +74,8 @@ void testCreatePresidentialPardonForm( std::string name )
         AForm *document = new PresidentialPardonForm(name);
 
         document->getTarget();
+
+        delete document;
     }
     catch (std::exception &e){
         std::cout << "EXCEPTION: " << e.what() << std::endl;
@@ -91,6 +95,8 @@ void testCreateRobotomyRequestForm( std::string name )
         AForm *document = new RobotomyRequestForm(name);
 
         document->getTarget();
+
+        delete document;
     }
     catch (std::exception &e){
         std::cout << "EXCEPTION: " << e.what() << std::endl;
@@ -111,6 +117,8 @@ void testExecuteShrubberyCreationFormWithQualifiedBureaucrat( std::string name )
     
     random.signForm(*document);
     random.executeForm(*document);
+
+    delete document;
     
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
@@ -128,6 +136,8 @@ void testExecutePresidentialPardonFormWithQualifiedBureaucrat( std::string name 
     random.signForm(*document);
     random.executeForm(*document);
 
+    delete document;
+
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
@@ -144,6 +154,8 @@ void testExecuteRobotomyRequestFormWithQualifiedBureaucrat( std::string name )
     random.signForm(*document);
     random.executeForm(*document);
 
+    delete document;
+
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
@@ -159,6 +171,8 @@ void testExecuteShrubberyCreationFormWithUnqualifiedBureaucrat( std::string name
     
     random.signForm(*document);
     random.executeForm(*document);
+
+    delete document;
     
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
@@ -176,6 +190,8 @@ void testExecutePresidentialPardonFormWithUnqualifiedBureaucrat( std::string nam
     random.signForm(*document);
     random.executeForm(*document);
 
+    delete document;
+
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
@@ -192,6 +208,8 @@ void testExecuteRobotomyRequestFormWithUnqualifiedBureaucrat( std::string name )
     random.signForm(*document);
     random.executeForm(*document);
 
+    delete document;
+
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
@@ -206,6 +224,8 @@ void testExecuteShrubberyCreationFormBeeingUnsigned( std::string name )
     AForm *document = new ShrubberyCreationForm(name);
 
     random.executeForm(*document);
+
+    delete document;
     
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
@@ -222,6 +242,8 @@ void testExecutePresidentialPardonFormBeeingUnsigned( std::string name )
     
     random.executeForm(*document);
 
+    delete document;
+
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
@@ -236,6 +258,8 @@ void testExecuteRobotomyRequestFormBeeingUnsigned( std::string name )
     AForm *document = new RobotomyRequestForm(name);
     
     random.executeForm(*document);
+
+    delete document;
 
     std::cout << "____|         End of test          |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
