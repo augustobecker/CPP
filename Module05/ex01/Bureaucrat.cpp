@@ -74,6 +74,11 @@ void    Bureaucrat::signForm( Form& document ) const
     try {
         document.beSigned(*this);
     }
+    catch (const Form::AlreadySignedException &e)
+    {
+        std::cout << this->_name << " couldn’t sign " << document.getName() << " because " << e.what() << std::endl;
+        return;
+    }
     catch (const std::exception &e)
     {
         std::cout << this->_name << " couldn’t sign " << document.getName() << " because Bureaucrat's grade isn't enough to sign this Form" << std::endl;

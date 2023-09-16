@@ -17,6 +17,8 @@ void testFormBeSignMethodUnqualifiedBureaucrat( void );
 void testBureaucratSignFormMethodBeingQualified( void );
 void testBureaucratSignFormMethodBeingUnqualified( void );
 
+void testSignAlreadySignedForm( void );
+
 int main( void )
 {
     testCreateValidForm("Entry");
@@ -29,6 +31,8 @@ int main( void )
 
     testBureaucratSignFormMethodBeingQualified();
     testBureaucratSignFormMethodBeingUnqualified();
+
+    testSignAlreadySignedForm();
 }
 
 void testCreateValidForm( std::string name )
@@ -98,7 +102,7 @@ void testFormBeSignMethodQualifiedBureaucrat( void )
 {
     std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
     std::cout << "____| Test beSing Method (Form) with Qualified Bureaucrat   |__" << std::endl;
-    std::cout << "\t (No output means its working properly)" << std::endl;
+    std::cout << "\t (should sign the form)" << std::endl;
 
     Form document("Itau Admission", LOWEST_GRADE, HIGEST_GRADE);
     Bureaucrat employee("Augusto", 39);
@@ -140,7 +144,7 @@ void testBureaucratSignFormMethodBeingQualified( void )
 {
     std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
     std::cout << "____| Test signForm Method (Bureaucrat) being Qualified   |__" << std::endl;
-    std::cout << "\t (No output means its working properly)" << std::endl;
+    std::cout << "\t (should sign the form)" << std::endl;
 
     Form document("Itau Admission", 99, HIGEST_GRADE);
     Bureaucrat employee("Augusto", 91);
@@ -165,5 +169,31 @@ void testBureaucratSignFormMethodBeingUnqualified( void )
 
     std::cout << "\t verify if it was sign (should not) : " << std::boolalpha << document.getIsSigned() << std::endl;
     std::cout << "____|                     End of test                        |__" << std::endl;
+    std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
+}
+
+
+void testSignAlreadySignedForm( void )
+{
+    std::cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||\n" << std::endl;
+    std::cout << "____| Test Sign Already Signed Form   |__" << std::endl;
+    std::cout << "\t (should sign the form)" << std::endl;
+
+    Form document("Itau Admission", 99, HIGEST_GRADE);
+    Bureaucrat employee("Augusto", 1);
+
+    employee.signForm(document);
+
+    std::cout << "\t verify if it was sign (it should) : " << std::boolalpha << document.getIsSigned() << std::endl;
+
+    try {
+        employee.signForm(document);
+    } catch (std::exception &e){
+        std::cout << "EXCEPTION: " << e.what() << std::endl;
+    }
+
+    std::cout << "\t verify if it was sign (it should) : " << std::boolalpha << document.getIsSigned() << std::endl;
+    
+    std::cout << "____|                       End of test                     |__" << std::endl;
     std::cout << "\n||||||||||||||||||||||||||||||||||||||||||||||||||||" << std::endl;
 }
