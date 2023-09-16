@@ -1,6 +1,6 @@
 # include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm( const std::string target ) : Form("PresidentialPardonForm", requiredGradeToSign, requiredGradeToExecute)
+PresidentialPardonForm::PresidentialPardonForm( const std::string target ) : AForm("PresidentialPardonForm", requiredGradeToSign, requiredGradeToExecute)
 {
     this->_target = target;
 }
@@ -10,7 +10,7 @@ PresidentialPardonForm::~PresidentialPardonForm( void )
 
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj) : Form("PresidentialPardonForm", requiredGradeToSign, requiredGradeToExecute)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &obj) : AForm("PresidentialPardonForm", requiredGradeToSign, requiredGradeToExecute)
 {
     *this = obj;
 }
@@ -32,7 +32,7 @@ std::string PresidentialPardonForm::getTarget( void ) const
 
 void	PresidentialPardonForm::execute( Bureaucrat const& officeWorker ) const
 {
-    Form::execute(officeWorker);
+    AForm::execute(officeWorker);
     pardon();
 }
 

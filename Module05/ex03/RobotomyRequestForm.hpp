@@ -6,7 +6,7 @@
 # include "AForm.hpp"
 # include <time.h>
 
-class RobotomyRequestForm : public Form
+class RobotomyRequestForm : public AForm
 {
 
 private:

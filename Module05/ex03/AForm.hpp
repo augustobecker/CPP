@@ -8,7 +8,7 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
 
 private:
@@ -23,11 +23,11 @@ public:
 	static const int	higestGrade = 1;
 	static const int	lowestGrade = 150;
 
-	Form( std::string, int, int );
-	virtual ~Form( void );
+	AForm( std::string, int, int );
+	virtual ~AForm( void );
 
-	Form( const Form& );
-	Form& operator=( const Form& );
+	AForm( const AForm& );
+	AForm& operator=( const AForm& );
 
 	std::string 		getName( void ) const;
 	bool				getIsSigned( void ) const;
@@ -36,10 +36,10 @@ public:
 
 	virtual std::string getTarget( void ) const = 0;
 
-    void	setIsSigned( bool ) ;
+    void				setIsSigned( bool ) ;
 
-	void			beSigned( Bureaucrat const& );
-	virtual void	execute( Bureaucrat const& ) const;
+	void				beSigned( Bureaucrat const& );
+	virtual void		execute( Bureaucrat const& ) const;
 
 	class GradeTooHighException : public std::exception
 	{

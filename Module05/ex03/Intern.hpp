@@ -21,11 +21,11 @@ public:
 	Intern(const Intern& );
 	Intern& operator=(const Intern& );
 
-	Form *makeShrubberyCreationForm( const std::string ) const;
-	Form *makeRobotomyRequestForm( const std::string ) const;
-	Form *makePresidentialPardonForm( const std::string ) const;
+	AForm *makeShrubberyCreationForm( const std::string ) const;
+	AForm *makeRobotomyRequestForm( const std::string ) const;
+	AForm *makePresidentialPardonForm( const std::string ) const;
 
-    Form *makeForm( const std::string, const std::string ) const;
+    AForm *makeForm( const std::string, const std::string ) const;
 
 	class FormNotFoundException : public std::exception
 	{

@@ -24,7 +24,7 @@ void testCreateFormViaIntern( const std::string formType, const std::string targ
     std::cout << "____| Test Create Form " << formType << " Via Intern and Execute it   |__" << std::endl;
     Bureaucrat someRandomBureucrat("Santos", HIGEST_GRADE);
     Intern someRandomIntern;
-    Form* randomForm;
+    AForm* randomForm;
 
     try {
         randomForm = someRandomIntern.makeForm(formType, target);

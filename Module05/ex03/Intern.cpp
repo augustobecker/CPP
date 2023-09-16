@@ -22,24 +22,24 @@ Intern& Intern::operator=(const Intern &toCopyFrom)
     return (*this);
 }
 
-Form *Intern::makeShrubberyCreationForm( const std::string target ) const
+AForm *Intern::makeShrubberyCreationForm( const std::string target ) const
 {
     return (new ShrubberyCreationForm(target));
 }
 
-Form *Intern::makeRobotomyRequestForm( const std::string target ) const
+AForm *Intern::makeRobotomyRequestForm( const std::string target ) const
 {
     return (new RobotomyRequestForm(target));
 }
 
-Form *Intern::makePresidentialPardonForm( const std::string target ) const
+AForm *Intern::makePresidentialPardonForm( const std::string target ) const
 {
     return (new PresidentialPardonForm(target));
 }
 
-Form *Intern::makeForm( const std::string formType, const std::string target ) const
+AForm *Intern::makeForm( const std::string formType, const std::string target ) const
 {
-    Form* (Intern::*formConstructor[AVAILABLE_FORMS])(const std::string) const = {
+    AForm* (Intern::*formConstructor[AVAILABLE_FORMS])(const std::string) const = {
         &Intern::makeShrubberyCreationForm,
         &Intern::makeRobotomyRequestForm,
         &Intern::makePresidentialPardonForm

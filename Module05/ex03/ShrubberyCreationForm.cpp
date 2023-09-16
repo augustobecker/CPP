@@ -1,6 +1,6 @@
 # include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm( const std::string target ) : Form("ShrubberyCreationForm", requiredGradeToSign, requiredGradeToExecute)
+ShrubberyCreationForm::ShrubberyCreationForm( const std::string target ) : AForm("ShrubberyCreationForm", requiredGradeToSign, requiredGradeToExecute)
 {
     this->_target = target;
 }
@@ -10,7 +10,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm( void )
 
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) : Form("ShrubberyCreationForm", requiredGradeToSign, requiredGradeToExecute)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &obj) : AForm("ShrubberyCreationForm", requiredGradeToSign, requiredGradeToExecute)
 {
     *this = obj;
 }
@@ -32,7 +32,7 @@ std::string ShrubberyCreationForm::getTarget( void ) const
 
 void	ShrubberyCreationForm::execute( Bureaucrat const& officeWorker ) const
 {
-    Form::execute(officeWorker);
+    AForm::execute(officeWorker);
     createShrubberyTree();
 }
 
