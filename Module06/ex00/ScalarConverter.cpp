@@ -106,15 +106,17 @@ ConversionData	ScalarConverter::convertToDouble( std::string literalString )
     values.convertedChar = static_cast<char>(values.convertedDouble);
     values.convertedInt = static_cast<int>(values.convertedDouble);
     values.convertedFloat = static_cast<float>(values.convertedDouble);
-    if ( values.convertedDouble >= MIN_CHAR && values.convertedDouble <= MAX_CHAR)
+    if ( values.convertedDouble >= MIN_CHAR && values.convertedDouble <= MAX_CHAR )
         values.isConversionPossible[CHAR_ARG] = true;
     else
         values.isConversionPossible[CHAR_ARG] = false;
-    if ( values.convertedDouble >= INT_MIN && values.convertedDouble <= INT_MAX)
+    if ( values.convertedDouble >= INT_MIN && values.convertedDouble <= INT_MAX )
         values.isConversionPossible[INT_ARG] = true;
     else
         values.isConversionPossible[INT_ARG] = false;
-    if ( values.convertedDouble >= -FLT_MAX && values.convertedDouble <= FLT_MAX)
+    if ( values.convertedDouble >= -FLT_MAX && values.convertedDouble <= FLT_MAX )
+        values.isConversionPossible[FLOAT_ARG] = true;
+    else if (std::isinf(values.convertedDouble) || std::isnan(values.convertedDouble))
         values.isConversionPossible[FLOAT_ARG] = true;
     else
         values.isConversionPossible[FLOAT_ARG] = false;

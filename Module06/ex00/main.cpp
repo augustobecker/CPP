@@ -1,10 +1,6 @@
 # include <iostream>
 # include "ScalarConverter.hpp"
 
-/* 
-	test cases: 420, -4.25, 42.0f, 0, 2147483649, nan, -inf, string
-*/
-
 void testCases( void );
 
 int main ( int argc, char **argv )
@@ -123,5 +119,4 @@ void testCases( void )
     std::cout << "./convert 2147483648" << std::endl;
     ScalarConverter::convert("2147483648");
     std::cout << std::endl;
-
 }
