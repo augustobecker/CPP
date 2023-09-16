@@ -53,6 +53,7 @@ private:
 
 	static bool				isPseudoLiteralFloat( std::string );
 	static bool				isPseudoLiteralDouble( std::string );
+	static void   			displayConversion( ConversionData );
 
 public:
 
@@ -61,7 +62,6 @@ public:
 	ScalarConverter& operator=(const ScalarConverter &);
 
 	static void 			convert( std::string );
-	static void   			displayConversion( ConversionData );
 
 };
 
