@@ -50,7 +50,7 @@ void testCreateShrubberyCreationForm( std::string name )
     std::cout << "\t (No output means its working properly)" << std::endl;
 
     try {
-        Form *document = new ShrubberyCreationForm(name);
+        AForm *document = new ShrubberyCreationForm(name);
 
         document->getTarget();
     }
@@ -69,7 +69,7 @@ void testCreatePresidentialPardonForm( std::string name )
     std::cout << "\t (No output means its working properly)" << std::endl;
 
     try {
-        Form *document = new PresidentialPardonForm(name);
+        AForm *document = new PresidentialPardonForm(name);
 
         document->getTarget();
     }
@@ -88,7 +88,7 @@ void testCreateRobotomyRequestForm( std::string name )
     std::cout << "\t (No output means its working properly)" << std::endl;
 
     try {
-        Form *document = new RobotomyRequestForm(name);
+        AForm *document = new RobotomyRequestForm(name);
 
         document->getTarget();
     }
@@ -107,7 +107,7 @@ void testExecuteShrubberyCreationFormWithQualifiedBureaucrat( std::string name )
     std::cout << "\t (it should print that form has been signed, executed and its execution )" << std::endl;
 
     Bureaucrat random("Daniel", HIGEST_GRADE);
-    Form *document = new ShrubberyCreationForm(name);
+    AForm *document = new ShrubberyCreationForm(name);
     
     random.signForm(*document);
     random.executeForm(*document);
@@ -123,7 +123,7 @@ void testExecutePresidentialPardonFormWithQualifiedBureaucrat( std::string name 
     std::cout << "\t (it should print that form has been signed, executed and its execution )" << std::endl;
 
     Bureaucrat  random("Daniel", HIGEST_GRADE);
-    Form *document = new PresidentialPardonForm(name);
+    AForm *document = new PresidentialPardonForm(name);
     
     random.signForm(*document);
     random.executeForm(*document);
@@ -139,7 +139,7 @@ void testExecuteRobotomyRequestFormWithQualifiedBureaucrat( std::string name )
     std::cout << "\t (it should print that form has been signed, executed and its execution )" << std::endl;
 
     Bureaucrat random("Daniel", 1);
-    Form *document = new RobotomyRequestForm(name);
+    AForm *document = new RobotomyRequestForm(name);
     
     random.signForm(*document);
     random.executeForm(*document);
@@ -155,7 +155,7 @@ void testExecuteShrubberyCreationFormWithUnqualifiedBureaucrat( std::string name
     std::cout << "\t (it should print that form has been signed, and throw an exception when trying to execute )" << std::endl;
 
     Bureaucrat random("Daniel", 138);
-    Form *document = new ShrubberyCreationForm(name);
+    AForm *document = new ShrubberyCreationForm(name);
     
     random.signForm(*document);
     random.executeForm(*document);
@@ -171,7 +171,7 @@ void testExecutePresidentialPardonFormWithUnqualifiedBureaucrat( std::string nam
     std::cout << "\t (it should print that form has been signed, and throw an exception when trying to execute )" << std::endl;
 
     Bureaucrat  random("Daniel", 6);
-    Form *document = new PresidentialPardonForm(name);
+    AForm *document = new PresidentialPardonForm(name);
     
     random.signForm(*document);
     random.executeForm(*document);
@@ -187,7 +187,7 @@ void testExecuteRobotomyRequestFormWithUnqualifiedBureaucrat( std::string name )
     std::cout << "\t (it should print that form has been signed, and throw an exception when trying to execute )" << std::endl;
 
     Bureaucrat random("Daniel", 46);
-    Form *document = new RobotomyRequestForm(name);
+    AForm *document = new RobotomyRequestForm(name);
     
     random.signForm(*document);
     random.executeForm(*document);
@@ -203,7 +203,7 @@ void testExecuteShrubberyCreationFormBeeingUnsigned( std::string name )
     std::cout << "\t (it should throw an exeception)" << std::endl;
 
     Bureaucrat random("Daniel", 138);
-    Form *document = new ShrubberyCreationForm(name);
+    AForm *document = new ShrubberyCreationForm(name);
 
     random.executeForm(*document);
     
@@ -218,7 +218,7 @@ void testExecutePresidentialPardonFormBeeingUnsigned( std::string name )
     std::cout << "\t (it should throw should an exeception)" << std::endl;
 
     Bureaucrat  random("Daniel", 6);
-    Form *document = new PresidentialPardonForm(name);
+    AForm *document = new PresidentialPardonForm(name);
     
     random.executeForm(*document);
 
@@ -233,7 +233,7 @@ void testExecuteRobotomyRequestFormBeeingUnsigned( std::string name )
     std::cout << "\t (it should throw should an exeception)" << std::endl;
 
     Bureaucrat random("Daniel", 46);
-    Form *document = new RobotomyRequestForm(name);
+    AForm *document = new RobotomyRequestForm(name);
     
     random.executeForm(*document);
 

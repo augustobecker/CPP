@@ -6,7 +6,7 @@
 # include "AForm.hpp"
 # include <fstream> 
 
-class ShrubberyCreationForm : public Form
+class ShrubberyCreationForm : public AForm
 {
 
 private:

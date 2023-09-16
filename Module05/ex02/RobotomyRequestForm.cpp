@@ -2,7 +2,7 @@
 # include <exception>
 # include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm( const std::string target ) : Form("RobotomyRequestForm", requiredGradeToSign, requiredGradeToExecute)
+RobotomyRequestForm::RobotomyRequestForm( const std::string target ) : AForm("RobotomyRequestForm", requiredGradeToSign, requiredGradeToExecute)
 {
     this->_target = target;
 }
@@ -12,7 +12,7 @@ RobotomyRequestForm::~RobotomyRequestForm( void )
 
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj) : Form("RobotomyRequestForm", requiredGradeToSign, requiredGradeToExecute)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &obj) : AForm("RobotomyRequestForm", requiredGradeToSign, requiredGradeToExecute)
 {
     *this = obj;
 }
@@ -34,7 +34,7 @@ std::string RobotomyRequestForm::getTarget( void ) const
 
 void	RobotomyRequestForm::execute( Bureaucrat const& officeWorker ) const
 {
-    Form::execute(officeWorker);
+    AForm::execute(officeWorker);
     randomRobotomy();
 }
 

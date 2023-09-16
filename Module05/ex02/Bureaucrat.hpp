@@ -5,7 +5,7 @@
 # include <exception>
 # include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -32,9 +32,9 @@ public:
 	std::string getName( void ) const;
 	int			getGrade( void ) const;
 
-	void		signForm( Form & ) const;
+	void		signForm( AForm & ) const;
 
-	void		executeForm( Form const & ) const;
+	void		executeForm( AForm const & ) const;
 
 	class GradeTooHighException : public std::exception
 	{

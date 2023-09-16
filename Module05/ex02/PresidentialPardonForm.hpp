@@ -5,7 +5,7 @@
 # include <exception>
 # include "AForm.hpp"
 
-class PresidentialPardonForm : public Form
+class PresidentialPardonForm : public AForm
 {
 
 private:
