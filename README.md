@@ -31,7 +31,7 @@
 |CPP02	|`Ad-hoc Polymorphism` `Orthodox Canonical class form` `Operator Overloading`		|100% ✅				|
 |CPP03	|`Inheritance` `Multiple inheritance` `Diamond Problem`		| 100% ✅ 				|				
 |CPP04	|	`Subtype polymorphism` `Abstract Classes` `Interfaces`	| 80% ✅ 				|
-|CPP05	|		`Exceptions` |0% 				|
+|CPP05	|		`Exceptions` |100% ✅ 				| 
 |CPP06	|		`Casting` |0% 				|
 |CPP07	|		`Templates` |0% 				|
 |CPP08	|		`Templated Containers` `Iterators` `Algorithms` |0% 				|
