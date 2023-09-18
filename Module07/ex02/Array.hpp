@@ -1,5 +1,5 @@
-#ifndef ITER_HPP
-# define ITER_HPP
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
 
 #include <iostream>
 
