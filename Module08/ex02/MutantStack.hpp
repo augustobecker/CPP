@@ -3,9 +3,10 @@
 
 # include <iostream>
 # include <stack>
+# include <deque>
 
-template<typename T>
-class MutantStack : public std::stack<T>
+template <typename T, typename container = std::deque<T> >
+class MutantStack : public std::stack<T, container>
 {
 	public:
 
@@ -31,7 +32,6 @@ class MutantStack : public std::stack<T>
 	reverse_iterator	    rbegin(void)	{ return (std::stack<T>::c.rbegin()); }
 	reverse_iterator	    rend(void)	{ return (std::stack<T>::c.rend()); }
 
-	
 	const_iterator	        cbegin(void)	{ return (std::stack<T>::c.cbegin()); }
 	const_iterator	        cend(void) { return (std::stack<T>::c.cend()); }
 
