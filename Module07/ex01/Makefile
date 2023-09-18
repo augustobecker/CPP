@@ -3,7 +3,8 @@ NAME			= Iter
 COMPILER		= c++
 STANDARD_FLAGS	= -Wall -Werror -Wextra -std=c++98
 
-SRCS			= main.cpp
+SRCS			= main.cpp \
+					Fixed.cpp
 
 OBJS			= ${SRCS:.cpp=.o}
 
