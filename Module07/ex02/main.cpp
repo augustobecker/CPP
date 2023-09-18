@@ -1,9 +1,22 @@
 #include <iostream>
-#include <Array.hpp>
+#include "Array.hpp"
+#include <cstdlib>
+#include <ctime>
 
 #define MAX_VAL 750
 
-int main(int, char**)
+void testsSubjectMain( void );
+
+int main( void )
+{
+    std::cout << "__________________________________________________________________" << std::endl;
+	std::cout << "1. Tests from Subject: " << std::endl;
+    testsSubjectMain();
+    std::cout << "__________________________________________________________________" << std::endl;
+    return (0);
+}
+
+void testsSubjectMain( void )
 {
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
@@ -25,7 +38,7 @@ int main(int, char**)
         if (mirror[i] != numbers[i])
         {
             std::cerr << "didn't save the same value!!" << std::endl;
-            return 1;
+            return ;
         }
     }
     try
@@ -50,5 +63,4 @@ int main(int, char**)
         numbers[i] = rand();
     }
     delete [] mirror;//
-    return 0;
 }
