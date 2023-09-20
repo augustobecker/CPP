@@ -84,8 +84,8 @@ void BitcoinExchange::exchange( std::string inputFilename )
 		{
 			date = getDate(currentLine);
 			value = getValue(currentLine);
-				
-			std::cout << date << " => " << value << " = " << value << std::endl;
+
+			std::cout << date << " => " << value << " = " << value * getLastBitcoinValue(database, date) << std::endl;
 		}
 		catch (BadInputException& e)
 		{
@@ -106,7 +106,7 @@ std::string BitcoinExchange::getDate( std::string str )
 	std::getline(strStream, date, '|');
 
 	if (!isDateValid(date))
-		throw (BitcoinExchange::BadInputDateException());
+		throw (BitcoinExchange::BadInputException());
 	return (date);
 }
 
@@ -122,6 +122,18 @@ double BitcoinExchange::getValue( std::string str )
 		throw (BitcoinExchange::TooLargeNumberException());
 	return (value);
 }
+
+double BitcoinExchange::getLastBitcoinValue( std::map<std::string, double>	database, std::string date )
+{
+    std::map<std::string, double>::const_iterator it = database.lower_bound(date);
+	const std::string& returnedDate = it->first;
+
+	if (it == database.begin() || returnedDate == date)
+		return it->second;
+	--it;
+	return it->second;
+}
+
 
 bool	BitcoinExchange::isDateValid( std::string date )
 {
@@ -173,7 +185,7 @@ const char* BitcoinExchange::TooLargeNumberException::what() const throw()
 	return "Error: too large number.";
 }
 
-const char* BitcoinExchange::BadInputDateException::what() const throw()
+const char* BitcoinExchange::BadInputException::what() const throw()
 {
 	return "Error: bad input";
 }

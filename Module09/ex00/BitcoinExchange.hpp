@@ -38,6 +38,8 @@ private:
 	static std::string 	getDate( std::string );
 	static double		getValue( std::string );
 
+	static double getLastBitcoinValue( std::map<std::string, double>, std::string );
+
 public:
 
 	static const std::string databaseFilename;
