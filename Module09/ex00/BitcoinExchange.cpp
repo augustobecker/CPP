@@ -31,170 +31,149 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &toCopyFrom)
     return (*this);
 }
 
-std::map<std::string, double> BitcoinExchange::getDatabaseValues( void )
+void BitcoinExchange::validateFile( std::string filename )
 {
-	std::map<std::string, double> 	map;
+	std::ifstream testFile;
+
+	testFile.open(filename.c_str() , std::ifstream::in);
+	if (!testFile)
+	{
+		testFile.close();
+		throw (BitcoinExchange::CouldNotOpenFileException());
+	}
+	testFile.close();
+}
+
+std::map<std::string, double> BitcoinExchange::databaseToMapContainer( void )
+{
 	std::ifstream					databaseFile;
+	std::map<std::string, double> 	map;
 	std::string						currentLine;
 	std::string 					key;
     double 							value;
 
+	validateFile( BitcoinExchange::databaseFilename );
 	databaseFile.open(BitcoinExchange::databaseFilename.c_str() , std::ifstream::in);
-	if(databaseFile.is_open())
+	while (std::getline(databaseFile, currentLine))
 	{
-		while (std::getline(databaseFile, currentLine))
-		{
-        	std::istringstream lineStream(currentLine);
+		std::istringstream lineStream(currentLine);
 
-        	if (std::getline(lineStream, key, ',') && lineStream >> value)
-            	map[key] = value;
-        }
-    }
+		if (std::getline(lineStream, key, ',') && lineStream >> value)
+			map[key] = value;
+	}
 	databaseFile.close();
 	return (map);
-} 
-void BitcoinExchange::exchange( std::string inputFilename )
-{
-    std::map<std::string, double> database = getDatabaseValues();
-	std::map<std::string, double>::iterator it;
-
-    for (it = database.begin(); it != database.end(); ++it) {
-        std::cout << it->first << ": " << std::fixed << std::setprecision(2) << it->second << std::endl;
-    }
-	if (!inputFilename.empty())
-		std::cout << "\tfinal execução "<< std::endl;
-
-
 }
 
+void BitcoinExchange::exchange( std::string inputFilename )
+{
+    std::map<std::string, double>	database = databaseToMapContainer();
+	std::ifstream					inFile;
+	std::string						currentLine;
+	std::string 					date;
+    double 							value;
 
-// void BitcoinExchange::validateInputFile( std::ifstream inputFile )
-// {
-//     std::string line;
-
-// 	std::getline(inputFile, line);
-// 	if (line != "date | value")
-// 		throw std::runtime_error("Invalid Header");
-// 	while (std::getline(ifs, line))
-//     {
-// 		if (line.find("|") == std::string::npos || line.empty())
-// 			std::cout << "Error: bad input => " << line << std::endl;
-// 		else
-// 		{
-// 			size_t pos = line.find('|');
-// 			date = line.substr(0, pos);
-// 			value = line.substr(pos + 1);
-// 			float rate = atof(value.c_str());
-// 			_calcBitcoin(date, rate);
-// 		}
-// 	}
-// }
-
-//**************************************
-// std::ifstream	data;
-// 	std::string		line;
-
-// 	data.open("data.csv", std::ifstream::in);
-// 	if(data.is_open())
-// 	{
-// 		while(getline(data, line))
-// 		{
-// 			size_t	sep = line.find(',');
-// 			_map[line.substr(0, sep)] = std::strtod(line.substr(sep + 1, line.size() - sep).c_str(), NULL);
-// 		}
-// 	}
-// 	data.close();
-
-// 	std::ifstream	file;
-// 	std::string		line;
-
-// 	file.open(file_name.data(), std::ifstream::in);
-// 	if(file.is_open())
-// 	{
-// 		getline(file, line);
-// 		while(getline(file, line))
-// 		{
-// 			try
-// 			{
-// 				std::string	key = getKey(line);
-// 				double		value = getValue(line);
+	validateFile( inputFilename );
+	inFile.open(inputFilename.c_str(), std::ifstream::in);
+	std::getline(inFile, currentLine);
+	if (currentLine.compare("date | value"))
+		std::cout << "Error: bad header" << std::endl;
+	while (std::getline(inFile, currentLine))
+	{
+		try
+		{
+			date = getDate(currentLine);
+			value = getValue(currentLine);
 				
-// 				std::cout << key << " => " << value << " = " << value * getBottomDate(key) << std::endl;
-// 			}
-// 			catch (NotAPositiveNumberException& e)
-// 			{
-// 				std::cout << e.what();
-// 			}
-// 			catch (TooLargeNumberException& e)
-// 			{
-// 				std::cout << e.what();
-// 			}
-// 			catch (BadInputException& e)
-// 			{
-// 				std::cout << e.what() << " => " << line << std::endl;
-// 			}
-// 		}
-// 	}
-// 	else
-// 		throw CouldNotOpenFileException();
-// 	file.close();
+			std::cout << date << " => " << value << " = " << value << std::endl;
+		}
+		catch (BadInputException& e)
+		{
+			std::cout << e.what() << " => " <<  currentLine.substr(0, currentLine.find('|')) << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
+	}
+}
 
+std::string BitcoinExchange::getDate( std::string str )
+{
+	std::istringstream	strStream(str);
+	std::string			date;
 
+	std::getline(strStream, date, '|');
 
+	if (!isDateValid(date))
+		throw (BitcoinExchange::BadInputDateException());
+	return (date);
+}
 
+double BitcoinExchange::getValue( std::string str )
+{
+	double				value;
+
+	value = static_cast<double>(std::strtod(str.substr(str.find('|') + 1, str.size() ).c_str(), 0));
+
+	if (value < 0)
+		throw (BitcoinExchange::NotAPositiveNumberException());
+	if (value > 10000)
+		throw (BitcoinExchange::TooLargeNumberException());
+	return (value);
+}
+
+bool	BitcoinExchange::isDateValid( std::string date )
+{
+	if (date.size() != DATE_MAX_SIZE)
+		return (false);
+	if (date[YearMonthSeparator] != '-' || date[MonthDaySeparator] != '-')
+		return (false);
+	for (int i = 0; i < DATE_MAX_SIZE; i++)
+	{
+		if (i == YearMonthSeparator || i == MonthDaySeparator)
+			i++;
+		if (i == FinalSpace)
+			break;
+		if (!std::isdigit(date[i]))
+			return (false);
+	}
 	
-// double	BitcoinExchange::getBottomDate(const std::string& targetDate) const
-// {
-// 	std::map<std::string, double>::const_iterator it = _map.lower_bound(targetDate);
-// 	const std::string& returnedDate = it->first;
+	short int year = static_cast<int>(std::atol(date.substr(YearThousandsDigit, YearMonthSeparator).c_str()));
+	short int month = static_cast<int>(std::atol(date.substr(MonthTensDigit, MonthDaySeparator).c_str()));
+	short int day = static_cast<int>(std::atol(date.substr(DayTensDigit, DayOnesDigit).c_str()));
 
-// 	if (it == _map.begin() || returnedDate == targetDate)
-// 		return it->second;
-// 	--it;
-// 	return it->second;
-// }
+	if (month < 1 || month > 12)
+		return (false);
+	if (day < 1 || day > 31)
+		return (false);
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && (day == 31))
+		return (false);
+	if ((month == 2) && (day > 28))
+	{
+		if (((day == 29) && ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0)))))
+			return (true);
+		return (false);
+	}
+	return (true);
+}
 
-// bool	BitcoinExchange::isDate(std::string date) const
-// {
-// 	if (date.size() != 10)
-// 		return (false);
-// 	if (date[5] != '0' && date[5] != '1')
-// 		return (false);
-// 	if (date[8] > '3' || date[8] < '0')
-// 		return (false);
-// 	for (size_t i = 0; i < date.size(); i++)
-// 	{
-// 		if (!std::isdigit(date[i]) && date[i] != '-')
-// 			return (false);
-// 	}
-// 	return (true);
-// }
+const char* BitcoinExchange::CouldNotOpenFileException::what() const throw()
+{
+	return "Error: could not open file.";
+}
 
-// std::string	BitcoinExchange::getKey(std::string line) const
-// {
-// 	size_t		sep;
-// 	std::string	key;
+const char* BitcoinExchange::NotAPositiveNumberException::what() const throw()
+{
+	return "Error: not a positive number.";
+}
 
-// 	sep = line.find(" | ");
-// 	if (sep == std::string::npos)
-// 		throw BadInputException();
-// 	key = line.substr(0, sep);
-// 	if (isDate(key))
-// 		return (key);
-// 	throw BadInputException();
-// }
+const char* BitcoinExchange::TooLargeNumberException::what() const throw()
+{
+	return "Error: too large number.";
+}
 
-// double	BitcoinExchange::getValue(std::string line) const
-// {
-// 	size_t		sep;
-// 	double		value;
-
-// 	sep = line.find(" | ");
-// 	line = line.substr(sep + 3, line.size());
-// 	value = std::strtod(line.c_str(), NULL);
-// 	if (value < 0)
-// 		throw NotAPositiveNumberException();
-// 	if(value > 1000)
-// 		throw TooLargeNumberException();
-// 	return (value);
-// }
+const char* BitcoinExchange::BadInputDateException::what() const throw()
+{
+	return "Error: bad input";
+}
