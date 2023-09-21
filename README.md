@@ -34,7 +34,7 @@
 |CPP05	|		`Exceptions` |100% ✅ 				| 
 |CPP06	|		`Casting` |100% ✅				|
 |CPP07	|		`Templates` |100% ✅ 				|
-|CPP08	|		`Templated Containers` `Iterators` `Algorithms` |0% 				|
+|CPP08	|		`Templated Containers` `Iterators` `Algorithms` |100% ✅ 	 				|
 |CPP09	|		`STL` `Ford-Johnson Algorithm` |0% 				|
 
 
