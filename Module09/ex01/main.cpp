@@ -23,7 +23,7 @@ int main ( int argc, char **argv )
 
 void testCases( void )
 {
-    std::cout << "_____________ Test Cases _____________" << std::endl;
+    std::cout << "_____________ Subject Test Cases _____________" << std::endl;
     std::cout << "./RPN  \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
     calculateRPN( "8 9 * 9 - 9 - 9 - 4 - 1 +");
     std::cout << std::endl;
@@ -38,6 +38,15 @@ void testCases( void )
 
     std::cout << "./RPN \"(1 + 1)\"" << std::endl;
     calculateRPN("( 1 + 1 )");
+
+    std::cout << "_____________ Invalid Test Cases _____________" << std::endl;
+
+    std::cout << "./RPN \"15 5 - 0 /\"" << std::endl;
+    calculateRPN("15 5 - 0 /");
+    std::cout << std::endl;
+
+    std::cout << "./RPN \"1 2 * 2 / 2 * 2 4\"" << std::endl;
+    calculateRPN("1 2 * 2 / 2 * 2 4");
 }
 
 void calculateRPN( std::string expression )

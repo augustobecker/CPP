@@ -40,14 +40,14 @@ void RPN::calculateOperatorExpression( std::stack<int> &stack, char const op )
 			break;
 		case '/':
 			if (operand[0] == 0)
-                throw std::invalid_argument("Division by zero");
+                throw std::invalid_argument("Error: Division by zero");
 			stack.push(operand[1] / operand[0]);
 			break;
 		case '*':
 			stack.push(operand[1] * operand[0]);
 			break;
 		default:
-			throw std::invalid_argument("Invalid argument: " + op);
+			throw std::invalid_argument("Error: Invalid argument " + op);
     }
 }
 
