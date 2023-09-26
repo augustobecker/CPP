@@ -1,6 +1,5 @@
 # include <iostream>
 # include "BitcoinExchange.hpp"
-# include <fstream>
 
 int main ( int argc, char **argv )
 {

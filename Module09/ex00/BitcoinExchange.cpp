@@ -1,11 +1,8 @@
-# include <iostream>
 # include <exception>
 # include "BitcoinExchange.hpp"
-# include <iostream>
 # include <fstream>
 # include <sstream>
 # include <string>
-#include <iomanip>
 
 const std::string BitcoinExchange::databaseFilename = "data.csv";
 
@@ -67,13 +64,14 @@ std::map<std::string, double> BitcoinExchange::databaseToMapContainer( void )
 
 void BitcoinExchange::exchange( std::string inputFilename )
 {
+	validateFile( inputFilename );
+
     std::map<std::string, double>	database = databaseToMapContainer();
 	std::ifstream					inFile;
 	std::string						currentLine;
 	std::string 					date;
     double 							value;
 
-	validateFile( inputFilename );
 	inFile.open(inputFilename.c_str(), std::ifstream::in);
 	std::getline(inFile, currentLine);
 	if (currentLine.compare("date | value"))
@@ -118,7 +116,7 @@ double BitcoinExchange::getValue( std::string str )
 
 	if (value < 0)
 		throw (BitcoinExchange::NotAPositiveNumberException());
-	if (value > 10000)
+	if (value > 1000)
 		throw (BitcoinExchange::TooLargeNumberException());
 	return (value);
 }
