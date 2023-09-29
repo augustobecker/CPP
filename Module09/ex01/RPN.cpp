@@ -47,7 +47,7 @@ void RPN::calculateOperatorExpression( std::stack<int> &stack, char const op )
 			stack.push(operand[1] * operand[0]);
 			break;
 		default:
-			throw std::invalid_argument("Error: Invalid argument " + op);
+			throw std::invalid_argument("Error: Invalid argument ");
     }
 }
 

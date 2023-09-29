@@ -13,7 +13,6 @@ class PmergeMe
 {
 	private:
 
-		float	_time;
 		int		_unpairedNumberVec;
 		int		_unpairedNumberDeq;
 		
