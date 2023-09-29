@@ -2,7 +2,7 @@
 
 PmergeMe::PmergeMe( void )
 {
-	this->_straggler = -1;
+	this->_unpairedNumberDeq = -1;
 	this->_unpairedNumberVec = -1;
 }
 
@@ -25,10 +25,10 @@ PmergeMe &PmergeMe::operator=( const PmergeMe &toCopyFrom )
 
 void	PmergeMe::merge( int argc, char **argv )
 {
-	populateContainers(argc, argv);
-	printUnsortedSequence(argc);
-	sortVector();
-	sortDeque();
+	PmergeMe::populateContainers(argc, argv);
+	PmergeMe::printUnsortedSequence(argc);
+	PmergeMe::sortVector();
+	PmergeMe::sortDeque();
 }
 
 void PmergeMe::populateContainers( int argc, char **argv )
@@ -84,138 +84,127 @@ void	PmergeMe::printUnsortedSequence( int argc )
 	std::cout << std::endl;
 }
 
-int PmergeMe::jacobsthal(int n)
+int PmergeMe::jacobsthal( int nbr )
 {
-	if (n == 0)
+    if (nbr == 0)
 		return (0);
-	if (n == 1)
+    if (nbr == 1)
 		return (1);
-	return (jacobsthal(n - 1) + 2 * jacobsthal(n - 2));
-}
 
-void PmergeMe::jacobInsertSeqVec()
-{
-    size_t size;
-    size_t jacobIndex;
-    int index;
+    int prev1 = 0;
+    int prev2 = 1;
+    int current = 0;
 
-    size = _pendVec.size();
-    index = 3;
-
-    while ((jacobIndex = this->jacobsthal(index)) < size - 1)
-    {
-        this->_jacobSeqVec.push_back(jacobIndex);
-        index++;
+    for (int i = 2; i <= nbr; ++i)
+	{
+        current = prev1 + 2 * prev2;
+        prev1 = prev2;
+        prev2 = current;
     }
+    return current;
 }
 
-void PmergeMe::positionsVec()
+template<typename T>
+void PmergeMe::jacobsthalInsertSequence( T& sequence )
 {
-    if (this->_pendVec.empty())
-        return;
+	size_t	size;
+	size_t	jacobIndex;
+	int		index;
 
-    this->jacobInsertSeqVec();
+	size = sequence.size();
+	index = 3;
+
+	while ((jacobIndex = PmergeMe::jacobsthal(index)) < size - 1)
+	{
+		sequence.push_back(jacobIndex);
+		index++;
+	}
+}
+
+void PmergeMe::positionsVector( void )
+{
+    if (this->_pendVector.empty())
+        return;
+    PmergeMe::jacobsthalInsertSequence(_pendVector);
     size_t lastPos = 1;
     size_t val = 1;
-    for (size_t i = 0; i < this->_jacobSeqVec.size(); i++)
+    for (size_t i = 0; i < _jacobSeqVector.size(); i++)
     {
-        val = this->_jacobSeqVec.at(i);
-        this->_posVec.push_back(val);
+        val = _jacobSeqVector.at(i);
+        _posVec.push_back(val);
 
         size_t pos = val - 1;
         while (pos > lastPos)
         {
-            this->_posVec.push_back(pos);
+            _posVec.push_back(pos);
             pos--;
         }
         lastPos = val;
     }
 
-    while (val++ < this->_pendVec.size())
-        this->_posVec.push_back(val);
+    while (val++ < _pendVector.size())
+        _posVec.push_back(val);
 }
 
-int PmergeMe::binarySearch(std::vector<int> vec, int n, int begin, int end)
-{
-	int mid;
-
-	while (begin <= end)
-	{
-		mid = begin + (end - begin) / 2;
-		if (n == vec.at(mid))
-			return (mid);
-
-		if (n > vec.at(mid))
-			begin = mid + 1;
-		else
-			end = mid - 1;
-	}
-	if (n > vec.at(mid))
-		return (mid + 1);
-	else
-		return (mid);
-}
-
-void PmergeMe::insertNumbersVec()
+void PmergeMe::insertNumbersVector( void )
 {
 	std::vector<int>::iterator	it;
-    size_t addCount = 0;
+    size_t	addCount = 0;
 
-    this->positionsVec();
-	for (it = this->_posVec.begin(); it < this->_posVec.end(); it++)
+    PmergeMe::positionsVector();
+	for (it = _posVec.begin(); it < _posVec.end(); it++)
     {
-        int n = this->_pendVec.at(*it - 1);
+        int nbr = _pendVector.at(*it - 1);
         size_t endPos = *it + addCount;
-        size_t pos = binarySearch(this->_mainVec, n, 0, endPos);
-        this->_mainVec.insert(this->_mainVec.begin() + pos, n);
+        size_t pos = PmergeMe::binarySearch(_mainVector, nbr, 0, endPos);
+        _mainVector.insert(_mainVector.begin() + pos, nbr);
 		addCount++;
     }
     if (_unpairedNumberVec != -1)
     {
-        size_t n = _unpairedNumberVec;
-        size_t pos = binarySearch(this->_mainVec, n, 0, this->_mainVec.size() - 1);
-        this->_mainVec.insert(this->_mainVec.begin() + pos, n);
+        size_t nbr = _unpairedNumberVec;
+        size_t pos = PmergeMe::binarySearch(_mainVector, nbr, 0, _mainVector.size() - 1);
+        _mainVector.insert(_mainVector.begin() + pos, nbr);
     }
 }
 
-void PmergeMe::mergeSort(std::vector<int>& S, int start, int end) {
-    if (start >= end) {
+void PmergeMe::mergeSort( std::vector<int>& vector, int start, int end )
+{
+    if (start >= end)
         return;
-    }
 
     int mid = (start + end) / 2;
 
-    mergeSort(S, start, mid);
-    mergeSort(S, mid + 1, end);
+    PmergeMe::mergeSort(vector, start, mid);
+    PmergeMe::mergeSort(vector, mid + 1, end);
 
     std::vector<int> sorted;
 
     int left = start;
     int right = mid + 1;
 
-    while (left <= mid && right <= end) {
-        if (S[left] <= S[right]) {
-            sorted.push_back(S[left]);
+    while (left <= mid && right <= end)
+	{
+        if (vector[left] <= vector[right]) {
+            sorted.push_back(vector[left]);
             left++;
         } else {
-            sorted.push_back(S[right]);
+            sorted.push_back(vector[right]);
             right++;
         }
     }
-
-    while (left <= mid) {
-        sorted.push_back(S[left]);
+    while (left <= mid)
+	{
+        sorted.push_back(vector[left]);
         left++;
     }
-
-    while (right <= end) {
-        sorted.push_back(S[right]);
+    while (right <= end)
+	{
+        sorted.push_back(vector[right]);
         right++;
     }
-
-    for (int i = start; i <= end; i++) {
-        S[i] = sorted[i - start];
-    }
+    for (int i = start; i <= end; i++)
+        vector[i] = sorted[i - start];
 }
 
 void	PmergeMe::sortVector( void )
@@ -237,51 +226,13 @@ void	PmergeMe::sortVector( void )
 		if (_pairVec[i].first < _pairVec[i].second){
 			std::swap(_pairVec[i].first, _pairVec[i].second);
 		}
-		_mainVec.push_back(_pairVec[i].first);
-		_pendVec.push_back(_pairVec[i].second);
+		_mainVector.push_back(_pairVec[i].first);
+		_pendVector.push_back(_pairVec[i].second);
 	}
-	mergeSort(_mainVec, 0, _mainVec.size() - 1);
-	_mainVec.insert(_mainVec.begin(), _pendVec[0]);
-	insertNumbersVec();
-
-	displaySortInfo(start, _mainVec);
-}
-
-int PmergeMe::binarySearch(std::deque<int> deq, int n, int begin, int end)
-{
-	int mid;
-
-	while (begin <= end)
-	{
-		mid = begin + (end - begin) / 2;
-		if (n == deq.at(mid))
-			return (mid);
-
-		if (n > deq.at(mid))
-			begin = mid + 1;
-		else
-			end = mid - 1;
-	}
-	if (n > deq.at(mid))
-		return (mid + 1);
-	else
-		return (mid);
-}
-
-void PmergeMe::jacobInsertSeqDeq()
-{
-	size_t size;
-	size_t jacobIndex;
-	int index;
-
-	size = this->_pendDeque.size();
-	index = 3;
-
-	while ((jacobIndex = this->jacobsthal(index)) < size - 1)
-	{
-		this->_jacobSeqDeq.push_back(jacobIndex);
-		index++;
-	}
+	PmergeMe::mergeSort(_mainVector, 0, _mainVector.size() - 1);
+	_mainVector.insert(_mainVector.begin(), _pendVector[0]);
+	PmergeMe::insertNumbersVector();
+	PmergeMe::displaySortInfo(start, _mainVector);
 }
 
 void PmergeMe::positionsDeque()
@@ -289,7 +240,7 @@ void PmergeMe::positionsDeque()
 	if (this->_pendDeque.empty())
 		return;
 
-	this->jacobInsertSeqDeq();
+	PmergeMe::jacobsthalInsertSequence(_pendDeque);
 	size_t lastPos = 1;
 	size_t val = 1;
 	while (!this->_jacobSeqDeq.empty())
@@ -311,66 +262,67 @@ void PmergeMe::positionsDeque()
 		this->_posDeq.push_back(val);
 }
 
-void PmergeMe::insertNumbersDeque()
+void PmergeMe::insertNumbersDeque( void )
 {
 	std::deque<int>::iterator it;
 	size_t addCount = 0;
 
-	this->positionsDeque();
-	for (it = this->_posDeq.begin(); it < this->_posDeq.end(); it++)
+	PmergeMe::positionsDeque();
+	for (it = _posDeq.begin(); it < _posDeq.end(); it++)
 	{
-		int n = this->_pendDeque.at(*it - 1);
+		int n = _pendDeque.at(*it - 1);
 
 		size_t endPos = *it + addCount;
-		size_t pos = this->binarySearch(this->_mainDeque, n, 0, endPos);
-		this->_mainDeque.insert(this->_mainDeque.begin() + pos, n);
+		size_t pos = PmergeMe::binarySearch(_mainDeque, n, 0, endPos);
+		_mainDeque.insert(_mainDeque.begin() + pos, n);
 		addCount++;
 	}
-	if (_straggler != -1)
+	if (_unpairedNumberDeq != -1)
 	{
-		size_t n = _straggler;
-		size_t pos = this->binarySearch(this->_mainDeque, n, 0, this->_mainDeque.size() - 1);
-		this->_mainDeque.insert(this->_mainDeque.begin() + pos, n);
+		size_t nbr = _unpairedNumberDeq;
+		size_t pos = PmergeMe::binarySearch(_mainDeque, nbr, 0, _mainDeque.size() - 1);
+		_mainDeque.insert(_mainDeque.begin() + pos, nbr);
 	}
 }
 
-void PmergeMe::mergeSort(std::deque<int>& S, int start, int end)
+void PmergeMe::mergeSort( std::deque<int>& deq, int start, int end )
 {
     if (start >= end)
         return ;
 
     int mid = (start + end) / 2;
 
-    mergeSort(S, start, mid);
-    mergeSort(S, mid + 1, end);
+    mergeSort(deq, start, mid);
+    mergeSort(deq, mid + 1, end);
 
     std::vector<int> sorted;
 
     int left = start;
     int right = mid + 1;
 
-    while (left <= mid && right <= end) {
-        if (S[left] <= S[right]) {
-            sorted.push_back(S[left]);
+    while (left <= mid && right <= end)
+	{
+        if (deq[left] <= deq[right]) {
+            sorted.push_back(deq[left]);
             left++;
         } else {
-            sorted.push_back(S[right]);
+            sorted.push_back(deq[right]);
             right++;
         }
     }
-
-    while (left <= mid) {
-        sorted.push_back(S[left]);
+    while (left <= mid)
+	{
+        sorted.push_back(deq[left]);
         left++;
     }
-
-    while (right <= end) {
-        sorted.push_back(S[right]);
+    while (right <= end)
+	{
+        sorted.push_back(deq[right]);
         right++;
     }
-
-    for (int i = start; i <= end; i++) {
-        S[i] = sorted[i - start];
+    for (int i = start; i <= end; i++)
+	{
+        deq[i] = sorted[i - start];
     }
 }
 
@@ -379,8 +331,9 @@ void	PmergeMe::sortDeque( void )
 	clock_t start = clock();
 	size_t	size = _inputDeq.size();
 	
-	if (size % 2 == 1){
-		_straggler = _inputDeq.back();
+	if (size % 2 == 1)
+	{
+		_unpairedNumberDeq = _inputDeq.back();
 		_inputDeq.pop_back();
 	}
 	for (size_t i = 0; i < size - 1; i += 2){
@@ -412,4 +365,26 @@ void PmergeMe::displaySortInfo(clock_t start, const T& mainSequence)
     std::cout << "Time to process a range of " << mainSequence.size();
     std::cout << " elements with " << (typeid(mainSequence) == typeid(std::vector<int>) ? "std::vector" : "std::deque");
     std::cout << " : " << timePassedMs << " ms" << std::endl;
+}
+
+template<typename T>
+int PmergeMe::binarySearch(T& container, int nbr, int begin, int end)
+{
+	int mid;
+
+	while (begin <= end)
+	{
+		mid = begin + (end - begin) / 2;
+		if (nbr == container.at(mid))
+			return (mid);
+
+		if (nbr > container.at(mid))
+			begin = mid + 1;
+		else
+			end = mid - 1;
+	}
+	if (nbr > container.at(mid))
+		return (mid + 1);
+	else
+		return (mid);
 }

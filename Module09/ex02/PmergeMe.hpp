@@ -11,16 +11,16 @@
 
 class PmergeMe
 {
-
 	private:
+
 		float	_time;
 		int		_unpairedNumberVec;
-		int		_straggler;
+		int		_unpairedNumberDeq;
 		
 		std::vector<int>	_input;
-		std::vector<int>	_mainVec;
-		std::vector<int>	_pendVec;
-		std::vector<int>	_jacobSeqVec;
+		std::vector<int>	_mainVector;
+		std::vector<int>	_pendVector;
+		std::vector<int>	_jacobSeqVector;
 		std::vector<int>	_posVec;
 
 		std::vector<std::pair<int, int> >	_pairVec;
@@ -40,17 +40,13 @@ class PmergeMe
 
 		void	sortVector( void );
 		void	mergeSort( std::vector<int>& S, int start, int end );
-		int 	binarySearch( std::vector<int> vec, int n, int begin, int end );
-		void 	insertNumbersVec( void );
-		void	positionsVec( void );
-		void	jacobInsertSeqVec( void );
+		void 	insertNumbersVector( void );
+		void	positionsVector( void );
 		
 		void	sortDeque( void );
 		void	mergeSort( std::deque<int>& S, int start, int end );
-		int		binarySearch( std::deque<int> deq, int n, int begin, int end );
 		void	insertNumbersDeque( void );
 		void	positionsDeque( void );
-		void	jacobInsertSeqDeq( void );
 
 	public:
 
@@ -66,8 +62,13 @@ class PmergeMe
 		void	printSequence( const T& );
 
 		template<typename T>
-		void displaySortInfo(clock_t start, const T& mainSequence);
+		void displaySortInfo(clock_t, const T& );
 
+		template<typename T>
+		void jacobsthalInsertSequence( T& );
+
+		template<typename T>
+		int binarySearch(T& deq, int nbr, int begin, int end);
 };
 
 #endif
