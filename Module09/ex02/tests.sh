@@ -3,66 +3,66 @@ make && clear
 NAME=PmergeMe
 
 echo
-echo "\e[1;32mTest 1 - sort 1 number\e[0m"
-./$NAME 1
+echo "1. Sort 1 number"
+./$NAME 42
 
 echo
-echo "\e[1;32mTest 2 - sort 2 number\e[0m"
-./$NAME 2 1
+echo "2. Sort 2 numbers"
+./$NAME 42 1
 
 echo
-echo "\e[1;32mTest 3 - sort 3 number\e[0m"
-./$NAME 2 1 3
+echo "3. Sort 3 numbers"
+./$NAME 11 42 1
 
 echo
-echo "\e[1;32mTest 4 - sort 4 number\e[0m"
-./$NAME 2 0 4 3
+echo "4. Sort 5 numbers"
+./$NAME 10 1 4 2 8
 
 echo
-echo "\e[1;32mTest 5 - sort 5 number\e[0m"
-./$NAME 5 2 0 4 3
+echo "5. Sort 10 numbers"
+./$NAME 5 11 2 0 23 4 3 33 1 9
 
 echo
-echo "\e[1;32mTest 6 - sort 14 numbers from 0 to 13\e[0m"
-./$NAME `shuf -i 0-13 -n 14 | xargs`
+echo "6. Sort 30 numbers"
+./$NAME `shuf -i 0-29 -n 30 | xargs`
 
 echo
-echo "\e[1;32mTest 7 - sort 15 numbers from 0 to 14\e[0m"
-./$NAME `shuf -i 0-14 -n 15 | xargs`
+echo "7. Sort 50 numbers"
+./$NAME `shuf -i 0-49 -n 50 | xargs`
 
 echo
-echo "\e[1;32mTest 8 - sort 100 numbers from 0 to 99\e[0m"
+echo "8. Sort 100 numbers"
 ./$NAME `shuf -i 0-99 -n 100 | xargs`
 
 echo
-echo "\e[1;32mTest 9 - sort 1000 numbers from 0 to 999\e[0m"
+echo "9. Sort 1000 numbers"
 ./$NAME `shuf -i 0-999 -n 1000 | xargs`
 
 echo
-echo "\e[1;32mTest 10 - sort 3000 numbers from 0 to 2999\e[0m"
+echo "10. Sort 3000 numbers"
 ./$NAME `shuf -i 0-2999 -n 3000 | xargs`
 
 echo
-echo "\e[1;31mError tests\e[0m"
-echo "\e[1;31mTest 11 - No arguments\e[0m"
+echo "Fail tests"
+echo "11. Missing Arguments"
 ./$NAME
 
 echo
-echo "\e[1;31mTest 12 - Not an int: 10 1 2147483648\e[0m"
-./$NAME 10 1 2147483648
+echo "12. Over Int Max: 10 1 2147483648"
+./$NAME 2 1 2147483648
 
 echo
-echo "\e[1;31mTest 13 - Not a number: 10 a 2 3 321 1 42 42\e[0m"
-./$NAME 10 a 2 3 321 1 42 42
+echo "13. Not a number: 13 4 1 505 X 42"
+./$NAME 13 4 1 505 X 42
 
 echo
-echo "\e[1;31mTest 14 - All in one argument: \"42 42 0\"\e[0m"
-./$NAME "42 42 0"
+echo "14. All in one argument: \"3 1 2\""
+./$NAME "3 1 2"
 
 echo
-echo "\e[1;31mTest 15 - Negative numbers: 10 984 -2 3 321 1 42 -42\e[0m"
-./$NAME 10 984 -2  3 321 1 42 -42
+echo "15. Negative number: 13 4 1 505 -5 42"
+./$NAME 13 4 1 505 -5 42
 
 echo
-echo "\e[1;31mTest 16 - Duplicates: 1 42 42 0\e[0m"
-./$NAME 1 42 42 0
+echo "16. Duplicates: 11 42 42 8"
+./$NAME 11 42 42 8

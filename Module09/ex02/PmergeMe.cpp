@@ -55,7 +55,8 @@ void PmergeMe::populateContainers( int argc, char **argv )
 }
 
 template<typename T>
-void	PmergeMe::printSequence(const T& sequence) {
+void	PmergeMe::printSequence(const T& sequence)
+{
     typename T::const_iterator it;
 	int	i =  0;
 	for (it = sequence.begin(); it != sequence.end(); ++it) {
@@ -105,16 +106,13 @@ int PmergeMe::jacobsthal( int nbr )
 }
 
 template<typename T>
-void PmergeMe::jacobsthalInsertSequence( T& sequence )
+void PmergeMe::jacobsthalInsertSequence( T& sequence, size_t maxSize )
 {
-	size_t	size;
 	size_t	jacobIndex;
 	int		index;
 
-	size = sequence.size();
 	index = 3;
-
-	while ((jacobIndex = PmergeMe::jacobsthal(index)) < size - 1)
+	while ((jacobIndex = PmergeMe::jacobsthal(index)) < maxSize - 1)
 	{
 		sequence.push_back(jacobIndex);
 		index++;
@@ -125,7 +123,7 @@ void PmergeMe::positionsVector( void )
 {
     if (this->_pendVector.empty())
         return;
-    PmergeMe::jacobsthalInsertSequence(_pendVector);
+    PmergeMe::jacobsthalInsertSequence(_jacobSeqVector, _pendVector.size());
     size_t lastPos = 1;
     size_t val = 1;
     for (size_t i = 0; i < _jacobSeqVector.size(); i++)
@@ -235,31 +233,31 @@ void	PmergeMe::sortVector( void )
 	PmergeMe::displaySortInfo(start, _mainVector);
 }
 
-void PmergeMe::positionsDeque()
+void PmergeMe::positionsDeque( void )
 {
-	if (this->_pendDeque.empty())
+	if (_pendDeque.empty())
 		return;
 
-	PmergeMe::jacobsthalInsertSequence(_pendDeque);
+	PmergeMe::jacobsthalInsertSequence(_jacobSeqDeq, _pendDeque.size());
 	size_t lastPos = 1;
 	size_t val = 1;
-	while (!this->_jacobSeqDeq.empty())
+	while (!_jacobSeqDeq.empty())
 	{
-		val = this->_jacobSeqDeq.front();
+		val = _jacobSeqDeq.front();
 
-		this->_jacobSeqDeq.pop_front();
-		this->_posDeq.push_back(val);
+		_jacobSeqDeq.pop_front();
+		_posDeq.push_back(val);
 
 		size_t pos = val - 1;
 		while (pos > lastPos)
 		{
-			this->_posDeq.push_back(pos);
+			_posDeq.push_back(pos);
 			pos--;
 		}
 		lastPos = val;
 	}
-	while (val++ < this->_pendDeque.size())
-		this->_posDeq.push_back(val);
+	while (val++ < _pendDeque.size())
+		_posDeq.push_back(val);
 }
 
 void PmergeMe::insertNumbersDeque( void )

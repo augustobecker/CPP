@@ -65,7 +65,7 @@ class PmergeMe
 		void displaySortInfo(clock_t, const T& );
 
 		template<typename T>
-		void jacobsthalInsertSequence( T& );
+		void jacobsthalInsertSequence( T&, size_t );
 
 		template<typename T>
 		int binarySearch(T& deq, int nbr, int begin, int end);
