@@ -10,7 +10,7 @@ class RPN
 	private:
 
 		RPN( void );
-		RPN(RPN const &obj);
+		RPN( const RPN & );
 
 		static void calculateOperatorExpression( std::stack<int> &, char const );
 
@@ -18,9 +18,9 @@ class RPN
 
 		~RPN(void);
 
-		RPN &operator=(RPN const &obj);
+		RPN &operator=( const RPN & );
 
-		static void	calculate(std::string input);
+		static void	calculate( std::string );
 
 		class	BadInputException : public std::exception
 		{
