@@ -4,6 +4,10 @@
 
 <p align="center"><a href="https://www.42sp.org.br/" target="_blank"><img src="https://img.shields.io/static/v1?label=&message=SP&color=000&style=for-the-badge&logo=42""></a></p>
 
+<p align="center">  <a href="https://github.com/augustobecker/CPP" target="_blank"><img alt="CPP" src="https://github.com/augustobecker/augustobecker/assets/81205527/4ed9a296-a963-4002-8a0a-3a9c3b12c1fc"> </a></p>
+
+<p align="center"> ✅ </p>
+
 <p align="center">
 	🚧 Under construction
 </p>
